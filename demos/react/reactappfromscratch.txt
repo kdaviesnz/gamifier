@@ -1,5 +1,8 @@
 React App from scratch
 
+* = does not work for latter versions.
+
+
 "nodemon": "^1.17.3",
 "express": "^4.16.3",
 "mongodb": "^3.0.7",
@@ -32,18 +35,25 @@ $ npm install mongodb --save
 $ npm install react --save
 $ npm install react-dom --save
 $ npm install react-hot-loader --save
+$ npm install body-parser --save
+$ npm install body-parser --save
+$ npm install @types/react
+$ npm install cookie-parser --save
+$ npm install compression --save
+$ npm install helmet --save
+$ npm install cors --save
 
 
 Add the following dev dependencies
 
 $ npm install babel-core --save-dev
-$ npm install babel-loader --save-dev
+$ npm install babel-loader@^^7.1.5 --save-dev
 $ npm install babel-preset-env --save-dev
 $ npm install babel-preset-react --save-dev
 $ npm install babel-preset-stage-2 --save-dev
 $ npm install nodemon --save-dev
 $ npm install webpack --save-dev
-$ npm install webpack-cli --save-dev
+$ npm install webpack-cli@^3.3.12 --save-dev
 $ npm install webpack-dev-middleware --save-dev
 $ npm install webpack-hot-middleware --save-dev
 $ npm install webpack-node-externals --save-dev
@@ -251,9 +261,23 @@ server.js
 
 server/server.js:
 
+import bodyParser from 'body-parser'
+import cookieParser from 'cookie-parser'
+import compress from 'compression'
+import cors from 'cors'
+import helmet from 'helmet'
+
 import express from 'express'
 
 const app = express()
+
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true }))
+app.use(cookieParser())
+app.use(compress())
+app.use(cors())
+
+
 
 
 In order to keep the development flow simple, we will initialize Webpack to compile the client-side code when the server is run. In devBundle.js, we will set up a compile method that takes the Express app and configures it to use the Webpack middleware to compile, bundle, and serve code, as well as enable hot reloading in development mode.
