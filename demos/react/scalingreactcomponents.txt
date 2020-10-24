@@ -1,0 +1,272 @@
+The source code for the examples in this chapter is at www.manning
+.com/books/react-quickly and https://github.com/azat-co/react-quickly/
+tree/master/ch08 (in the ch08 folder of the GitHub repository
+https://github.com/azat-co/react-quickly). You can also find some demos at
+http://reactquickly.co/demos.
+
+
+Sadly, this isn’t an uncommon situation in web development, because JavaScript is
+a loosely typed language. Fortunately, React provides a feature that lets you set default
+values for properties: the defaultProps static attribute. We’ll return to flagging issues
+with property types in the next section.
+The key benefit of defaultProps is that if a property is missing, a default value is ren-
+dered. To set a default property value on the component class, you define default-
+Props . For example, in the aforementioned Datepicker component definition, you
+can add a static class attribute (not an instance attribute, because that won’t work—
+instance attributes are set in constructor() ):
+class Datepicker extends React.Component {
+...
+}
+Datepicker.defaultProps = {
+currentDate: Date(),
+rows: 4,
+locale: 'US'
+}
+
+
+
+For React 15.5 and later versions (most of the examples in this book use React v15.5),
+type definitions come from a separate package called prop-types (www.npmjs.com/
+package/prop-types). You need to include prop-types in your HTML file. The pack-
+age will become a global object ( window.PropTypes ):
+<!-- development version -->
+<script src="https://unpkg.com/prop-types/prop-types.js"></script>
+<!-- production version -->
+<script src="https://unpkg.com/prop-types/prop-types.min.js"></script>
+
+class Datepicker extends React.Component {
+...
+window.PropTypes
+}
+Datepicker.propTypes = {
+currentDate: PropTypes.string,
+rows: PropTypes.number,
+locale: PropTypes.oneOf(['US', 'CA', 'MX', 'EU'])
+}
+
+To validate property types, use the propTypes property with the object containing the
+properties as keys and types as values. React.js types are in the PropTypes object:
+PropTypes.string PropTypes.any.isRequired
+PropTypes.string PropTypes.objectOf(PropTypes.number)
+PropTypes.number PropTypes.arrayOf(PropTypes.number)
+PropTypes.bool PropTypes.node
+PropTypes.object PropTypes.instanceOf(Message)
+PropTypes.array PropTypes.element
+PropTypes.func PropTypes.oneOfType([PropTypes.number, ...])
+PropTypes.shape
+
+Let’s define a Button class with an optional title with a string type. To implement
+it, you define a static class attribute (a property of that class) propTypes with key title
+and PropTypes.string as a value of that key. This code goes into button.js:
+Button.propTypes = {
+title: PropTypes.string
+}
+You can also require properties. To do so, add isRequired to the type. For example,
+the title property is mandatory and of type string :
+Button.propTypes = {
+title: PropTypes.string.isRequired
+}
+This button also requires a handler property, which must have a function as a value.
+(Last time I checked, buttons without actions were useless.)
+Button.propTypes = {
+handler: PropTypes.func.isRequired
+}
+
+What’s also nice is that you can define your own custom validation. To implement cus-
+tom validation, all you need to do is create an expression that returns an instance of
+Error . Then, you use that expression in propTypes: {..} as the value of the property.
+For example, the following code validates the email property with the regex from
+emailRegularExpression (which I copied from the internet—that means it has to be
+correct, right?): 1
+...
+propTypes = {
+email: function(props, propName, componentName) {
+var emailRegularExpression =
+/^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.
+➥ [a-z]{2})?)$/i
+if (!emailRegularExpression.test(props[propName])) {
+return new Error('Email validation failed!')
+}
+}
+}
+...
+
+
+Rendering Children
+
+Let’s continue with the fictional React project; but instead of a Datepicker (which is
+now robust and warns you about any missing or incorrect properties), you’re tasked with
+creating a component that’s universal enough to use with any children you pass to it. It’s
+a blog post Content component that may consist of a heading and a paragraph of text:
+<Content>
+<h1>React.js</h1>
+<p>Rocks</p>
+</Content>
+Another blog post may consist of an image (think Instagram or Tumblr):
+<Content>
+<img src="images/azat.jpg" width="100"/>
+</Content>
+Both posts use Content , but they pass different children to it. Wouldn’t it be great to
+have a special way to render any children ( <p> or <img> )? Meet children .
+The children property is an easy way to render all children with
+{this.props.children} . You can also do more than rendering. For example, add a
+<div> and pass along child elements:
+class Content extends React.Component {
+render() {
+return (
+<div className="content">
+{this.props.children}
+</div>
+)
+}
+}
+
+The parent of Content has the children <h1> and <p> :
+ReactDOM.render(
+<div>
+<Content>
+<h1>React</h1>
+<p>Rocks</p>
+</Content>
+</div>,
+document.getElementById('content')
+)
+The end result is that <h1> and <p> are wrapped in the <div> container with a content
+class, as shown in figure 8.5. Remember, for class attributes, you use className in
+React.
+
+Creating React higher-order components for code reuse
+
+A higher-order component ( HOC ) lets you enhance a component with additional
+logic (see figure 8.7). You can think of this pattern as components inheriting func-
+tionality when used with HOC s. In other words, HOCs let you reuse code. This allows you
+and your team to share functionality among React.js components. By doing so, you
+can avoid repeating yourselves
+
+In essence, HOC s are React component classes that render the original classes while
+adding extra functionality along the way. Defining an HOC is straightforward, because
+it’s only a function. You declare it with a fat arrow:
+const LoadWebsite = (Component) => {
+...
+}
+
+The name LoadWebsite is arbitrary; you can name the HOC anything, as long as you
+use the same name when you enhance a component. The same is true for the argu-
+ment to the function ( LoadWebsite ); it’s the original (not yet enhanced) component.
+
+
+const LoadWebsite = (Component) => {
+method, “this” is
+class _LoadWebsite extends React.Component {
+always an instance of
+constructor(props) {
+this component.
+super(props)
+this.state = {label: 'Run'}
+this.state.handleClick = this.handleClick.bind(this)
+}
+getUrl() {
+return 'https://facebook.github.io/react/docs/top-level-api.html'
+}
+Loads the
+handleClick(event) {
+React website
+var iframe = document.getElementById('frame').src =
+into an iframe
+this.getUrl()
+}
+componentDidMount() {
+console.log(ReactDOM.findDOMNode(this))
+}
+Passes state and
+render() {
+props as properties
+console.log(this.state)
+using spread
+return <Component {...this.state} {...this.props} />
+}
+}
+_LoadWebsite.displayName = 'EnhancedComponent'
+Defines a display
+return _LoadWebsite
+name for the HOC
+}
+
+To sum up, displayName is necessary to set React element names when they need
+to be different from the component class name, as shown in figure 8.8. You can see
+how useful it is to use displayName in the load-website.jsx HOC to augment the name,
+because by default the component name is the function name (which may not always
+be the name you want).
+
+const EnhancedButton = LoadWebsite(Button)
+const EnhancedLink = LoadWebsite(Link)
+const EnhancedLogo = LoadWebsite(Logo)Creating React higher-order components for code reuse
+183
+class Content extends React.Component {
+render() {
+return (
+<div>
+<EnhancedButton />
+<br />
+<br />
+<EnhancedLink />
+<br />
+Declares the iframe in
+<br />
+which the click method
+<EnhancedLogo />
+loads the React site
+<br />
+<br />
+<iframe id="frame" src="" width="600" height="500"/>
+</div>
+)
+}
+}
+Finally, let’s not forget to render Content on the last lines of script.jsx:
+ReactDOM.render(
+<Content />,
+document.getElementById('content')
+)
+
+Best practices: presentational vs. container components
+
+There’s a distinction that lets you scale your React code in terms of code and team
+size: presentational versus container components. We’ve touched on them in previous
+chapters, but now, because you know about passing children and HOC s, it’ll be easier
+to reason about container components.
+Generally speaking, splitting your code into two types makes it simpler and more
+maintainable. Presentational components typically only add structure to DOM and
+styling. They take properties but often don’t have their own states. Most of the time,
+you can use functions for stateless presentational components.
+
+Presentational components often use this.props.children when they act as wrap-
+pers to style child components. Examples are Button , Content , Layout , Post , and so
+on. But they rarely deal with data or states; that’s the job of container components.
+Container components are often generated by HOC s to inject data sources. They
+have states. Examples are SaveButton , ImagePostContent , and so on. Both presenta-
+tional and container components can contain other presentational or container com-
+ponents; but when you’re starting out, you’ll generally use presentational components
+containing only other presentational components. Container components contain
+either other container components or presentational ones.
+The best approach is to start with components that solve your needs. If you begin
+to see repeating patterns or properties that you’re passing over multiple layers of
+nested components but aren’t using in the interim components, introduce a con-
+tainer component or two.
+
+Summary
+You can define a default value for any component property by setting the com-
+ponent’s defaultProps attribute.
+You can enforce validation checks on component property values while working
+with the uncompressed, development version of the React library.
+You can check the type of a property, set it to isRequired so it’s mandatory, or
+define your own custom validation, as required.
+If a property value fails validation, a warning appears in your browser’s console.
+The minified, production version of the React library doesn’t include these val-
+idation checks.
+React allows you to encapsulate and reuse common properties, methods, and
+events among your components by creating higher-order components.
+Higher-order components are defined as functions that take another component
+as an argument. This argument is the component inheriting from the HOC .
+Any HTML or React components nested within a JSX element can be accessed
+through the props.children property of the parent component

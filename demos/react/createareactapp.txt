@@ -1,0 +1,84 @@
+https://www.freecodecamp.org/news/create-a-react-frontend-a-node-express-backend-and-connect-them-together-c5798926047c/
+
+$ npx create-react-app frontend
+$ cd frontend
+$ npm start
+
+http://localhost:3000
+
+$ npx express-generator server
+ change directory:
+     $ cd server
+
+   install dependencies:
+     $ npm install
+
+   run the app:
+     $ DEBUG=server:* npm start
+
+
+http://localhost:3000
+
+Go to bin/www and change the port number on line 15 from 3000 to 9000. 
+
+
+
+On routes, create a testAPI.js file and paste this code:
+
+var express = require(“express”);
+var router = express.Router();
+
+router.get(“/”, function(req, res, next) {
+    res.send(“API is working properly”);
+});
+
+module.exports = router;
+
+
+
+On the app.js file, insert a new route on line 24:
+
+app.use("/testAPI", testAPIRouter);
+
+
+Ok, you are “telling” express to use this route but, you still have to require it. Let’s do that on line 9:
+
+var testAPIRouter = require("./routes/testAPI");
+
+
+
+$ npm start
+
+http://localhost:9000/testAPI
+
+
+Connecting the React Client to the Express API
+
+On your code editor, let’s work in the client directory. Open app.js file located in frontend/src/app.js.
+Here I will use the Fetch API to retrieve data from the API. Just paste this code
+
+fetch("http://localhost:9000/testAPI")
+        .then(res => res.text())
+        .then(res => ()=>{
+            alert(res)
+        })
+
+But if we start both our apps (client and API) and navigate to http://localhost:3000/, you still won't find the expected result displayed on the page. If you open chrome developer tools, you will find why. In the console, you will see this error:
+
+Failed to load http://localhost:9000/testAPI: No ‘Access-Control-Allow-Origin’ header is present on the requested resource. Origin ‘http://localhost:3000' is therefore not allowed access. If an opaque response serves your needs, set the request’s mode to ‘no-cors’ to fetch the resource with CORS disabled.
+This is simple to solve. We just have to add CORS to our API to allow cross-origin requests. Let’s do just that. You should check here to find out more about CORS.
+
+In your terminal navigate to the server directory and install the CORS package:
+npm install --save cors
+2. On your code editor go to the API directory and open the server/app.js file.
+
+3. On line 6 require CORS:
+
+var cors = require("cors");
+4. Now on line 18 “tell” express to use CORS:
+
+app.use(cors());
+
+
+
+

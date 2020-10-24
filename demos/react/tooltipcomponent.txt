@@ -1,0 +1,10 @@
+The source code for the example in this chapter is at www.manning
+.com/books/react-quickly and https://github.com/azat-co/react-quickly/
+tree/master/ch10 (in the ch10 folder of the GitHub repository https://
+github.com/azat-co/react-quickly). You can also find some demos at http://
+reactquickly.co/demos.
+
+React style properties are camelCase, unlike CSS style properties.
+this.props.children has the component’s content.
+There’s no need to manually rerender, because React automatically rerenders
+after setState() .

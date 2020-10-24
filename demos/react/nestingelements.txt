@@ -1,0 +1,26 @@
+
+You can nest elements by wrapping them in a <div> container as follows:
+
+
+<!DOCTYPE html>
+<html>
+   <head>
+       <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+       <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+   </head>
+<body>
+   <div id="content"></div>
+   <script type="text/javascript">
+       const h1 = React.createElement('h1', null, 'Hello world!')
+       ReactDOM.render(
+           React.createElement('div', null, h1, h1)
+           document.getElementById('content')
+       )
+   </script>
+</body>
+</html>
+
+
+To test run "npm i -g http-server" if you have not already done so, followed by "http-server".
+
+Then point your browser to http://127.0.0.1:8080

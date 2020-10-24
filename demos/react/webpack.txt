@@ -1,0 +1,82 @@
+Webpack
+
+NOTE The source code for the examples in this chapter is at www.manning
+.com/books/react-quickly and https://github.com/azat-co/react-quickly/
+tree/master/ch12 (in the ch12 folder of the GitHub repository https://
+github.com/azat-co/react-quickly). You can also find some demos at http://
+reactquickly.co/demos.
+
+Have you ever wondered why (in web development) everyone and their mother are
+talking about Webpack? Webpack’s core focus is optimizing the JavaScript you write so
+that it’s contained in as few files as possible for a client to request. This reduces the
+strain on the servers for popular sites and also reduces the client’s page-load time.
+
+Webpack knows how to deal with all three types of JavaScript module—Common JS
+(www.commonjs.org), AMD (https://github.com/amdjs/amdjs-api/wiki/ AMD ), and
+ES6 (http://mng.bz/VjyO)—so you don’t need to worry if you’re working with a
+hodgepodge of module types. Webpack will analyze the dependencies for all the
+JavaScript in your project and do the following:
+Ensure that all dependencies are loaded in the correct order
+Ensure that all dependencies are loaded only once
+Ensure that your JavaScript is bundled into as few files as possible (called static
+assets)
+
+Webpack also supports code splitting and asset hashing, which let you identify blocks of
+code that are required only under certain circumstances. These blocks are split out to
+be loaded on demand rather than bundled in with everything else. You must opt in to
+use these features and further optimize your JavaScript and its deployment.
+
+Webpack isn’t just about JavaScript, though. It supports the preprocessing of other
+static files through the use of loaders. For example, you can do the following before
+any bundling takes place:
+Precompile your JSX , Jade, or CoffeeScript files into plain JavaScript
+Precompile ES6 + code into ES5 for browsers that don’t yet support ES6
+Precompile Sass and Compass files into CSS
+Optimize sprites into a single PNG or JPG file or inline data assets
+
+Installation
+
+$ npm install react --save-dev
+$ npm install react-dom --save-dev
+$ npm install css-loader --save-dev
+$ npm install react-hot-loader --save-dev
+$ npm install style-loader --save-dev
+$ npm install webpack --save-dev
+$ npm install webpack-dev-server --save-dev
+$ npm install webpack-cli --save-dev
+$ npm install babel-loader --save-dev
+$ npm install @babel/preset-env --save-dev
+
+package.json:
+...
+"scripts": {
+"build": "./node_modules/.bin/webpack -w",
+"wds-cli": "./node_modules/.bin/webpack-dev-server --inline --hot --module-bind 'css=style-loader!css-loader' --module-bind 'jsx=react-hot-loader!babel-loader' --config webpack.dev-cli.config.js",
+"wds": "./node_modules/.bin/webpack-dev-server --config webpack.dev.config.js"
+},
+...
+
+webpack.config.js
+module.exports = {
+  entry: './jsx/app.jsx',
+  output: {
+    path: __dirname + '/js/',
+    filename: 'bundle.js'
+  },
+  devtool: '#sourcemap',
+  stats: {
+   colors: true,
+   reasons: true
+  },
+  module: {
+    loaders: [
+      { test: /\.css$/, loader: 'style-loader!css-loader' },
+      {
+        test: /\.jsx?$/,
+        exclude: /(node_modules)/,
+        loaders: ['babel-loader']
+      }
+    ]
+  }
+}
+

@@ -1,0 +1,10 @@
+The source code for the example in this chapter is at www.manning
+.com/books/react-quickly and https://github.com/azat-co/react-quickly/
+tree/master/ch11 (in the ch11 folder of the GitHub repository https://
+github.com/azat-co/react-quickly). You can also find some demos at http://
+reactquickly.co/demos.
+
+Summary
+Keep components simple and as close to representational as possible.
+Pass functions as values of properties, not just data.
+Two components can exchange data between each other via a parent.

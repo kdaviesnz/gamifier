@@ -1,0 +1,36 @@
+Stateless components
+
+A stateless component has no states or components or any other React lifecycle events/methods (see chapter 5). The purpose of a stateless component is just to render the view. The only thing it can do is take properties and do something with
+them—it’s a simple function with the input (properties) and the output ( UI element).
+
+The benefit of using stateless components is that they’re predictable, because you have one input that determines the output. Predictability means they’re easier to understand, maintain, and debug. In fact, not having a state is the most desired React practice—the more stateless components you use and the fewer stateful ones you use, the better.
+
+Example stateless component:
+
+class HelloWorld extends React.Component {
+   render() {
+      return <h1 {...this.props}>Hello {this.props.frameworkName} world!!!</h1>
+   }
+}
+
+You can also render stateless components using the following syntax:
+
+const HelloWorld = (props)=>{
+      return <h1 {...props}>Hello {props.frameworkName} world!!!</h1>
+}
+
+Why use stateless components? They’re more declarative and work better when all you
+need to do is render some HTML without creating a backing instance or lifecycle com-
+ponents. Basically, stateless components reduce duplication and provide better syntax
+and more simplicity when all you need to do is mesh together some properties and
+elements into HTML .
+My suggested approach, and the best practice according to the React team, is to use
+stateless components instead of normal components as often as possible. But as you saw
+in the clock example, it’s not always possible; sometimes you have to resort to using states.
+So, you have a handful of stateful components on top of the hierarchy to handle the UI
+
+
+Keep your stateless components simple: no states and no methods. In particular, don’t
+have any calls to external methods or functions, because their results may break pre-
+dictability (and violate the concept of purity).
+

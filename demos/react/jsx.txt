@@ -1,0 +1,50 @@
+
+Setting up JSX
+
+Run npm init to create a package.json file
+
+Next add the following to package.json
+
+{
+...
+  "babel": {
+    "presets": ["@babel/preset-react"]
+  },
+...
+}
+
+Next run "npm uninstall -g babe"
+
+Then run "npm install --save-dev @babel/core @babel/cli"
+
+Then run "npm install --save-dev @babel/preset-react"
+
+npm install --save-dev @babel/plugin-syntax-jsx
+
+Then run "npm install -g npx"
+
+Add the following line to "scripts" in package.json
+
+"build": "./node_modules/.bin/babel js/script.jsx -o js/script.js"
+
+Then run "npm run build"
+
+In JSX, element properties are defined using attribute syntax. That is, you use key1=value1 key2=value2... notation inside of
+the JSX tag to define both HTML attributes and React component properties. This is similar to attribute syntax in HTML / XML .
+
+eg
+
+ReactDOM.render(
+    <Lessons course="React" lessons={[{"title":"Hello World"}, {"title":"Nesting Elements"}]}/>,
+    document.getElementById('content')
+)
+
+const Lessons = (props)=>{
+    return <section>
+        <h1>{props.course}</h1>
+        <h2>My lessons</h2>
+        <h3>{props.lessons[0].title}</h3>
+        <h3>{props.lessons[1].title}</h3>
+    </section>
+}
+

@@ -1,0 +1,11 @@
+NOTE The source code for the examples in this chapter is at www.manning
+.com/books/react-quickly and https://github.com/azat-co/react-quickly/
+tree/master/ch09 (in the ch09 folder of the GitHub repository https://
+github.com/azat-co/react-quickly). You can also find some demos at http://
+reactquickly.co/demos.
+
+Summary
+key is your friend. Set this attribute when you’re generating lists.
+map() is an elegant way to create a new array based on the original array. Its iter-
+ator arguments are value , index , and list .
+For JSX to work, at a bare minimum, you need the Babel CLI and React presets.

@@ -1,0 +1,351 @@
+React App from scratch
+
+https://github.com/PacktPublishing/Full-Stack-React-Projects
+
+
+Create a new directory and run npm init.
+
+
+Add the following dependencies
+
+$ npm install express --save
+$ npm install mongodb --save
+$ npm install react --save
+$ npm install react-dom --save
+$ npm install react-hot-loader --save
+
+
+Add the following dev dependencies
+
+$ npm install babel-core --save-dev
+$ npm install babel-loader --save-dev
+$ npm install babel-preset-env --save-dev
+$ npm install babel-preset-react --save-dev
+$ npm install babel-preset-stage-2 --save-dev
+$ npm install nodemon --save-dev
+$ npm install webpack --save-dev
+$ npm install webpack-cli --save-dev
+$ npm install webpack-dev-middleware --save-dev
+$ npm install webpack-hot-middleware --save-dev
+$ npm install webpack-node-externals --save-dev
+$ npm install
+
+Open package.json and change main to point to template.js
+
+
+Create a file .babelrc and add the following:
+
+{
+    "presets": [
+      "env",
+      "stage-2"
+      "react"
+    ],
+    "plugins": [
+      "react-hot-loader/babel"
+    ]
+}
+
+Next create files called webpack.config.client.js, webpack.config.server.js and webpack.config.client.production.js
+and add the following to each file:
+
+const path = require('path')
+const webpack = require('webpack')
+const CURRENT_WORKING_DIR = process.cwd()
+
+const config = { ... }
+
+module.exports = config
+
+
+Open webpack.config.client.js and update config object:
+
+const config = {
+    name: "browser",
+    mode: "development",
+    devtool: 'eval-source-map',
+    entry: [
+        'react-hot-loader/patch',
+        'webpack-hot-middleware/client?reload=true',
+        path.join(CURRENT_WORKING_DIR, 'client/main.js')
+    ],
+    output: {
+        path: path.join(CURRENT_WORKING_DIR , '/dist'),
+        filename: 'bundle.js',
+        publicPath: '/dist/'
+    },
+    module: {
+        rules: [
+            {
+                test: /\.jsx?$/,
+                exclude: /node_modules/,
+                use: [
+                    'babel-loader'
+                ]
+            }
+        ]
+    }, plugins: [
+          new webpack.HotModuleReplacementPlugin(),
+          new webpack.NoEmitOnErrorsPlugin()
+      ]
+}
+
+mode sets process.env.NODE_ENV to the given value and tells Webpack to use its built-in optimizations accordingly. If not explicitly set, it defaults to the value 'production'. It can also be set via the command line by passing the value as a CLI argument.
+devtool specifies how source maps are generated, if at all. Generally, a source map provides a way of mapping code within a compressed file back to its original position in a source file to aid debugging.
+entry specifies the entry file where Webpack starts bundling, in this case with the main.js file in the client folder. 
+output specifies the output path for the bundled code, in this case, set to dist/bundle.js.
+publicPath allows specifying the base path for all assets in the application.
+module sets the regex rule for the file extension to be used for transpilation, and the folders to be excluded. The transpilation tool to be used here is babel-loader.
+HotModuleReplacementPlugin enables hot module replacement for react-hot-loader.
+NoEmitOnErrorsPlugin allows skipping emitting when there are compile errors.
+
+Open webpack.config.server and update config object:
+
+const config = {
+    name: "server",
+    entry: [ path.join(CURRENT_WORKING_DIR , './server/server.js') ],
+    target: "node",
+    output: {
+        path: path.join(CURRENT_WORKING_DIR , '/dist/'),
+        filename: "server.generated.js",
+        publicPath: '/dist/',
+        libraryTarget: "commonjs2"
+    },
+    externals: [nodeExternals()],
+    module: {
+        rules: [
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                use: [ 'babel-loader' ]
+            }
+        ]
+    }
+}
+
+Webpack starts bundling from the server folder with server.js, then outputs the bundled code in server.generated.js in the dist folder.
+
+
+Open webpack.config.client.production.js and update config object:
+
+const config = {
+    mode: "production",
+    entry: [
+        path.join(CURRENT_WORKING_DIR, 'client/main.js')
+    ],
+    output: {
+        path: path.join(CURRENT_WORKING_DIR , '/dist'),
+        filename: 'bundle.js',
+        publicPath: "/dist/"
+    },
+    module: {
+        rules: [
+            {
+                test: /\.jsx?$/,
+                exclude: /node_modules/,
+                use: [
+                    'babel-loader'
+                ]
+            }
+        ]
+    }
+}
+
+
+Create a nodemon.js file in your project folder, and add the following configuration. 
+
+nodemon.js:
+
+{
+    "verbose": false,
+    "watch": [ "./server" ],
+    "exec": "webpack --mode=development --config
+    webpack.config.server.js
+                && node ./dist/server.generated.js"
+}
+
+This configuration will set up nodemon to watch for changes in the server files during development, then execute compile and build commands as necessary.
+
+
+
+In order to start developing a frontend, first create a root template file called template.js in the project folder, which will render the HTML with React components.
+
+/template.js:
+
+module.exports =  () => {
+    return `<!doctype html>
+      <html lang="en">
+        <head>
+          <meta charset="utf-8">
+          <title>MERN Kickstart</title>
+        </head>
+        <body>
+          <div id="root"></div>
+          <script type="text/javascript" src="/dist/bundle.js">
+       </script>
+        </body>
+      </html>`
+}
+
+When the server receives a request to the root URL, this HTML template will be rendered in the browser, and the div element with ID "root" will contain our React component.
+
+Next, create a client folder where we will add two React files, main.js and HelloWorld.js.
+
+The main.js file simply renders the top-level entry React component in the div element in the HTML document.
+
+client/main.js:
+
+import React from 'react'
+Import { render } from 'react-dom'
+import HelloWorld from './HelloWorld'
+
+render(<HelloWorld/>, document.getElementById('root'))
+
+
+In this case, the entry React component is the HelloWorld component imported from HelloWorld.js.
+
+
+HelloWorld.js contains a basic HelloWorld component, which is hot-exported to enable hot reloading with react-hot-loader during development.
+
+client/HelloWorld.js:
+
+import React, { Component } from 'react'
+import { hot } from 'react-hot-loader'
+
+class HelloWorld extends Component {
+   render() {
+     return (
+         <div>
+             <h1>Hello World!</h1>
+         </div>
+     )
+   }
+}
+
+export default hot(module)(HelloWorld)
+
+To see the React component rendered in the browser when the server receives a request to the root URL, we need to use the Webpack and Babel setup to compile and bundle this code, and add server-side code that responds to the root route request with the bundled code.”
+
+In the project folder, create a folder called server, and add a file called server.js that will set up the server. Then, add another file called devBundle.js, which will help compile the React code using Webpack configurations while in development mode. 
+
+server.js
+
+server/server.js:
+
+import express from 'express'
+
+const app = express()
+
+
+In order to keep the development flow simple, we will initialize Webpack to compile the client-side code when the server is run. In devBundle.js, we will set up a compile method that takes the Express app and configures it to use the Webpack middleware to compile, bundle, and serve code, as well as enable hot reloading in development mode.
+
+server/devBundle.js:
+
+import webpack from 'webpack'
+import webpackMiddleware from 'webpack-dev-middleware'
+import webpackHotMiddleware from 'webpack-hot-middleware'
+import webpackConfig from './../webpack.config.client.js'
+
+const compile = (app) => {
+  if(process.env.NODE_ENV == "development"){
+    const compiler = webpack(webpackConfig)
+    const middleware = webpackMiddleware(compiler, {
+      publicPath: webpackConfig.output.publicPath
+    })
+    app.use(middleware)
+    app.use(webpackHotMiddleware(compiler))
+  }
+}
+
+export default {
+  compile
+}
+
+We will call this compile method in server.js by adding the following lines while in development mode.
+
+server/server.js:
+
+import devBundle from './devBundle'
+const app = express()
+devBundle.compile(app)
+
+These two highlighted lines are only meant for development mode and should be commented out when building the application code for production. In development mode, when these lines are executed, Webpack will compile and bundle the React code to place it in dist/bundle.js.”
+
+
+
+Webpack will compile client-side code in both development and production mode, then place the bundled files in the dist folder. To make these static files available on requests from the client side, we will add the following code in server.js to serve static files from dist/folder.
+
+mern-simplesetup/server/server.js:
+
+import path from 'path'
+const CURRENT_WORKING_DIR = process.cwd()
+app.use('/dist', express.static(path.join(CURRENT_WORKING_DIR, 'dist')))
+
+
+When the server receives a request at the root URL /, we will render template.js in the browser. In server.js, add the following route handling code to the Express app to receive GET requests at /.
+
+server/server.js:
+
+import template from './../template'
+app.get('/', (req, res) => {
+     res.status(200).send(template())
+})
+
+Finally, add server code to listen on the specified port for incoming requests.
+
+server/server.js:
+
+let port = process.env.PORT || 3000
+app.listen(port, function onStart(err) {
+  if (err) {
+    console.log(err)
+  }
+  console.info('Server started on port %s.', port)
+})
+
+
+To connect your Node server to MongoDB, add the following code to server.js, and make sure you have MongoDB running in your workspace.
+
+
+server/server.js:
+
+import { MongoClient } from 'mongodb'
+const url = process.env.MONGODB_URI || 'mongodb://localhost:27017/yourdb'
+MongoClient.connect(url, (err, db)=>{
+  console.log("Connected successfully to mongodb server")
+  db.close()
+})
+
+
+In this code example, MongoClient is the driver that connects to the running MongoDB instance using its url and allows us to implement the database related code in the backend.
+
+
+“Update the package.json file to add the following npm run scripts for development and production.
+
+package.json:
+
+"scripts": {
+    "development": "nodemon",
+    "build": "webpack --config webpack.config.client.production.js
+                 && webpack --mode=production --config
+     webpack.config.server.js",
+    "start": "NODE_ENV=production node ./dist/server.generated.js"
+}
+npm run development: This command will get Nodemon, Webpack, and the server started for development
+npm run build: This will generate the client and server code bundles for production mode (before running this script, make sure to remove the devBundle.compile code from server.js)
+npm run start: This command will run the bundled code in production”
+
+
+
+To run the code developed so far, and to ensure everything is working, you can go through the following steps:
+
+Run the application from the command line: npm run development.
+Load in browser: Open the root URL in the browser, which is http://localhost:3000 if you are using your local machine setup. You should see a page with the title MERN Kickstart that just shows Hello World!.
+Develop code and debug live: Change the HelloWorld.js component text 'Hello World!' to just 'hello'. Save the changes to see the instantaneous update in the browser, and also check the command line output to see that bundle.js is not re-created. Similarly, you can also see instant updates when you change the server-side code, increasing productivity during development.
+
+
+
+
+npm install --save-dev nodemon
+So how do we couple this with babel? Open your package.json file, and in your “scripts”, add the key “start” with:
+"start" : "nodemon --exec babel-node index.js"

@@ -1,0 +1,408 @@
+{
+
+	"course":{
+		"name": "React Basics"
+	},
+	"lessons":[
+		{
+			"title": "Hello World",
+			"id": "helloworld",
+			"prerequisites":[],
+			"lesson material": [
+				{
+					"format": "text",
+					"path": "helloworld.txt"
+				}
+			],
+			"tests": [
+				{
+					"question": "The declarative style of programming doesn’t allow for mutation of stored values. It’s “this is what I want” versus the imperative style’s “this is how to do it.”",
+					"options": ["true", "false"],
+					"answer": "true"
+				},
+				{
+					"question": "React components are rendered into the DOM with which of the following methods?",
+					"options": ["ReactDOM.renderComponent", "React.render", "ReactDOM.append", "ReactDOM.render"],
+					"answer": "ReactDOM.render"
+				}
+			]
+		},
+		{
+			"title": "Nesting elements",
+			"id":"nestingelements",
+			"prerequisites":["helloworld"],
+			"lesson material":
+			{
+				"format": "text",
+				"path": "nestingelements.txt",
+				"tests": [
+
+				]
+			}
+		},
+		{
+			"title": "Creating component classes",
+			"id":"creatingcomponentclasses",
+			"prerequisites":["nestingelements"],
+			"lesson material":
+			{
+				"resources": [{
+					"format": "text",
+					"path": "creatingcomponentclasses.txt"
+				}],
+				"tests": []
+			}
+		},
+		{
+			"title": "Properties",
+			"id":"properties",
+			"prerequisites":["creatingcomponentclasses"],
+			"lesson material":
+			{
+				"resources": [
+					{
+						"format": "text",
+						"path": "properties.txt"
+					}
+				]
+			},
+			"tests": [
+
+			]
+		},
+		{
+			"title": "JSX",
+			"id": "jsx",
+			"prerequisites": ["properties"],
+			"lesson material":
+			{			"resources":[
+				{
+					"format":"text",
+					"path":"jsx.txt"
+				}
+			]
+			},
+			"tests": [
+				{
+					"question": "To output a JavaScript variable in JSX , which of the following do you use?",
+					"options": ["=", "{}"],
+					"answer": "{}"
+				}
+			]
+		},
+		{
+			"title": "States",
+			"id": "states",
+			"prerequisites": ["jsx"],
+			"lesson material":
+			{			"resources":[
+				{
+					"format":"text",
+					"path":"states.txt"
+				}
+			]
+			},
+			"tests": [
+				{
+					"question": "You can set state in a component method (not a constructor) with which syntax?",
+					"options": ["this.setState(a)", "this.state = a", "this.a = a"],
+					"answer": "this.setState(a)"
+				},
+				{
+					"question": "If you want to update the render process, it’s normal practice to change properties in components like this: this.props.a=100?",
+					"options": ["true", "false"],
+					"answer": "False. Changing a property in a component won't trigger a render."
+				},
+				{
+					"question": "States are mutable, and properties are immutable?",
+					"options": ["true", "false"],
+					"answer": "True. There's now way to change a property from a component - only its parent. Conversely states are changes only by the component."
+				},
+				{
+					"question": "How do you define the first state variables when an element is created?setState() , initialState() , this.state =... in the constructor, or\nsetInitialState()",
+					"options": ["setState()", "initialState()", "this.state=... in the constructor", "setInitialState()"],
+					"answer": "this.state=... in the constructor"
+				}
+
+			]
+		},
+		{
+			"title": "Stateless Components",
+			"id": "statelesscomponents",
+			"prerequisites": ["states"],
+			"lesson material":
+			{			"resources":[
+				{
+					"format":"text",
+					"path":"statelesscomponents.txt"
+				}
+			]
+			},
+			"tests": [
+				{
+					"question": "Stateless components can be implemented as functions?",
+					"options": ["true", "false"],
+					"answer": "True"
+				}
+			]
+		},
+		{
+			"title": "Component life-cycle Events",
+			"id": "componentlifecycleevents",
+			"prerequisites": ["statelesscomponents"],
+			"lesson material":
+			{			"resources":[
+				{
+					"format":"text",
+					"path":"componentlifecycleevents.txt"
+				}
+			]
+			},
+			"tests": [
+				{
+					"question": "componentWillMount() will be rendered on the server?",
+					"options": ["true", "false"],
+					"answer": "true"
+				},
+				{
+					"question": "Which event will fire first?",
+					"options": ["componentWillMount()", "componentDidMount()"],
+					"answer": "componentWillMount()"
+				},
+				{
+					"question": "Which of the following is a good place to put an AJAX call to the server to get some data for a component?",
+					"options": ["componentWillUnMount()", "componentHasMounted()", "componentDidMount()", "componentWillReceiveData()", "componentWillMount()"],
+					"answer": "componentDidMount()",
+					"reason": "Because it won't be triggered on the server"
+				},
+				{
+					"question": "componentWillReceiveProps() means there was a rerendering of this element (from a parent structure), and you know for sure that you have new values for the properties?",
+					"options": ["true", "false"],
+					"answer": "false",
+					"reason": "You can't guarantee new values. React doesn't know if the values have been changed."
+				},
+				{
+					"question": "Mounting events happen multiple times on each rerendering?",
+					"options": ["true", "false"],
+					"answer": "false",
+					"reason": "Mounting isn't triggered on rendering to optimize performance."
+				}
+
+
+			]
+		},
+		{
+			"title": "Handling Events",
+			"id": "handlingevents",
+			"prerequisites": ["componentlifecycleevents"],
+			"lesson material":
+			{			"resources":[
+				{
+					"format":"text",
+					"path":"handlingevents.txt"
+				}
+			]
+			},
+			"tests": [
+				{
+					"question": "What is the correct syntax for the event declaration?",
+					"options": ["onClick=this.doStuff", "onclick={this.doStuff}", "onClick='this.doStuff'", "onClick={this.doStuff}", "onClick={this.doStuff()"],
+					"answer": "onclick={this.doStuff}"
+				}
+			]
+		},
+		{
+			"title": "Forms",
+			"id": "forms",
+			"prerequisites": ["handlingevents"],
+			"lesson material":
+			{			"resources":[
+				{
+					"format":"text",
+					"path":"forms.txt"
+				}
+			]
+			},
+			"tests": [
+				{
+					"question": "An uncontrolled component sets a value, and a controlled component doesn’t.",
+					"options": ["true","false"],
+					"answer": "false",
+					"reason": ""
+				},
+				{
+					"question": "The correct syntax for default values is which of the following:",
+					"options": ["default-value", "defaultValue", "defVal"],
+					"answer": "defaultValue"
+				},
+				{
+					"question": "The React team recommends using onChange over onInput",
+					"options": ["true","false"],
+					"answer": "true"
+				},
+				{
+					"question": "You set a value for the text area with which of the following:",
+					"options": ["Children", "innerHTML", "value"],
+					"answer": "value"
+				},
+				{
+					"question": "In a form, selected applies to which of the following:",
+					"options": ["<input>", "<textarea>", "<option>"],
+					"answer": "option"
+				},
+				{
+					"question": "Which of the following is the best way to extract the DOM node by reference:",
+					"options": ["React.findDomNode(this.refs.email)", "this.refs.email", "this.refs.email.getDOMNode", "ReactDOM.findDOMNode(this.refs.email)", "this.refs.email.getDomNode"],
+					"answer": "ReactDOM.findDOMNode(this.refs.email)"
+				}
+
+			]
+		},
+		{
+			"title": "Scaling React components",
+			"id": "scalingreactcomponents",
+			"prerequisites": ["forms"],
+			"lesson material":
+			{			"resources":[
+				{
+					"format":"text",
+					"path":"scalingreactcomponents.txt"
+				}
+			]
+			},
+			"tests": [
+				{
+					"question": "React provides robust validation, which eliminates the necessity to check input\non the server side.",
+					"options": ["true","false"],
+					"answer": "false",
+					"reason": ""
+				},
+				{
+					"question": "In addition to setting properties with defaultProps , you can set them in\nconstructor using this.prop.NAME = VALUE .",
+					"options": ["true","false"],
+					"answer": "false",
+					"reason": ""
+				},
+				{
+					"question": "The children property can be an array or a node.",
+					"options": ["true","false"],
+					"answer": "true",
+					"reason": ""
+				},
+				{
+					"question": "A higher-order component pattern is implemented via a function.",
+					"options": ["true","false"],
+					"answer": "true",
+					"reason": ""
+				},
+				{
+					"question": "The main difference between the minified development and unminified production versions of the React library file is that the minified version has warn-\nings and the unminified version has optimized code.",
+					"options": ["true","false"],
+					"answer": "true",
+					"reason": ""
+				}
+			]
+		},
+		{
+			"title": "Menu Component",
+			"id": "menucomponent",
+			"prerequisites": ["scalingreactcomponents"],
+			"lesson material":
+			{			"resources":[
+				{
+					"format":"text",
+					"path":"menucomponent.txt"
+				}
+			]
+			},
+			"tests": [
+				{
+					"question": "",
+					"options": [""],
+					"answer": ""
+				}
+			]
+		},
+		{
+			"title": "Tooltip Component",
+			"id": "tooltipcomponent",
+			"prerequisites": ["menucomponent"],
+			"lesson material":
+			{			"resources":[
+				{
+					"format":"text",
+					"path":"tooltipcomponent.txt"
+				}
+			]
+			},
+			"tests": [
+				{
+					"question": "",
+					"options": [""],
+					"answer": ""
+				}
+			]
+		},
+		{
+			"title": "Timer Component",
+			"id": "timercomponent",
+			"prerequisites": ["tooltipcomponent"],
+			"lesson material":
+			{			"resources":[
+				{
+					"format":"text",
+					"path":"timercomponent.txt"
+				}
+			]
+			},
+			"tests": [
+				{
+					"question": "",
+					"options": [""],
+					"answer": ""
+				}
+			]
+		},
+		{
+			"title": "Create a React App",
+			"id": "createareactapp",
+			"prerequisites": ["timercomponent"],
+			"lesson material":
+			{			"resources":[
+				{
+					"format":"text",
+					"path":"createareactapp.txt"
+				}
+			]
+			},
+			"tests": [
+				{
+					"question": "",
+					"options": [""],
+					"answer": ""
+				}
+			]
+		},
+		{
+			"title": "React App from Scratch",
+			"id": "reactappfromscratch",
+			"prerequisites": ["createareactapp"],
+			"lesson material":
+			{			"resources":[
+				{
+					"format":"text",
+					"path":"reactappfromscratch.txt"
+				}
+			]
+			},
+			"tests": [
+				{
+					"question": "",
+					"options": [""],
+					"answer": ""
+				}
+			]
+		}
+	]
+
+}

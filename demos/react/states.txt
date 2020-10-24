@@ -1,0 +1,78 @@
+States
+
+https://github.com/azat-co/react-quickly/tree/master/ch04
+
+
+Create the following directory structure
+
+/clock
+    index.html
+    /jsx
+       script.jsx
+       clock.jsx
+     /js
+        script.js
+        clock.js
+        react.js
+        react-dom.js
+
+Add the following line to package.json under "scripts"
+
+"build-clock": "./node_modules/.bin/babel clock/jsx -d clock/js -w"
+
+Open clock/index.html and add the following:
+
+<!DOCTYPE html>
+<html>
+  <head>
+       <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+       <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+  </head>
+  <body>
+    <div id="content"></div>
+    <script src="js/clock.js"></script>
+    <script src="js/script.js"></script>
+  </body>
+</html>
+
+Next open clock/clock.jsx and add:
+
+class Clock extends React.Component {
+render() {
+return <div>{this.state.currentTime}</div>
+}
+}
+
+Then open clock/script.jsx and add:
+
+ReactDOM.render(
+<Clock />,
+document.getElementById('content')
+)
+
+Then run "npm run build-clock"
+Then run "http_server -c-1"
+http://127.0.0.1:8080/clock/ (incognito window)
+
+You will see the following error in the javascript console:
+Uncaught TypeError: Cannot read property 'currentTime' of null
+
+To set an initial value for currentTime open clock/jsx/clock.jsx and add the following constructor:
+
+constructor(props) {
+super(props)
+this.state = {currentTime: (new Date()).toLocaleString()}
+}
+
+To get the clock to update open clock/jsx/clock.jsx and add the following method:
+
+launchClock() {
+setInterval(()=>{
+console.log('Updating time...')
+this.setState({
+currentTime: (new Date()).toLocaleString()
+})
+}, 1000)
+}
+
+Then add this.launchClock() to the constructor.

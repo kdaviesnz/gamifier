@@ -1,0 +1,79 @@
+Forms
+
+https://github.com/azat-co/react-quickly/tree/master/ch07
+
+The best practice is to keep
+React’s render() as close to the real DOM as possible—and that includes the data in
+the form elements.
+
+render() {
+return <input type="text" name="title" value="Mr." />
+}
+This code represents the view at any state, so the value will always be Mr. . On the other
+hand, input fields must change in response to the user clicking or typing. Given these
+points, let’s make the value dynamic. This is a better implementation, because it’ll be
+updated from the state:
+render() {
+return <input type="text" name="title" value={this.state.title} />
+}
+
+But what’s the value of state ? React can’t know about users typing in the form ele-
+ments. You need to implement an event handler to capture changes with onChange :
+handleChange(event) {
+this.setState({title: event.target.value})
+}
+render() {
+return <input type="text" name="title" value={this.state.title}
+➥ onChange={this.handleChange.bind(this)}/>
+}
+
+Given these points, the best practice is to implement these things to sync the internal
+state with the view (see figure 7.1):
+1
+2
+3
+4
+Define elements in render() using values from state .
+Capture changes to a form element as they happen, using onChange .
+Update the internal state in the event handler.
+New values are saved in state , and then the view is updated by a new render() .
+It may seem like a lot of work at first glance, but I hope that when you’ve used React
+more, you’ll appreciate this approach. It’s called one-way binding because the state
+changes views, and that’s it. There’s no trip back: only a one-way trip from state to
+view. With one-way binding, a library won’t update the state (or the model) automati-
+cally. One of the main benefits of one-way binding is that it removes complexity when
+you’re working with large apps where many views implicitly can update many states
+(data models) and vice versa (see figure 7.2).
+
+Let’s start with the <form> element. Typically, you don’t want input elements hanging
+around randomly in the DOM . This situation can turn bad if you have many function-
+ally different sets of inputs. Instead, you wrap input elements that share a common
+purpose in a <form></form> element.
+
+The <form> element can have events. React supports three events for forms in
+addition to the standard React DOM events (as outlined in table 6.1):
+onChange —Fires when there’s a change in any of the form’s input elements.
+onInput —Fires for each change in <textarea><input> element values. The
+React team doesn’t recommend using it (see the accompanying sidebar).
+onSubmit —Fires when the form is submitted, usually by pressing Enter.
+
+    constructor(props) {
+        super(props)
+        this.handleInput = this.handleInput.bind(this)
+        this.handleInput = this.handleSubmit.bind(this)
+        this.state = {
+            "first_name":""
+        }
+    }
+
+Summary
+The preferred approach for forms is to use controlled components with event
+listeners capturing and storing data in the state.
+Using uncontrolled components with or without capturing changes is a hack
+and should be avoided.
+References and default values can be used with any elements but usually aren’t
+needed when components are controlled.
+React’s <textarea> uses a value attribute, not inner content.
+this.refs.NAME is a way to access class references.
+defaultValue allows you to set the initial view ( DOM ) value for an element.
+ref="NAME" is how you define references.

@@ -1,0 +1,46 @@
+
+Properties are unchangeable values within an element. Properties are passed as an object as the second parameter to createElement() method. We access properties using this.props.
+
+
+<!DOCTYPE html>
+<html>
+   <head>
+       <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+       <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+   </head>
+<body>
+   <div id="content"></div>
+   <script type="text/javascript">
+       let h1 = React.createElement('h1Ember', null, 'Hello ember!')
+       class HelloWorld extends React.Component {
+           render() {
+               return React.createElement('h1', null, 'hello ' + this.props.frameworkName + '  world)
+           }
+       }
+       ReactDOM.render(
+           React.createElement(
+               'div',
+                null,
+                React.createElement(HelloWorld, {
+                    id: 'ember',
+                    frameworkName: 'Ember.js',
+                    title: 'A framework for creating ambitious web applications.'}),
+                React.createElement(HelloWorld, {
+                    id: 'backbone',
+                    frameworkName: 'Backbone.js',
+                    title: 'Backbone.js gives structure to web applications...'}),
+                React.createElement(HelloWorld, {
+                    id: 'angular',
+                    frameworkName: 'Angular.js',
+                    title: 'Superheroic JavaScript MVW Framework'})
+           ),
+           document.getElementById('content')
+     )
+   </script>
+</body>
+</html>
+
+
+To test run "npm i -g http-server" if you have not already done so, followed by "http-server".
+
+Then point your browser to http://127.0.0.1:8080

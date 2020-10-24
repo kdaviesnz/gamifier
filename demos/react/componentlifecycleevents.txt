@@ -1,0 +1,95 @@
+Component Life Cycle Events
+
+https://github.com/azat-co/react-quickly/tree/master/ch05
+
+Life cycle events belong to three categories:
+
+1. Mounting events—Happen when a React element (an instance of a component
+class) is attached to a DOM node
+2. Updating events—Happen when a React element is updated as a result of new
+values of its properties or state
+3. Unmounting events—Happen when a React element is detached from the DOM
+
+Mounting—React invokes events only once.
+Updating—React can invoke events many times.
+Unmounting—React invokes events only once.
+
+Order of execution from start to finish during the component’s lifecycle (updating can happen multiple times):
+constructor() —Happens when an element is created and lets you set the default properties (chapter 2) and the initial state.
+Mounting
+– componentWillMount() —Happens before mounting to the DOM.
+– componentDidMount() —Happens after mounting and rendering.
+Updating
+– componentWillReceiveProps(nextProps) —Happens when the component is about to receive properties.
+– shouldComponentUpdate(nextProps, nextState)-> bool —Lets you optimize the component’s rerendering by determining when to update and when to not update.
+– componentWillUpdate(nextProps, nextState) —Happens right before the component is updated.
+– componentDidUpdate(prevProps, prevState) —Happens right after the component updated.
+Unmounting
+– componentWillUnmount function() —Lets you unbind and detach any event listeners or do other cleanup work before the component is unmounted.
+
+
+To implement lifecycle events, you define them on a class as methods (this is a convention that React expects you to follow. React checks to see
+whether there’s a method with an event name; if React finds a method, it will call that
+method. Otherwise, React will continue its normal flow. Obviously, event names are
+case sensitive like any name in JavaScript.
+To put it differently, under the hood, React calls certain methods during a compo-
+nent’s lifecycle if they’re defined. For example, if you define componentDidMount() ,
+then React will call this method when an element of this component class is mounted.
+componentDidMount() belongs to the mounting category, and it will
+be called once per instance of the component class:
+
+class Clock extends React.Component {
+componentDidMount() {
+}
+...
+}
+
+As you might have guessed from its name, the componentDidMount() method is
+invoked when a component is inserted into the DOM . This method is a recom-
+mended place to put code to integrate with other front-end frameworks and libraries
+as well as to send XHR requests to a server, because at this point in the lifecycle, the
+component’s element is in the real DOM and you get access to all of its elements,
+including children.
+
+As mentioned earlier, the componentDidMount() event is the best place to inte-
+grate with other JavaScript libraries. You can fetch a JSON payload that has a list of
+users with their info.
+
+eg:
+class Users extends React.Component {
+    constructor(props) {
+         super(props)
+         this.state = {
+             users: []
+         }
+    }
+    componentDidMount() {
+        fetch(this.props['data-url'])
+        .then((response)=>response.json())
+        .then((users)=>this.setState({users: users}))
+     }
+     render() {
+        return <div className="container">
+        <h1>List of Users</h1>
+        <table className="table-striped table-condensed table table-bordered table-hover">
+           <tbody>{this.state.users.map((user)=>
+               <tr key={user.id}>
+                   <td>{user.first_name} {user.last_name}</td>
+                   <td> {user.email}</td>
+                   <td> {user.ip_address}</td>
+               </tr>)}
+        </tbody>
+        </table>
+       </div>
+    }
+}
+
+Updating events
+Mounting events are often used to integrate React with the outside
+world: other frameworks, libraries, or data stores. Updating events are associated with
+updating components. These events are as follows, in order from the component life-
+cycle’s beginning to its end:
+componentWillReceiveProps(newProps)
+shouldComponentUpdate()
+componentWillUpdate()
+componentDidUpdate()

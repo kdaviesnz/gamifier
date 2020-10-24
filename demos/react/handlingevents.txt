@@ -1,0 +1,108 @@
+Handling Events
+
+https://github.com/azat-co/react-quickly/tree/master/ch06
+
+Let’s look how you can make React elements respond to user actions by defining event
+handlers for those actions. You do this by defining the event handler (function defini-
+tion) as the value of an element attribute in JSX and as an element property in plain
+JavaScript (when createElement() is called directly without JSX ). For attributes that
+are event names, you use standard W3C DOM event names in camelCase, such as
+onClick or onMouseOver , as in
+onClick={function() {...}}
+or
+onClick={() => {...}}
+
+For example, in React, you can define an event listener that’s triggered when a user
+clicks a button. In the event listener, you’re logging the this context. The event
+object is an enhanced version of a native DOM event object (called SyntheticEvent ):
+
+<button onClick={(function(event) {
+console.log(this, event)
+}).bind(this)}>
+Save
+</button>
+
+bind() is needed so that in the event-handler function, you get a reference to the
+instance of the class (React element). If you don’t bind, this will be null ( use strict
+mode).
+
+You don’t bind the context to the class using bind(this) in the following
+cases:
+When you don’t need to refer to this class by using this.
+When you’re using the older style, React.createClass() , instead of the newer
+ES6+ class style, because createClass() autobinds it for you.
+When you’re using fat arrows ( () {} )
+
+You can also make things neater by using a class method as event handler. Moreover, you can bind an event handler to the class in the class’s constructor .
+Functionally, there’s no difference; but if you’re using the same method more than once in render() , then you can reduce duplication by using the constructor binding.
+
+class SaveButton extends React.Component {
+    constructor(props) {
+      super(props)
+      this.handleSave = this.handleSave.bind(this)
+    }
+    handleSave(event) {
+      console.log(this, event)
+    }
+    render() {
+       return <button onClick={this.handleSave}>
+          Save
+       </button>
+    }
+}
+
+You don’t attach events to your code as you would with jQuery (for
+example, $('.btn').click(handleSave) ). Instead, you declare an event in the JSX as
+an attribute (for instance, onClick={handleSave} ).
+
+Events work differently in React than in jQuery or plain JavaScript, which typically put
+the event listener directly on the DOM node. When you put events directly on nodes,
+there may be problems removing and adding events during the UI lifecycle.  For exam-
+ple, suppose you have a list of accounts, and each can be removed or edited, or new
+accounts can be added to the list. The HTML might look something like this, with
+each account element <li> uniquely identified by ID :
+<ul id="account-list">
+<li id="account-1">Account
+<li id="account-2">Account
+<li id="account-3">Account
+<li id="account-4">Account
+<li id="account-5">Account
+<li id="account-6">Account
+</ul>
+#1</li>
+#2</li>
+#3</li>
+#4</li>
+#5</li>
+#6</li>
+If accounts are removed from or added to the list frequently, then managing events
+will become difficult. A better approach is to have one event listener on a parent
+( account-list ) and to listen for bubbled-up events (an event bubbles higher up the
+DOM tree if nothing catches it on a lower level). Internally, React keeps track of events
+attached to higher elements and target elements in a mapping. This allows React to
+trace the target from the parent ( document )
+
+Following is a list of some of the attributes and methods of React’s v15.x Synthetic-
+Event interface:
+currentTarget — DOMEventTarget of the element that’s capturing the event
+(can be a target or the parent of a target)
+target — DOMEventTarget , the element where the event was triggered
+nativeEvent — DOMEvent , the native browser event objectWorking with DOM events in React
+123
+preventDefault() —Prevents the default behavior, such as a link or a form-
+submit button
+isDefaultPrevented() —A Boolean that’s true if the default behavior was
+prevented
+stopPropagation() —Stops propagation of the event
+isPropagationStopped() —A Boolean that’s true if propagation was stopped
+type —A string tag name
+persist() —Removes the synthetic event from the pool and allows references
+to the event to be retained by user code
+isPersistent —A Boolean that’s true if SyntheticEvent was taken out of the
+pool
+
+, the rule of
+thumb is to put event handling logic in the parent or wrapper component if you need interaction
+between child components. If the event concerns only the child components, there’s
+no need to pollute the components higher up the parent chain with event-handling
+methods
