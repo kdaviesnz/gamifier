@@ -13,6 +13,7 @@ import helmet from 'helmet'
 
 // Install using npm install dotenv
 require("dotenv").config()
+const assert = require("assert")
 
 const app = express()
 
@@ -46,9 +47,9 @@ const uri = "mongodb+srv://" + process.env.MONGODBUSER + ":" + process.env.MONGO
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
 client.connect(err => {
-
     assert.equal(err, null);
-    const db = client.db("chemistry")
+    const db = client.db(process.env.MONGODB)
+    console.log("Connected successfully to mongodb server")
 })
 
 /*
