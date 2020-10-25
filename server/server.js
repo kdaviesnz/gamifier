@@ -11,6 +11,10 @@ import compress from 'compression'
 import cors from 'cors'
 import helmet from 'helmet'
 
+import userRoutes from './routes/user.routes'
+
+
+
 // Install using npm install dotenv
 require("dotenv").config()
 const assert = require("assert")
@@ -26,6 +30,9 @@ app.use(cors())
 
 //comment out before building for production
 devBundle.compile(app)
+
+
+app.use('/', userRoutes)
 
 const CURRENT_WORKING_DIR = process.cwd()
 app.use('/dist', express.static(path.join(CURRENT_WORKING_DIR, 'dist')))
