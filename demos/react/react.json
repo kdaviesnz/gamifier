@@ -402,6 +402,26 @@
 					"answer": ""
 				}
 			]
+		},
+		{
+			"title": "Creating routes",
+			"id": "creatingroutes",
+			"prerequisites": ["reactappfromscratch"],
+			"lesson material":
+			{			"resources":[
+				{
+					"format":"text",
+					"path":"creatingroutes.txt"
+				}
+			]
+			},
+			"tests": [
+				{
+					"question": "",
+					"options": [""],
+					"answer": ""
+				}
+			]
 		}
 	]
 
