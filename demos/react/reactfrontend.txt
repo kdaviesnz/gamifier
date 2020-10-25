@@ -1,0 +1,211 @@
+“npm install --save react-router react-router-dom”
+
+In order to keep the UI in our MERN applications sleek without delving too much into UI design and implementation, we will utilize the Material-UI library. It provides ready-to-use and customizable React components that implement Google's material design. To start using Material-UI components to make the frontend, we need to install the following modules:
+
+npm install --save material-ui@1.0.0-beta.43 material-ui-icons
+
+At the time of writing, the latest pre-release version of Material-UI is 1.0.0-beta.43 and it is recommended to install this exact version in order to ensure the code for the example projects do not break.
+
+To add the Roboto fonts as recommended by Material-UI, and use the Material-UI icons, we will add the relevant style links into the template.js file, in the HTML document's <head> section:
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,300,400">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+With development configuration all set up, and the necessary React modules added to the code base, we can now start implementing the custom React components.
+
+
+
+
+The Material-UI theme can be easily customized using the MuiThemeProvider component, and by configuring custom values to theme variables in createMuiTheme().
+
+mern-skeleton/client/App.js:
+
+import {MuiThemeProvider, createMuiTheme} from 'material-ui/styles'
+import {indigo, pink} from 'material-ui/colors'
+
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+    light: '#757de8',
+    main: '#3f51b5',
+    dark: '#002984',
+    contrastText: '#fff',
+  },
+  secondary: {
+    light: '#ff79b0',
+    main: '#ff4081',
+    dark: '#c60055',
+    contrastText: '#000',
+  },
+    openTitle: indigo['400'],
+    protectedTitle: pink['400'],
+    type: 'light'
+  }
+})
+
+For the skeleton, we only apply minimal customization by setting some color values to be used in the UI. The theme variables generated here will be passed to, and available in, all the components we build.”
+
+
+The custom React components that we create to make up the user interface will be accessed with frontend routes specified in the MainRouter component. Essentially, this component houses all the custom views developed for the application. When defining the root component in App.js, we wrap the MainRouter component with the MuiThemeProvider to give it access to the Material-UI theme, and BrowserRouter to enable frontend routing with React Router. The custom theme variables defined previously are passed as a prop to the MuiThemeProvider, making the theme available in all our custom React components.
+
+client/App.js:
+
+import React from 'react'
+import MainRouter from './MainRouter'
+import {BrowserRouter} from 'react-router-dom'
+
+const App = () => (
+  <BrowserRouter>
+    <MuiThemeProvider theme={theme}>
+      <MainRouter/>
+    </MuiThemeProvider>
+  </BrowserRouter>
+)
+
+
+“he last line of code in App.js to export the App component uses the hot module from react-hot-loader to mark the root component as hot. This will enable live reloading of the React components during development.
+
+client/App.js:
+
+import { hot } from 'react-hot-loader'
+...
+export default hot(module)(App)
+
+For our MERN applications, we won't have to change the main.js and App.js code all that much after this point, and we can continue building out the rest of the React app by injecting new components in the MainRouter component.”
+
+
+
+
+The MainRouter.js code will help render our custom React components with respect to routes or locations in the application. In this first version, we will only add the root route to render the Home component.
+
+client/MainRouter.js:
+
+import React, {Component} from 'react'
+import {Route, Switch} from 'react-router-dom'
+import Home from './core/Home'
+class MainRouter extends Component {
+  render() {
+    return (<div>
+      <Switch>
+        <Route exact path="/" component={Home}/>
+      </Switch>
+    </div>)
+  }
+}
+
+export default MainRouter
+
+As we develop more view components, we will update the MainRouter to add routes for the new components inside the Switch component.
+
+The Switch component in React Router renders a route exclusively. In other words, it only renders the first child that matches the requested route path. Whereas, without being nested in a Switch, every Route component renders inclusively when there is a path match. For example, a request at '/' also matches a route at '/contact'.
+
+
+
+The component file will start with imports from React, Material-UI, React Router modules, images, CSS, API fetch, and auth helpers from our code as required by the specific component. For example, for the Home component code in Home.js, we use the following imports.
+
+client/core/Home.js:
+
+import React, {Component} from 'react'
+import PropTypes from 'prop-types'
+import {withStyles} from 'material-ui/styles'
+import Card, {CardContent, CardMedia} from 'material-ui/Card'
+import Typography from 'material-ui/Typography'
+import seashellImg from './../assets/images/seashell.jpg'
+
+The image file is kept in the client/assets/images/ folder and imported/added to the Home component.
+
+
+
+
+After the imports, we will define CSS styles utilizing the Material-UI theme variables as required to style the elements in the component. For the Home component in Home.js, we have the following styles.
+
+client/core/Home.js:
+
+const styles = theme => ({
+  card: {
+    maxWidth: 600,
+    margin: 'auto',
+    marginTop: theme.spacing.unit * 5
+  },
+  title: {
+    padding:`${theme.spacing.unit * 3}px ${theme.spacing.unit * 2.5}px
+    ${theme.spacing.unit * 2}px`,
+    color: theme.palette.text.secondary
+  },
+  media: {
+    minHeight: 330
+  }
+})
+
+The JSS style objects defined here will be injected into the component and used to style the elements in the component, as shown in the following Home component definition.
+
+Material-UI uses JSS, which is a CSS-in-JS styling solution to add styles to the components. JSS uses JavaScript as a language to describe styles. This book will not cover CSS and styling implementations in detail. It will most rely on the default look and feel of Material-UI components. To learn more about JSS, visit http://cssinjs.org/?v=v9.8.1. For examples of how to customize the Material-UI component styles, check out the Material-UI documentation at https://material-ui-next.com/.
+
+
+
+In the component definition, we will compose the content and behavior of the component. The Home component will contain a Material-UI Card with a headline, an image, and a caption, all styled with the classes defined earlier and passed in as props.
+
+client/core/Home.js:
+
+class Home extends Component {
+  render() {
+    const {classes} = this.props
+    return (
+      <div>
+        <Card className={classes.card}>
+          <Typography type="headline" component="h2" className=
+          {classes.title}>
+            Home Page
+          </Typography>
+          <CardMedia className={classes.media} image={seashellImg}
+          title="Unicorn Shells"/>
+          <CardContent>
+            <Typography type="body1" component="p">
+              Welcome to the Mern Skeleton home page
+            </Typography>
+          </CardContent>
+        </Card>
+      </div>
+    )
+  }
+}
+
+
+
+To validate the required injection of style declarations as props to the component, we add the PropTypes requirement validator to the defined component.
+
+client/core/Home.js:
+
+Home.propTypes = {
+  classes: PropTypes.object.isRequired
+}
+
+
+
+Finally, in the last line of code in the component file, we will export the component with the defined styles passed in using withStyles from Material-UI. Using withStyles like this creates a Higher-order component (HOC) that has access to the defined style objects as props.
+
+
+client/core/Home.js:
+
+export default withStyles(styles)(Home)
+
+The exported component can now be used for composition within other components, as we did with this Home component in a route in the MainRouter component discussed earlier.
+
+The other view components to be implemented in our MERN applications will adhere to the same structure. In the rest of the book, we will focus mainly on the component definition, highlighting the unique aspects of the implemented component.
+
+
+
+The static image file that we imported into the Home component view must also be included in the bundle with the rest of the compiled JS code so that the code can access and load it. To enable this, we need to update the Webpack configuration files to add a module rule to load, bundle, and emit image files to the output directory, which contains the compiled frontend and backend code.
+
+Update the webpack.config.client.js, webpack.config.server.js, and webpack.config.client.production.js files to add the following module rule after the use of babel-loader:
+
+[ …
+    {
+       test: /\.(ttf|eot|svg|gif|jpg|png)(\?[\s\S]+)?$/,
+       use: 'file-loader'
+    }
+]
+This module rule uses the file-loader npm module for Webpack, which needs to be installed as a development dependency, as follows:
+
+npm install --save-dev file-loader
+

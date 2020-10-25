@@ -27,6 +27,7 @@
     "npm": "5.8.0"
   },
   "dependencies": {
+    "@material-ui/core": "^4.11.0",
     "@types/react": "^16.9.53",
     "assert": "^2.0.0",
     "body-parser": "^1.19.0",
@@ -39,10 +40,13 @@
     "helmet": "^4.1.1",
     "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.20",
+    "material-ui": "^0.20.2",
     "mongodb": "^3.6.2",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1",
-    "react-hot-loader": "^4.13.0"
+    "react": "^16.14.0",
+    "react-dom": "^16.14.0",
+    "react-hot-loader": "^4.13.0",
+    "react-router": "^5.2.0",
+    "react-router-dom": "^5.2.0"
   },
   "devDependencies": {
     "babel-core": "^6.26.3",
@@ -50,6 +54,7 @@
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-2": "^6.24.1",
+    "file-loader": "^6.1.1",
     "nodemon": "^2.0.6",
     "webpack": "^4.6.0",
     "webpack-cli": "^3.3.12",

@@ -442,6 +442,26 @@
 					"answer": ""
 				}
 			]
+		},
+		{
+			"title": "React Frontend",
+			"id": "reactfrontend",
+			"prerequisites": ["authentication"],
+			"lesson material":
+			{			"resources":[
+				{
+					"format":"text",
+					"path":"reactfrontend.txt"
+				}
+			]
+			},
+			"tests": [
+				{
+					"question": "",
+					"options": [""],
+					"answer": ""
+				}
+			]
 		}
 
 	]
