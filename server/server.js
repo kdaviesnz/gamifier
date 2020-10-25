@@ -11,6 +11,9 @@ import compress from 'compression'
 import cors from 'cors'
 import helmet from 'helmet'
 
+// Install using npm install dotenv
+require("dotenv").config()
+
 const app = express()
 
 app.use(bodyParser.json())
@@ -39,6 +42,15 @@ app.listen(port, function onStart(err) {
 })
 
 // Database Connection URL
+const uri = "mongodb+srv://" + process.env.MONGODBUSER + ":" + process.env.MONGODBPASSWORD + "@cluster0.awqh6.mongodb.net/chemistry?retryWrites=true&w=majority";
+const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+
+client.connect(err => {
+
+    assert.equal(err, null);
+    const db = client.db("chemistry")
+})
+
 /*
 const url = process.env.MONGODB_URI || 'mongodb://localhost:27017/mernSimpleSetup'
 // Use connect method to connect to the server
