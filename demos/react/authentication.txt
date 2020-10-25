@@ -1,0 +1,205 @@
+server/routes/auth.routes.js
+
+To restrict access to user operations such as user profile view, user update, and user delete, we will implement sign-in authentication with JWT, then protect and authorize the read, update, and delete routes.
+
+The auth-related API endpoints for sign-in and sign-out will be declared in server/routes/auth.routes.js and then mounted on the Express app in server/server.js.
+
+mern-skeleton/server/server.js:
+
+import authRoutes from './routes/auth.routes'
+  ...
+  app.use('/', authRoutes)
+  ...
+
+
+
+The two auth APIs are defined in the auth.routes.js file using express.Router() to declare the route paths with relevant HTTP methods, and assigned corresponding auth controller functions that should be called when requests are received for these routes.
+
+The auth routes are as follows: 
+
+'/auth/signin': POST request to authenticate the user with email and password
+'/auth/signout': GET request to clear the cookie containing a JWT that was set on the response object after sign-in
+
+The resulting server/routes/auth.routes.js file will be as follows: 
+
+import express from 'express'
+import authCtrl from '../controllers/auth.controller'
+
+const router = express.Router()
+
+router.route('/auth/signin')
+  .post(authCtrl.signin)
+router.route('/auth/signout')
+  .get(authCtrl.signout)
+
+export default router
+
+
+
+The auth controller functions in server/controllers/auth.controller.js will not only handle requests to the sign-in and sign-out routes, but also provide JWT and express-jwt functionality to enable authentication and authorization for protected user API endpoints.
+
+The auth.controller.js file will have the following structure:
+
+import User from '../models/user.model'
+import jwt from 'jsonwebtoken'
+import expressJwt from 'express-jwt'
+import config from './../../config/config'
+
+const signin = (req, res) => { … }
+const signout = (req, res) => { … }
+const requireSignin = …
+const hasAuthorization = (req, res) => { … }
+
+export default { signin, signout, requireSignin, hasAuthorization }
+
+The four controller functions are elaborated on in the following to show how the backend implements user auth using JSON Web Tokens.
+
+
+
+
+server/routes/auth.routes.js:
+
+router.route('/auth/signin').post(authCtrl.signin)
+When the Express app gets a POST request at '/auth/signin', it executes the signin controller function.
+
+server/controllers/auth.controller.js:
+
+const signin = (req, res) => {
+  User.findOne({
+    "email": req.body.email
+  }, (err, user) => {
+    if (err || !user)
+      return res.status('401').json({
+        error: "User not found"
+      })
+
+    if (!user.authenticate(req.body.password)) {
+      return res.status('401').send({
+        error: "Email and password don't match."
+      })
+    }
+
+    const token = jwt.sign({
+      _id: user._id
+    }, config.jwtSecret)
+
+    res.cookie("t", token, {
+      expire: new Date() + 9999
+    })
+
+    return res.json({
+      token,
+      user: {_id: user._id, name: user.name, email: user.email}
+ })
+  })
+}
+
+The POST request object receives the email and password in req.body. This email is used to retrieve a matching user from the database. Then, the password authentication method defined in the UserSchema is used to verify the password received in the req.body from the client.
+
+If the password is successfully verified, the JWT module is used to generate a JWT signed using a secret key and the user's _id value.
+
+Install the jsonwebtoken module to make it available to this controller in the import by running npm install jsonwebtoken --save from the command line.
+
+Then, the signed JWT is returned to the authenticated client along with user details. Optionally, we can also set the token to a cookie in the response object so it is available to the client side if cookies is the chosen form of JWT storage. On the client side, this token must be attached as an Authorization header when requesting protected routes from the server.
+
+
+
+
+
+The API endpoint to sign out a user is declared in the following route.
+
+server/routes/auth.routes.js:
+
+router.route('/auth/signout').get(authCtrl.signout)
+When the Express app gets a GET request at '/auth/signout', it executes the signout controller function.
+
+server/controllers/auth.controller.js:
+
+const signout = (req, res) => {
+  res.clearCookie("t")
+  return res.status('200').json({
+    message: "signed out"
+  })
+}
+
+The signout function clears the response cookie containing the signed JWT. This is an optional endpoint and not really necessary for auth purposes if cookies are not used at all in the frontend. With JWT, user state storage is the client's responsibility, and there are multiple options for client-side storage besides cookies. On sign-out, the client needs to delete the token on the client side to establish that the user is no longer authenticated.
+
+
+
+To protect access to the read, update, and delete routes, the server will need to check that the requesting client is actually an authenticated and authorized user.
+
+To check if the requesting user is signed in and has a valid JWT when a protected route is accessed, we will use the express-jwt module.
+
+The express-jwt module is middleware that validates JSON Web Tokens. Run npm install express-jwt --save from the command line to install express-jwt.
+
+
+
+The requireSignin method in auth.controller.js uses express-jwt to verify that the incoming request has a valid JWT in the Authorization header. If the token is valid, it appends the verified user's ID in an 'auth' key to the request object, otherwise it throws an authentication error.
+
+server/controllers/auth.controller.js:
+
+const requireSignin = expressJwt({
+  secret: config.jwtSecret,
+  userProperty: 'auth'
+})
+
+We can add requireSignin to any route that should be protected against unauthenticated access.
+
+
+
+
+For some of the protected routes such as update and delete, on top of checking for authentication we also want to make sure the requesting user is only updating or deleting their own user information. To achieve this, the hasAuthorization function defined in auth.controller.js checks if the authenticated user is the same as the user being updated or deleted before the corresponding CRUD controller function is allowed to proceed.
+
+server/controllers/auth.controller.js:
+
+const hasAuthorization = (req, res, next) => {
+  const authorized = req.profile && req.auth && req.profile._id ==
+  req.auth._id
+  if (!(authorized)) {
+    return res.status('403').json({
+      error: "User is not authorized"
+    })
+  }
+  next()
+}
+
+The req.auth object is populated by express-jwt in requireSignin after authentication verification, and the req.profile is populated by the userByID function in the user.controller.js. We will add the hasAuthorization function to routes that require both authentication and authorization.
+
+
+
+
+We will add requireSignin and hasAuthorization to the user route declarations that need to be protected with authentication and also authorization.
+
+Update the read, update, and delete routes in user.routes.js as follows.
+
+server/routes/user.routes.js:
+
+import authCtrl from '../controllers/auth.controller'
+...
+router.route('/api/users/:userId')
+    .get(authCtrl.requireSignin, userCtrl.read)
+    .put(authCtrl.requireSignin, authCtrl.hasAuthorization,
+     userCtrl.update)
+    .delete(authCtrl.requireSignin, authCtrl.hasAuthorization,
+     userCtrl.remove)
+...
+
+The route to read a user's information only needs authentication verification, whereas the update and delete routes should check for both authentication and authorization before these CRUD operations are executed.
+
+
+
+
+To handle the auth-related errors thrown by express-jwt when it tries to validate JWT tokens in incoming requests, we need to add the following error-catching code to the Express app configuration in server/server.js, near the end of the code, after the routes are mounted and before the app is exported: 
+
+app.use((err, req, res, next) => {
+  if (err.name === 'UnauthorizedError') {
+    res.status(401).json({"error" : err.name + ": " + err.message})
+  }
+})
+
+express-jwt throws an error named UnauthorizedError when the token cannot be validated for some reason. We catch this error here to return a 401 status back to the requesting client.
+
+With user auth implemented for protecting routes, we have covered all the desired features of a working backend for the skeleton MERN application. In the next section, we will look at how we can check if this standalone backend is functioning as desired without implementing a frontend.
+
+
+

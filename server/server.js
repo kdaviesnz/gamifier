@@ -12,6 +12,7 @@ import cors from 'cors'
 import helmet from 'helmet'
 
 import userRoutes from './routes/user.routes'
+import authRoutes from './routes/auth.routes'
 
 
 
@@ -33,6 +34,13 @@ devBundle.compile(app)
 
 
 app.use('/', userRoutes)
+app.use('/', authRoutes)
+
+app.use((err, req, res, next) => {
+    if (err.name === 'UnauthorizedError') {
+        res.status(401).json({"error" : err.name + ": " + err.message})
+    }
+})
 
 const CURRENT_WORKING_DIR = process.cwd()
 app.use('/dist', express.static(path.join(CURRENT_WORKING_DIR, 'dist')))

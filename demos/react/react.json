@@ -422,7 +422,28 @@
 					"answer": ""
 				}
 			]
+		},
+		{
+			"title": "Authentication",
+			"id": "authentication",
+			"prerequisites": ["creatingroutes"],
+			"lesson material":
+			{			"resources":[
+				{
+					"format":"text",
+					"path":"authentication.txt"
+				}
+			]
+			},
+			"tests": [
+				{
+					"question": "",
+					"options": [""],
+					"answer": ""
+				}
+			]
 		}
+
 	]
 
 }

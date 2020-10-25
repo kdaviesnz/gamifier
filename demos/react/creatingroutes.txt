@@ -43,7 +43,7 @@ module.exports = { create, userByID, read, list, remove, update }
 
 
 
-server/express.js:
+server/server.js:
 
 import userRoutes from './routes/user.routes'
 ...
