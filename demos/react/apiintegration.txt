@@ -1,0 +1,770 @@
+In the client/user/api-user.js file, we will add methods for accessing each of the user CRUD API endpoints, which the React components can use to exchange user data with the server and database as required.
+
+The create method will take user data from the view component, use fetch to make a POST call to create a new user in the backend, and finally return the response from the server to the component as a promise.
+
+client/user/api-user.js:
+
+const create = (user) => {
+  return fetch('/api/users/', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(user)
+    })
+    .then((response) => {
+      return response.json()
+    }).catch((err) => console.log(err))
+}
+
+
+
+The list method will use fetch to make a GET call to retrieve all the users in the database, and then return the response from the server as a promise to the component.
+
+client/user/api-user.js:
+
+const list = () => {
+  return fetch('/api/users/', {
+    method: 'GET',
+  }).then(response => {
+    return response.json()
+  }).catch((err) => console.log(err))
+}
+
+
+
+The read method will use fetch to make a GET call to retrieve a specific user by ID. Since this is a protected route, besides passing the user ID as a parameter, the requesting component must also provide valid credentials, which in this case will be a valid JWT received after successful sign-in.
+
+client/user/api-user.js:
+
+const read = (params, credentials) => {
+  return fetch('/api/users/' + params.userId, {
+    method: 'GET',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + credentials.t
+    }
+  }).then((response) => {
+    return response.json()
+  }).catch((err) => console.log(err))
+}
+
+The JWT is attached to the GET fetch call in the Authorization header using the Bearer scheme, and then the response from the server is returned to the component in a promise.
+
+
+
+The update method will take changed user data from the view component for a specific user, then use fetch to make a PUT call to update the existing user in the backend. This is also a protected route that will require a valid JWT as credential.
+
+client/user/api-user.js:
+
+const update = (params, credentials, user) => {
+  return fetch('/api/users/' + params.userId, {
+    method: 'PUT',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + credentials.t
+    },
+    body: JSON.stringify(user)
+  }).then((response) => {
+    return response.json()
+  }).catch((err) => {
+    console.log(err)
+  })
+}
+
+
+The remove method will allow the view component to delete a specific user from the database, using fetch to make a DELETE call. This, again, is a protected route that will require a valid JWT as a credential, similar to the read and update methods. The response from the server to the delete request will be returned to the component as a promise.
+
+client/user/api-user.js:
+
+const remove = (params, credentials) => {
+  return fetch('/api/users/' + params.userId, {
+    method: 'DELETE',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + credentials.t
+    }
+  }).then((response) => {
+    return response.json()
+  }).catch((err) => {
+    console.log(err)
+  })
+}
+
+Finally, export the user API helper methods to be imported and used by the React components as required.
+
+client/user/api-user.js:
+
+export { create, list, read, update, remove }
+
+
+
+In order to integrate the auth API endpoints from the server with the frontend React components, we will add methods for fetching sign-in and sign-out API endpoints in the client/auth/api-auth.js file.
+
+
+The signin method will take user sign-in data from the view component, then use fetch to make a POST call to verify the user with the backend. The response from the server will be returned to the component in a promise, which may contain the JWT if sign-in was successful.
+
+client/user/api-auth.js:
+
+const signin = (user) => {
+  return fetch('/auth/signin/', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      credentials: 'include',
+      body: JSON.stringify(user)
+    })
+    .then((response) => {
+      return response.json()
+    }).catch((err) => console.log(err))
+}
+
+
+
+The signout method will use fetch to make a GET call to the signout API endpoint on the server.
+
+client/user/api-auth.js:
+
+const signout = () => {
+  return fetch('/auth/signout/', {
+    method: 'GET',
+  }).then(response => {
+      return response.json()
+  }).catch((err) => console.log(err))
+}
+
+At the end of the api-auth.js file, export the signin and signout methods.
+
+mern-skeleton/client/user/api-auth.js:
+
+export { signin, signout }
+
+With these API fetch methods, the React frontend has complete access to the endpoints available in the backend.
+
+
+
+
+As discussed in the previous chapter, implementing authentication with JWT relinquishes responsibility to the client side to manage and store user auth state. To this end, we need to write code that will allow the client-side to store the JWT received from the server on successful sign-in, make it available when accessing protected routes, delete or invalidate the token when the user signs out, and also restrict access to views and components on the frontend based on the user auth state.
+
+Using examples of auth workflow from the React Router documentation, we will write helper methods to manage auth state across the components, and also use a custom PrivateRoute component to add protected routes to the frontend.
+
+
+
+In client/auth/auth-helper.js, we will define the following helper methods to store and retrieve JWT credentials from client-side sessionStorage, and also clear out the sessionStorage on user sign-out:
+
+authenticate(jwt, cb): Save credentials on successful sign-in:
+authenticate(jwt, cb) {
+    if(typeof window !== "undefined")
+        sessionStorage.setItem('jwt', JSON.stringify(jwt))
+    cb()
+}
+isAuthenticated(): Retrieve credentials if signed-in:
+isAuthenticated() {
+    if (typeof window == "undefined")
+      return false
+
+    if (sessionStorage.getItem('jwt'))
+      return JSON.parse(sessionStorage.getItem('jwt'))
+    else
+      return false
+}
+signout(cb): Delete credentials and sign out:
+signout(cb) {
+      if(typeof window !== "undefined")
+        sessionStorage.removeItem('jwt')
+      cb()
+      signout().then((data) => {
+          document.cookie = "t=; expires=Thu, 01 Jan 1970 00:00:00
+          UTC; path=/;"
+      })
+}
+
+Using the methods defined here, the React components we build will be able to check and manage user auth state to restrict access in the frontend, as demonstrated in the following with the custom PrivateRoute.
+
+
+
+The client/auth/PrivateRoute.js defines the PrivateRoute component as shown in an auth flow example from https://reacttraining.com/react-router/web/example/auth-workflow in the React Router documentation. It will allow us to declare protected routes for the frontend to restrict view access based on user auth.
+
+client/auth/PrivateRoute.js:
+
+import React, { Component } from 'react'
+import { Route, Redirect } from 'react-router-dom'
+import auth from './auth-helper'
+
+const PrivateRoute = ({ component: Component, ...rest }) => (
+  <Route {...rest} render={props => (
+    auth.isAuthenticated() ? (
+      <Component {...props}/>
+    ) : (
+      <Redirect to={{
+        pathname: '/signin',
+        state: { from: props.location }
+      }}/>
+    )
+  )}/>
+)
+
+export default PrivateRoute
+
+Components to be rendered in this PrivateRoute will only load when the user is authenticated, otherwise the user will be redirected to the Signin component.
+
+With the backend APIs integrated, and auth management helper methods ready for use in the components, we can start building the remaining view components.
+
+
+
+
+Users component
+
+The Users component in client/user/Users.js, shows the names of all the users fetched from the database, and links each name to the user profile. This component can be viewed by any visitor to the application and will render at the path '/users':
+
+class Users extends Component {
+
+    state = {users: []}
+
+    componentDidMount = () => {
+        list().then((data) => {
+            if (data.error)
+                console.log(data.error)
+            else
+                this.setState({users: data})
+        })
+
+    }
+
+    render() {
+        const {classes} = this.props
+        return (
+            <Paper className={classes.root} elevation={4}>
+                <Typography type="title" className={classes.title}>
+                    All Users
+                </Typography>
+                <List dense>
+                    {this.state.users.map(function (item, i) {
+                            return <Link to={"/user/" + item._id} key={i}>
+                                <ListItem button="button">
+                                    <ListItemAvatar>
+                                        <Avatar>
+                                            <Person/>
+                                        </Avatar>
+                                    </ListItemAvatar>
+                                    <ListItemText primary={item.name}/>
+                                    <ListItemSecondaryAction>
+                                        <IconButton>
+                                            <ArrowForward/>
+                                        </IconButton>
+                                    </ListItemSecondaryAction>
+                                </ListItem>
+                            </Link>
+
+                        }
+                    )}
+                </List>
+            </Paper>
+        )
+    }
+
+}
+
+
+To add this Users component to the React application, we need to update the MainRouter component with a Route that renders this component at the '/users' path. Add the Route inside the Switch component after the Home route.
+
+client/MainRouter.js:
+
+<Route path="/users" component={Users}/>
+
+To see this view rendered in the browser, you can temporarily add a Link component in the Home component to route to the Users component:
+
+<Link to="/users">Users</Link>”
+
+
+
+The Signup component in client/user/Signup.js, presents a form with name, email, and password fields to the user for sign-up at the '/signup' path:
+
+
+class Signup extends Component {
+
+    constructor(props) {
+        super()
+        this.state = {name: '', password: '', email: '', open: false, error: ''}
+    }
+
+    handleChange = name => event => {
+        this.setState({[name]: event.target.value})
+    }
+
+    clickSubmit = () => {
+        const user = {
+            name: this.state.name || undefined,
+            email: this.state.email || undefined,
+            password: this.state.password || undefined
+        }
+        create(user).then((data) => {
+            if (data.error)
+                this.setState({error: data.error})
+            else
+                this.setState({error: '', open: true})
+        })
+    }
+
+    render() {
+        const {classes} = this.props
+        return (<div>
+            <Card className={classes.card}>
+                <CardContent>
+                    <Typography type="headline" component="h2"
+                                className={classes.title}>
+                        Sign Up
+                    </Typography>
+                    <TextField id="name" label="Name"
+                               className={classes.textField}
+                               value={this.state.name}
+                               onChange={this.handleChange('name')}
+                               margin="normal"/> <br/>
+                    <TextField id="email" type="email" label="Email"
+                               className={classes.textField} value=
+                                   {this.state.email}
+                               onChange={this.handleChange('email')}
+                               margin="normal"/><br/>
+                    <TextField id="password" type="password"
+                               label="Password" className={classes.textField}
+                               value={this.state.password}
+                               onChange={this.handleChange('password')}
+                               margin="normal"/><br/>
+                    {this.state.error && ( <Typography component="p"
+                                                       color="error">
+                        <Icon color="error"
+                              className={classes.error}>error</Icon>
+                        {this.state.error}</Typography>)}
+                </CardContent>
+                <CardActions>
+                    <Button color="primary" raised="raised"
+                            onClick={this.clickSubmit}
+                            className={classes.submit}>Submit</Button>
+                </CardActions>
+            </Card>
+            <Dialog open={this.state.open} disableBackdropClick={true}>
+                <DialogTitle>New Account</DialogTitle>
+                <DialogContent>
+                    <DialogContentText>
+                        New account successfully created.
+                    </DialogContentText>
+                </DialogContent>
+                <DialogActions>
+                    <Link to="/signin">
+                        <Button color="primary" autoFocus="autoFocus" variant="raised">
+                            Sign In
+                        </Button>
+                    </Link>
+                </DialogActions>
+            </Dialog>
+
+        </div>)
+    }
+
+}
+
+To add the Signup component to the app, add the following Route to the MainRouter in the Switch component.
+
+client/MainRouter.js:
+
+<Route path="/signup" component={Signup}/>
+
+This will render the Signup view at '/signup'.
+
+
+
+
+
+The Signin component in client/auth/Signin.js is also a form with only email and password fields for signing in. This component is quite similar to the Signup component and will render at the '/signin' path. The key difference is in the implementation of redirection after successful sign-in and storing of the received JWT:
+
+class Signin extends Component {
+
+    state = { email: '', password: '', error: '', redirectToReferrer: false }
+
+    clickSubmit = () => {
+        const user = {
+            email: this.state.email || undefined,
+            password: this.state.password || undefined
+        }
+        signin(user).then((data) => {
+            if (data.error) {
+                this.setState({error: data.error})
+            } else {
+                auth.authenticate(data, () => {
+                    this.setState({redirectToReferrer: true})
+                })
+            }
+        })
+    }
+
+    render() {
+        const {classes} = this.props
+        const {from} = this.props.location.state || {
+            from: {pathname: '/' }
+        }
+        const {redirectToReferrer} = this.state
+        if (redirectToReferrer)
+            return (<Redirect to={from}/>)
+
+        return
+    }
+
+}
+
+To add the Signin component to the app, add the following Route to the MainRouter in the Switch component.
+
+client/MainRouter.js:
+
+<Route path="/signin" component={Signin}/>
+
+This will render the Signin component at "/signin".
+
+
+
+The Profile component in client/user/Profile.js shows a single user's information in the view at the '/user/:userId' path, where the userId parameter represents the ID of the specific user:
+
+class Profile extends Component {
+    constructor({match}) {
+        super()
+        this.state = {
+            user: '',
+            redirectToSignin: false
+        }
+        this.match = match
+    }
+    init = (userId) => {
+        const jwt = auth.isAuthenticated()
+        read({
+            userId: userId
+        }, {t: jwt.token}).then((data) => {
+            if (data.error) {
+                this.setState({redirectToSignin: true})
+            } else {
+                this.setState({user: data})
+            }
+        })
+    }
+    componentWillReceiveProps = (props) => {
+        this.init(props.match.params.userId)
+    }
+    componentDidMount = () => {
+        this.init(this.match.params.userId)
+    }
+    render() {
+        const {classes} = this.props
+        const redirectToSignin = this.state.redirectToSignin
+        if (redirectToSignin) {
+            return <Redirect to='/signin'/>
+        }
+        return (
+            <Paper className={classes.root} elevation={4}>
+                <Typography type="title" className={classes.title}>
+                    Profile
+                </Typography>
+                <List dense>
+                    <ListItem>
+                        <ListItemAvatar>
+                            <Avatar>
+                                <Person/>
+                            </Avatar>
+                        </ListItemAvatar>
+                        <ListItemText primary={this.state.user.name} secondary={this.state.user.email}/> {
+                        auth.isAuthenticated().user && auth.isAuthenticated().user._id == this.state.user._id &&
+                        (<ListItemSecondaryAction>
+                            <Link to={"/user/edit/" + this.state.user._id}>
+                                <IconButton aria-label="Edit" color="primary">
+                                    <Edit/>
+                                </IconButton>
+                            </Link>
+                            <DeleteUser userId={this.state.user._id}/>
+                        </ListItemSecondaryAction>)
+                    }
+                    </ListItem>
+                    <Divider/>
+                    <ListItem>
+                        <ListItemText primary={"Joined: " + (
+                            new Date(this.state.user.created)).toDateString()}/>
+                    </ListItem>
+                </List>
+            </Paper>
+        )
+    }
+}
+Profile.propTypes = {
+    classes: PropTypes.object.isRequired
+}
+
+export default withStyles(styles)(Profile)
+
+To add the Profile component to the app, add the Route to the MainRouter in the Switch component.
+
+mern-skeleton/client/MainRouter.js:
+
+<Route path="/user/:userId" component={Profile}/>
+
+
+
+The EditProfile component in client/user/EditProfile.js has similarities in implementation with both the Signup and Profile components. It will allow the authorized user to edit their own profile information in a form similar to the sign up form: 
+
+class EditProfile extends Component {
+  constructor({match}) {
+    super()
+    this.state = {
+      name: '',
+      email: '',
+      password: '',
+      redirectToProfile: false,
+      error: ''
+    }
+    this.match = match
+  }
+
+  componentDidMount = () => {
+    const jwt = auth.isAuthenticated()
+    read({
+      userId: this.match.params.userId
+    }, {t: jwt.token}).then((data) => {
+      if (data.error) {
+        this.setState({error: data.error})
+      } else {
+        this.setState({name: data.name, email: data.email})
+      }
+    })
+  }
+  clickSubmit = () => {
+    const jwt = auth.isAuthenticated()
+    const user = {
+      name: this.state.name || undefined,
+      email: this.state.email || undefined,
+      password: this.state.password || undefined
+    }
+    update({
+      userId: this.match.params.userId
+    }, {
+      t: jwt.token
+    }, user).then((data) => {
+      if (data.error) {
+        this.setState({error: data.error})
+      } else {
+        this.setState({'userId': data._id, 'redirectToProfile': true})
+      }
+    })
+  }
+  handleChange = name => event => {
+    this.setState({[name]: event.target.value})
+  }
+  render() {
+    const {classes} = this.props
+    if (this.state.redirectToProfile) {
+      return (<Redirect to={'/user/' + this.state.userId}/>)
+    }
+    return (
+      <Card className={classes.card}>
+        <CardContent>
+          <Typography type="headline" component="h2" className={classes.title}>
+            Edit Profile
+          </Typography>
+          <TextField id="name" label="Name" className={classes.textField} value={this.state.name} onChange={this.handleChange('name')} margin="normal"/><br/>
+          <TextField id="email" type="email" label="Email" className={classes.textField} value={this.state.email} onChange={this.handleChange('email')} margin="normal"/><br/>
+          <TextField id="password" type="password" label="Password" className={classes.textField} value={this.state.password} onChange={this.handleChange('password')} margin="normal"/>
+          <br/> {
+            this.state.error && (<Typography component="p" color="error">
+              <Icon color="error" className={classes.error}>error</Icon>
+              {this.state.error}
+            </Typography>)
+          }
+        </CardContent>
+        <CardActions>
+          <Button color="primary" variant="raised" onClick={this.clickSubmit} className={classes.submit}>Submit</Button>
+        </CardActions>
+      </Card>
+    )
+  }
+}
+
+EditProfile.propTypes = {
+  classes: PropTypes.object.isRequired
+}
+
+export default withStyles(styles)(EditProfile)
+
+
+To add the EditProfile component to the app, we will use a PrivateRoute this time, to restrict the component from loading at all if the user is not signed in. The order of placement in MainRouter will also be important.
+
+client/MainRouter.js:
+
+<Switch>
+  ...
+  <PrivateRoute path="/user/edit/:userId" component={EditProfile}/><>
+  <Route path="/user/:userId" component={Profile}/>
+</Switch>
+
+The route with path '/user/edit/:userId' needs to be placed before the route with path '/user/:userId', so that the edit path is matched first exclusively in the Switch component when this route is requested, and not confused with the Profile route. 
+
+
+
+
+The DeleteUser component in client/user/DeleteUser.js is basically a button that we will add to the Profile view, which when clicked opens a Dialog component asking the user to confirm the delete action:
+
+class DeleteUser extends Component {
+  state = {
+    redirect: false,
+    open: false
+  }
+  clickButton = () => {
+    this.setState({open: true})
+  }
+  deleteAccount = () => {
+    const jwt = auth.isAuthenticated()
+    remove({
+      userId: this.props.userId
+    }, {t: jwt.token}).then((data) => {
+      if (data.error) {
+        console.log(data.error)
+      } else {
+        auth.signout(() => console.log('deleted'))
+        this.setState({redirect: true})
+      }
+    })
+  }
+  handleRequestClose = () => {
+    this.setState({open: false})
+  }
+  render() {
+    const redirect = this.state.redirect
+    if (redirect) {
+      return <Redirect to='/'/>
+    }
+    return (<span>
+      <IconButton aria-label="Delete" onClick={this.clickButton} color="secondary">
+        <DeleteIcon/>
+      </IconButton>
+
+      <Dialog open={this.state.open} onClose={this.handleRequestClose}>
+        <DialogTitle>{"Delete Account"}</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            Confirm to delete your account.
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={this.handleRequestClose} color="primary">
+            Cancel
+          </Button>
+          <Button onClick={this.deleteAccount} color="secondary" autoFocus="autoFocus">
+            Confirm
+          </Button>
+        </DialogActions>
+      </Dialog>
+    </span>)
+  }
+}
+
+DeleteUser.propTypes = {
+  userId: PropTypes.string.isRequired
+}
+
+export default DeleteUser
+
+As we are using the DeleteUser component in the Profile component, it gets added to the application view when Profile is added in MainRouter.
+
+
+
+The Menu component will function as a navigation bar across the frontend application by providing links to all the available views, and also be indicating the current location in the application.
+
+To implement these navigation bar functionalities, we will use the HOC withRouter from React Router to get access to the history object's properties. The following code in the Menu component adds just the title, the Home icon linked to the root Route, and Users button linked to the '/users' route.
+
+/client/core/Menu.js
+
+const isActive = (history, path) => {
+  if (history.location.pathname == path)
+    return {color: '#ff4081'}
+  else
+    return {color: '#ffffff'}
+}
+const Menu = withRouter(({history}) => (
+  <AppBar position="static">
+    <Toolbar>
+      <Typography type="title" color="inherit">
+        MERN Skeleton
+      </Typography>
+      <Link to="/">
+        <IconButton aria-label="Home" style={isActive(history, "/")}>
+          <HomeIcon/>
+        </IconButton>
+      </Link>
+      <Link to="/users">
+        <Button style={isActive(history, "/users")}>Users</Button>
+      </Link>
+      {
+        !auth.isAuthenticated() && (<span>
+          <Link to="/signup">
+            <Button style={isActive(history, "/signup")}>Sign up
+            </Button>
+          </Link>
+          <Link to="/signin">
+            <Button style={isActive(history, "/signin")}>Sign In
+            </Button>
+          </Link>
+        </span>)
+      }
+      {
+        auth.isAuthenticated() && (<span>
+          <Link to={"/user/" + auth.isAuthenticated().user._id}>
+            <Button style={isActive(history, "/user/" + auth.isAuthenticated().user._id)}>My Profile</Button>
+          </Link>
+          <Button color="inherit" onClick={() => {
+              auth.signout(() => history.push('/'))
+            }}>Sign out</Button>
+        </span>)
+      }
+    </Toolbar>
+  </AppBar>
+))
+
+export default Menu
+
+
+To have the Menu navigation bar present in all the views, we need to add it to the MainRouter before all the other routes, and outside the Switch component.
+
+mern-skeleton/client/MainRouter.js:
+
+    <Menu/>
+    <Switch>
+    …
+    </Switch>
+
+This will make the Menu component render on top of all the other components when the component is accessed at a route.
+
+The skeleton frontend is complete with all components necessary to enable a user to sign up, view, and modify user data on the backend with consideration to authentication and authorization restrictions. However, it is still not possible to visit the frontend routes directly in the browser address bar, and can only be accessed when linked from within the frontend view. To enable this functionality in the skeleton application, we need to implement basic server-side rendering.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

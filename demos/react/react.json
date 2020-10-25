@@ -462,8 +462,51 @@
 					"answer": ""
 				}
 			]
+		},
+		{
+			"title": "API integratin",
+			"id": "apiintegration",
+			"prerequisites": ["reactfrontend"],
+			"lesson material":
+			{			"resources":[
+				{
+					"format":"text",
+					"path":"apiintegration.txt"
+				}
+			]
+			},
+			"tests": [
+				{
+					"question": "",
+					"options": [""],
+					"answer": ""
+				}
+			]
+		},
+		{
+			"title": "Server side rendering",
+			"id": "serversiderendering",
+			"prerequisites": ["apiintegration"],
+			"lesson material":
+			{			"resources":[
+				{
+					"format":"text",
+					"path":"serversiderendering.txt"
+				}
+			]
+			},
+			"tests": [
+				{
+					"question": "",
+					"options": [""],
+					"answer": ""
+				}
+			]
 		}
 
 	]
 
 }
+
+
+
