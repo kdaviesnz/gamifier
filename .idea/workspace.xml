@@ -3,11 +3,23 @@
   <component name="ChangeListManager">
     <list default="true" id="8e959ccb-e66f-4ecb-97f8-62604c07167e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/MainRouter.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/MainRouter.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demos/react/react.json" beforeDir="false" afterPath="$PROJECT_DIR$/demos/react/react.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/auth/Signin.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/auth/Signin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/auth/auth-helper.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/auth/auth-helper.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/core/Home.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/core/Home.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/core/Menu.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/core/Menu.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/user/DeleteUser.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/user/DeleteUser.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/user/EditProfile.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/user/EditProfile.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/user/Profile.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/user/Profile.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/user/Signup.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/user/Signup.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/user/Users.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/user/Users.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/config.js" beforeDir="false" afterPath="$PROJECT_DIR$/config/config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/react/apiintegration.txt" beforeDir="false" afterPath="$PROJECT_DIR$/demos/react/apiintegration.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/server.generated.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/server.generated.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/controllers/auth.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/auth.controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/routes/user.routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/user.routes.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/server.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/template.js" beforeDir="false" afterPath="$PROJECT_DIR$/template.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -33,25 +45,25 @@
         <counts>
           <entry key="env" value="2" />
           <entry key="gitignore" value="2" />
-          <entry key="js" value="41" />
-          <entry key="json" value="7" />
-          <entry key="md" value="1" />
-          <entry key="txt" value="9" />
+          <entry key="js" value="57" />
+          <entry key="json" value="9" />
+          <entry key="md" value="2" />
+          <entry key="txt" value="10" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="JSON" value="7" />
-          <entry key="JavaScript" value="41" />
-          <entry key="Markdown" value="1" />
-          <entry key="PLAIN_TEXT" value="13" />
+          <entry key="JSON" value="9" />
+          <entry key="JavaScript" value="57" />
+          <entry key="Markdown" value="2" />
+          <entry key="PLAIN_TEXT" value="14" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="env" value="28" />
           <entry key="gitignore" value="46" />
-          <entry key="js" value="610" />
+          <entry key="js" value="962" />
           <entry key="json" value="269" />
           <entry key="md" value="3" />
           <entry key="txt" value="670" />
@@ -61,7 +73,7 @@
         <counts>
           <entry key="HTML" value="1" />
           <entry key="JSON" value="269" />
-          <entry key="JavaScript" value="609" />
+          <entry key="JavaScript" value="961" />
           <entry key="Markdown" value="3" />
           <entry key="PLAIN_TEXT" value="744" />
         </counts>
@@ -70,78 +82,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/demos/react/react.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="147">
-              <caret line="493" column="47" selection-start-line="493" selection-start-column="47" selection-end-line="493" selection-end-column="47" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/demos/react/serversiderendering.txt">
+        <entry file="file://$PROJECT_DIR$/package.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="10" column="73" lean-forward="true" selection-start-line="10" selection-start-column="73" selection-end-line="10" selection-end-column="73" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/demos/react/reactappfromscratch.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="131">
-              <caret line="24" selection-start-line="24" selection-end-line="24" selection-end-column="60" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/main.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="4" column="48" selection-start-line="4" selection-start-column="48" selection-end-line="4" selection-end-column="48" />
-              <folding>
-                <element signature="e#0#25#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/MainRouter.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="525">
-              <caret line="35" column="25" selection-start-line="35" selection-start-column="25" selection-end-line="35" selection-end-column="25" />
-              <folding>
-                <element signature="e#0#38#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/template.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret selection-end-line="19" selection-end-column="14" />
-              <folding>
-                <element signature="n#style#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/server/server.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-618">
-              <caret line="25" column="49" selection-start-line="25" selection-start-column="49" selection-end-line="25" selection-end-column="49" />
-              <folding>
-                <element signature="e#174#209#0" expanded="true" />
-                <element signature="e#507#532#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="83">
+              <caret line="48" column="14" selection-start-line="48" selection-start-column="5" selection-end-line="48" selection-end-column="14" />
             </state>
           </provider>
         </entry>
@@ -160,6 +105,9 @@
       <find>server.js</find>
       <find>webpackMiddleware</find>
       <find>react-rou</find>
+      <find>auth-helper</find>
+      <find>jwt</find>
+      <find>requireSignin</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -170,7 +118,6 @@
       <list>
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/README.md" />
-        <option value="$PROJECT_DIR$/config/config.js" />
         <option value="$PROJECT_DIR$/demos/react/reactappfromscratch.txt" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/server/.env" />
@@ -178,32 +125,34 @@
         <option value="$PROJECT_DIR$/demos/react/creatingroutes.txt" />
         <option value="$PROJECT_DIR$/server/controllers/user.controller.js" />
         <option value="$PROJECT_DIR$/server/routes/auth.routes.js" />
-        <option value="$PROJECT_DIR$/server/controllers/auth.controller.js" />
-        <option value="$PROJECT_DIR$/server/routes/user.routes.js" />
         <option value="$PROJECT_DIR$/demos/react/authentication.txt" />
         <option value="$PROJECT_DIR$/server/devBundle.js" />
         <option value="$PROJECT_DIR$/client/App.js" />
-        <option value="$PROJECT_DIR$/client/core/Home.js" />
         <option value="$PROJECT_DIR$/demos/react/reactfrontend.txt" />
         <option value="$PROJECT_DIR$/client/user/api-user.js" />
         <option value="$PROJECT_DIR$/client/user/api-auth.js" />
-        <option value="$PROJECT_DIR$/client/auth/auth-helper.js" />
         <option value="$PROJECT_DIR$/client/auth/PrivateRoute.js" />
-        <option value="$PROJECT_DIR$/client/user/Users.js" />
         <option value="$PROJECT_DIR$/demos/react/amiintegration.txt" />
-        <option value="$PROJECT_DIR$/client/user/Signup.js" />
-        <option value="$PROJECT_DIR$/client/auth/Signin.js" />
-        <option value="$PROJECT_DIR$/client/user/Profile.js" />
-        <option value="$PROJECT_DIR$/client/user/EditProfile.js" />
-        <option value="$PROJECT_DIR$/client/user/DeleteUser.js" />
-        <option value="$PROJECT_DIR$/client/core/Menu.js" />
-        <option value="$PROJECT_DIR$/demos/react/apiintegration.txt" />
         <option value="$PROJECT_DIR$/demos/react/react.json" />
-        <option value="$PROJECT_DIR$/server/server.js" />
         <option value="$PROJECT_DIR$/template.js" />
         <option value="$PROJECT_DIR$/client/MainRouter.js" />
         <option value="$PROJECT_DIR$/client/main.js" />
         <option value="$PROJECT_DIR$/demos/react/serversiderendering.txt" />
+        <option value="$PROJECT_DIR$/client/auth/auth-helper.js" />
+        <option value="$PROJECT_DIR$/demos/react/apiintegration.txt" />
+        <option value="$PROJECT_DIR$/client/auth/api-auth.js" />
+        <option value="$PROJECT_DIR$/config/config.js" />
+        <option value="$PROJECT_DIR$/server/routes/user.routes.js" />
+        <option value="$PROJECT_DIR$/server/server.js" />
+        <option value="$PROJECT_DIR$/server/controllers/auth.controller.js" />
+        <option value="$PROJECT_DIR$/client/core/Home.js" />
+        <option value="$PROJECT_DIR$/client/user/Users.js" />
+        <option value="$PROJECT_DIR$/client/user/Signup.js" />
+        <option value="$PROJECT_DIR$/client/auth/Signin.js" />
+        <option value="$PROJECT_DIR$/client/user/EditProfile.js" />
+        <option value="$PROJECT_DIR$/client/user/Profile.js" />
+        <option value="$PROJECT_DIR$/client/user/DeleteUser.js" />
+        <option value="$PROJECT_DIR$/client/core/Menu.js" />
       </list>
     </option>
   </component>
@@ -251,18 +200,25 @@
             <path>
               <item name="gamifier" type="b2602c69:ProjectViewProjectNode" />
               <item name="gamifier" type="462c0819:PsiDirectoryNode" />
+              <item name="client" type="462c0819:PsiDirectoryNode" />
+              <item name="auth" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="gamifier" type="b2602c69:ProjectViewProjectNode" />
+              <item name="gamifier" type="462c0819:PsiDirectoryNode" />
+              <item name="client" type="462c0819:PsiDirectoryNode" />
+              <item name="core" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="gamifier" type="b2602c69:ProjectViewProjectNode" />
+              <item name="gamifier" type="462c0819:PsiDirectoryNode" />
+              <item name="client" type="462c0819:PsiDirectoryNode" />
+              <item name="user" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="gamifier" type="b2602c69:ProjectViewProjectNode" />
+              <item name="gamifier" type="462c0819:PsiDirectoryNode" />
               <item name="config" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="gamifier" type="b2602c69:ProjectViewProjectNode" />
-              <item name="gamifier" type="462c0819:PsiDirectoryNode" />
-              <item name="demos" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="gamifier" type="b2602c69:ProjectViewProjectNode" />
-              <item name="gamifier" type="462c0819:PsiDirectoryNode" />
-              <item name="demos" type="462c0819:PsiDirectoryNode" />
-              <item name="react" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="gamifier" type="b2602c69:ProjectViewProjectNode" />
@@ -339,16 +295,15 @@
       <workItem from="1603606000880" duration="1104000" />
       <workItem from="1603653454480" duration="5235000" />
       <workItem from="1603661859194" duration="2376000" />
-      <workItem from="1603666476551" duration="1051000" />
+      <workItem from="1603666476551" duration="4745000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="16057000" />
+    <option name="totallyTimeSpent" value="19751000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="733" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.23344104" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -365,7 +320,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="11" visible="true" weight="0.38689548" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="11" visible="true" weight="0.4851794" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -380,16 +335,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="165">
-            <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/server/.env" />
     <entry file="file://$PROJECT_DIR$/.env">
       <provider selected="true" editor-type-id="text-editor">
@@ -422,13 +367,6 @@
     <entry file="file://$PROJECT_DIR$/client/HelloWorld.js">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/config/config.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" column="6" selection-start-line="11" selection-start-column="6" selection-end-line="11" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../chemcalc2/Commands/Dehydrate.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="450">
@@ -450,20 +388,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/server/controllers/auth.controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="178">
-          <caret line="58" lean-forward="true" selection-start-line="58" selection-end-line="58" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/routes/user.routes.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="21" column="23" lean-forward="true" selection-start-line="21" selection-start-column="23" selection-end-line="21" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/demos/react/authentication.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="96">
@@ -475,13 +399,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
           <caret line="6" column="28" selection-start-line="6" selection-start-column="28" selection-end-line="6" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-31">
-          <caret line="47" column="29" selection-start-line="47" selection-start-column="29" selection-end-line="47" selection-end-column="29" />
         </state>
       </provider>
     </entry>
@@ -517,13 +434,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/auth/auth-helper.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="25" column="1" selection-start-line="25" selection-start-column="1" selection-end-line="25" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/auth/PrivateRoute.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
@@ -534,89 +444,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/core/Home.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="106">
-          <caret line="32" column="33" lean-forward="true" selection-start-line="32" selection-start-column="33" selection-end-line="32" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/user/Users.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="16" lean-forward="true" selection-end-line="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/user/Signup.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="24" lean-forward="true" selection-end-line="80" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/auth/Signin.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="24" lean-forward="true" selection-end-line="32" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/demos/react/createareactapp.txt">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/user/Profile.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="248">
-          <caret line="63" column="20" lean-forward="true" selection-end-line="71" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/user/EditProfile.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1260">
-          <caret line="80" column="46" selection-start-line="80" selection-start-column="46" selection-end-line="80" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/user/DeleteUser.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="840">
-          <caret line="56" column="25" selection-start-line="56" selection-start-column="25" selection-end-line="56" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/core/Menu.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="313">
-          <caret line="46" column="19" selection-start-line="46" selection-start-column="19" selection-end-line="46" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/demos/react/apiintegration.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="141">
-          <caret line="737" column="11" lean-forward="true" selection-start-line="737" selection-start-column="3" selection-end-line="737" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/demos/react/react.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="147">
-          <caret line="493" column="47" selection-start-line="493" selection-start-column="47" selection-end-line="493" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/server.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-618">
-          <caret line="25" column="49" selection-start-line="25" selection-start-column="49" selection-end-line="25" selection-end-column="49" />
-          <folding>
-            <element signature="e#174#209#0" expanded="true" />
-            <element signature="e#507#532#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/template.js">
       <provider selected="true" editor-type-id="text-editor">
@@ -659,6 +488,162 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
           <caret line="10" column="73" lean-forward="true" selection-start-line="10" selection-start-column="73" selection-end-line="10" selection-end-column="73" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/demos/react/react.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="147">
+          <caret line="493" column="47" selection-start-line="493" selection-start-column="47" selection-end-line="493" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/auth/auth-helper.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="28" column="19" selection-start-line="28" selection-start-column="19" selection-end-line="28" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/demos/react/apiintegration.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="618">
+          <caret line="188" column="19" selection-start-line="188" selection-start-column="19" selection-end-line="188" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="150">
+            <caret line="6" selection-start-line="6" selection-end-line="6" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/auth/api-auth.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="34" selection-start-line="8" selection-start-column="34" selection-end-line="8" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/config.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="21" selection-start-line="11" selection-start-column="21" selection-end-line="11" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/routes/user.routes.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" column="21" selection-start-line="17" selection-start-column="21" selection-end-line="17" selection-end-column="21" />
+          <folding>
+            <element signature="e#0#29#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dist/server.generated.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4017">
+          <caret line="327" selection-start-line="327" selection-end-line="327" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/server.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="76">
+          <caret line="37" selection-start-line="37" selection-end-line="37" />
+          <folding>
+            <element signature="e#0#23#0" expanded="true" />
+            <element signature="e#174#209#0" expanded="true" />
+            <element signature="e#507#532#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/controllers/auth.controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" selection-start-line="3" selection-end-line="3" />
+          <folding>
+            <element signature="e#82#118#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/user/Signup.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="19" selection-start-line="5" selection-start-column="19" selection-end-line="5" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/auth/Signin.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="22" lean-forward="true" selection-start-line="14" selection-start-column="22" selection-end-line="14" selection-end-column="22" />
+          <folding>
+            <element signature="e#0#38#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/user/EditProfile.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="12" column="26" lean-forward="true" selection-start-line="12" selection-start-column="26" selection-end-line="12" selection-end-column="26" />
+          <folding>
+            <element signature="e#0#38#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/core/Home.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" selection-start-line="7" selection-end-line="7" />
+          <folding>
+            <element signature="e#0#38#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/user/Users.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="41" selection-start-line="2" selection-end-line="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/user/Profile.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="43" lean-forward="true" selection-start-line="10" selection-start-column="43" selection-end-line="10" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/user/DeleteUser.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="38" selection-start-line="3" selection-start-column="38" selection-end-line="3" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/core/Menu.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="42" selection-start-line="3" selection-start-column="42" selection-end-line="3" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="83">
+          <caret line="48" column="14" selection-start-line="48" selection-start-column="5" selection-end-line="48" selection-end-column="14" />
         </state>
       </provider>
     </entry>

@@ -25,12 +25,17 @@ import JssProvider from 'react-jss/lib/JssProvider'
 import { MuiThemeProvider, createMuiTheme, createGenerateClassName } from 'material-ui/styles'
 import { indigo, pink } from 'material-ui/colors'
 
+var jwt = require('express-jwt');
 
 // Install using npm install dotenv
 require("dotenv").config()
 const assert = require("assert")
 
 const app = express()
+
+// https://github.com/auth0/express-jwt#required-parameters
+
+
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))

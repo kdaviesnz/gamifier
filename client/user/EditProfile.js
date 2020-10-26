@@ -1,3 +1,41 @@
+import React, {Component} from 'react'
+import Card, {CardActions, CardContent} from 'material-ui/Card'
+import Button from '@material-ui/core/button'
+import TextField from 'material-ui/TextField'
+import Typography from '@material-ui/core/typography'
+import Icon from '@material-ui/core/icon'
+import PropTypes from 'prop-types'
+import {withStyles} from '@material-ui/core/styles'
+import auth from './../auth/auth-helper'
+import {read, update} from './api-user.js'
+import {Redirect} from 'react-router-dom'
+
+const styles = theme => ({
+    card: {
+        maxWidth: 600,
+        margin: 'auto',
+        textAlign: 'center',
+        marginTop: theme.spacing.unit * 5,
+        paddingBottom: theme.spacing.unit * 2
+    },
+    title: {
+        margin: theme.spacing.unit * 2,
+        color: theme.palette.protectedTitle
+    },
+    error: {
+        verticalAlign: 'middle'
+    },
+    textField: {
+        marginLeft: theme.spacing.unit,
+        marginRight: theme.spacing.unit,
+        width: 300
+    },
+    submit: {
+        margin: 'auto',
+        marginBottom: theme.spacing.unit * 2
+    }
+})
+
 class EditProfile extends Component {
     constructor({match}) {
         super()

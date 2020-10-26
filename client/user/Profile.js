@@ -1,3 +1,33 @@
+import React, {Component} from 'react'
+import PropTypes from 'prop-types'
+import {withStyles} from '@material-ui/core/styles'
+import Paper from 'material-ui/Paper'
+import List, {ListItem, ListItemAvatar, ListItemSecondaryAction, ListItemText} from 'material-ui/List'
+import Avatar from 'material-ui/Avatar'
+import IconButton from 'material-ui/IconButton'
+import Button from '@material-ui/core/Button'
+import Typography from '@material-ui/core/Typography'
+import Edit from '@material-ui/icons/Edit'
+import Person from '@material-ui/icons/Person'
+import Divider from 'material-ui/Divider'
+import DeleteUser from './DeleteUser'
+import auth from './../auth/auth-helper'
+import {read} from './api-user.js'
+import {Redirect, Link} from 'react-router-dom'
+
+const styles = theme => ({
+    root: theme.mixins.gutters({
+        maxWidth: 600,
+        margin: 'auto',
+        padding: theme.spacing.unit * 3,
+        marginTop: theme.spacing.unit * 5
+    }),
+    title: {
+        margin: `${theme.spacing.unit * 3}px 0 ${theme.spacing.unit * 2}px`,
+        color: theme.palette.protectedTitle
+    }
+})
+
 class Profile extends Component {
     constructor({match}) {
         super()

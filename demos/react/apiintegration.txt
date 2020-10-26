@@ -158,14 +158,10 @@ Using examples of auth workflow from the React Router documentation, we will wri
 
 In client/auth/auth-helper.js, we will define the following helper methods to store and retrieve JWT credentials from client-side sessionStorage, and also clear out the sessionStorage on user sign-out:
 
-authenticate(jwt, cb): Save credentials on successful sign-in:
-authenticate(jwt, cb) {
-    if(typeof window !== "undefined")
-        sessionStorage.setItem('jwt', JSON.stringify(jwt))
-    cb()
-}
-isAuthenticated(): Retrieve credentials if signed-in:
-isAuthenticated() {
+import { signout } from './api-auth.js'
+
+const auth = {
+  isAuthenticated() {
     if (typeof window == "undefined")
       return false
 
@@ -173,18 +169,24 @@ isAuthenticated() {
       return JSON.parse(sessionStorage.getItem('jwt'))
     else
       return false
-}
-signout(cb): Delete credentials and sign out:
-signout(cb) {
-      if(typeof window !== "undefined")
-        sessionStorage.removeItem('jwt')
-      cb()
-      signout().then((data) => {
-          document.cookie = "t=; expires=Thu, 01 Jan 1970 00:00:00
-          UTC; path=/;"
-      })
+  },
+  authenticate(jwt, cb) {
+    if (typeof window !== "undefined")
+      sessionStorage.setItem('jwt', JSON.stringify(jwt))
+    cb()
+  },
+  signout(cb) {
+    if (typeof window !== "undefined")
+      sessionStorage.removeItem('jwt')
+    cb()
+    //optional
+    signout().then((data) => {
+      document.cookie = "t=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;"
+    })
+  }
 }
 
+export default auth
 Using the methods defined here, the React components we build will be able to check and manage user auth state to restrict access in the frontend, as demonstrated in the following with the custom PrivateRoute.
 
 
