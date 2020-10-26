@@ -15,7 +15,6 @@ import authRoutes from './routes/auth.routes'
 import React from 'react'
 import ReactDOMServer from 'react-dom/server'
 import MainRouter from './../client/MainRouter'
-//import StaticRouter from 'react-router-dom/StaticRouter'
 const StaticRouter = require("react-router-dom").StaticRouter
 
 // @todo
@@ -96,5 +95,6 @@ app.use((err, req, res, next) => {
     }
 })
 
-export default app
-console.log("LOADED server/express.js")
+//export default app
+module.exports = app
+

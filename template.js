@@ -22,4 +22,3 @@ export default ({markup, css}) => {
       </html>`
 }
 
-console.log("LOADED template.js")
