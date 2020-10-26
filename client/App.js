@@ -1,10 +1,17 @@
 console.log("RENDERING App.js")
 
+
+
+import React from 'react'
+import MainRouter from './MainRouter'
+import {BrowserRouter} from 'react-router-dom'
+import { hot } from 'react-hot-loader'
+
 import {MuiThemeProvider, createMuiTheme} from '@material-ui/core/styles'
 import {indigo, pink} from '@material-ui/core/colors'
 
 
-const theme = createMuiTheme({
+let theme = createMuiTheme({
     palette: {
         primary: {
             light: '#757de8',
@@ -23,11 +30,6 @@ const theme = createMuiTheme({
         type: 'light'
     }
 })
-
-import React from 'react'
-import MainRouter from './MainRouter'
-import {BrowserRouter} from 'react-router-dom'
-import { hot } from 'react-hot-loader'
 
 const App = () => (
     <BrowserRouter>

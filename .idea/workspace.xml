@@ -5,20 +5,16 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/App.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/MainRouter.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/MainRouter.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/auth/Signin.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/auth/Signin.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/core/Home.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/core/Home.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/core/Menu.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/core/Menu.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/main.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/user/DeleteUser.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/user/DeleteUser.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/user/EditProfile.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/user/EditProfile.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/user/Profile.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/user/Profile.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/user/Signup.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/user/Signup.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/user/Users.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/user/Users.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/server.generated.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/server.generated.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/express.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/express.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/template.js" beforeDir="false" afterPath="$PROJECT_DIR$/template.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webpack.config.client.js" beforeDir="false" afterPath="$PROJECT_DIR$/webpack.config.client.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webpack.config.client.production.js" beforeDir="false" afterPath="$PROJECT_DIR$/webpack.config.client.production.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webpack.config.server.js" beforeDir="false" afterPath="$PROJECT_DIR$/webpack.config.server.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/controllers/user.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/user.controller.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -30,22 +26,22 @@
     <session id="-1025590528">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="15" />
+          <entry key="project.closed" value="16" />
           <entry key="project.open.time.0" value="3" />
           <entry key="project.open.time.1" value="6" />
           <entry key="project.open.time.10" value="1" />
           <entry key="project.open.time.11" value="1" />
-          <entry key="project.open.time.2" value="1" />
+          <entry key="project.open.time.2" value="2" />
           <entry key="project.open.time.6" value="1" />
           <entry key="project.open.time.8" value="2" />
-          <entry key="project.opened" value="16" />
+          <entry key="project.opened" value="17" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="env" value="2" />
           <entry key="gitignore" value="2" />
-          <entry key="js" value="87" />
+          <entry key="js" value="93" />
           <entry key="json" value="10" />
           <entry key="md" value="2" />
           <entry key="txt" value="10" />
@@ -54,7 +50,7 @@
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="JSON" value="10" />
-          <entry key="JavaScript" value="87" />
+          <entry key="JavaScript" value="93" />
           <entry key="Markdown" value="2" />
           <entry key="PLAIN_TEXT" value="14" />
         </counts>
@@ -63,7 +59,7 @@
         <counts>
           <entry key="env" value="28" />
           <entry key="gitignore" value="46" />
-          <entry key="js" value="2089" />
+          <entry key="js" value="2585" />
           <entry key="json" value="269" />
           <entry key="md" value="3" />
           <entry key="txt" value="670" />
@@ -73,7 +69,7 @@
         <counts>
           <entry key="HTML" value="1" />
           <entry key="JSON" value="269" />
-          <entry key="JavaScript" value="2088" />
+          <entry key="JavaScript" value="2584" />
           <entry key="Markdown" value="3" />
           <entry key="PLAIN_TEXT" value="744" />
         </counts>
@@ -83,105 +79,61 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/server/express.js">
+        <entry file="file://$PROJECT_DIR$/client/user/Users.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="82" lean-forward="true" selection-start-line="82" selection-end-line="82" />
+            <state relative-caret-position="306">
+              <caret line="77" column="17" lean-forward="true" selection-start-line="77" selection-start-column="17" selection-end-line="77" selection-end-column="17" />
               <folding>
-                <element signature="e#432#457#0" expanded="true" />
-                <element signature="e#619#669#0" expanded="true" />
+                <element signature="e#0#38#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/App.js">
+        <entry file="file://$PROJECT_DIR$/client/user/Signup.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="138">
-              <caret line="31" selection-start-line="31" selection-end-line="31" />
+            <state relative-caret-position="299">
+              <caret line="20" column="22" lean-forward="true" selection-start-line="20" selection-start-column="22" selection-end-line="20" selection-end-column="22" />
               <folding>
-                <element signature="e#0#67#0" expanded="true" />
-                <element signature="e#578#603#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/package.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="173">
-              <caret line="55" column="29" selection-end-line="68" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/webpack.config.client.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="570">
-              <caret line="38" column="23" selection-start-line="38" selection-start-column="23" selection-end-line="38" selection-end-column="23" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/MainRouter.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="98">
-              <caret line="21" column="21" lean-forward="true" selection-start-line="21" selection-start-column="21" selection-end-line="21" selection-end-column="21" />
-              <folding>
-                <element signature="e#47#85#0" expanded="true" />
+                <element signature="e#0#38#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/client/core/Menu.js">
+        <entry file="file://$PROJECT_DIR$/client/auth/Signin.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-40">
-              <caret line="18" column="13" lean-forward="true" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
+            <state relative-caret-position="45">
+              <caret line="3" column="54" selection-start-line="3" selection-start-column="54" selection-end-line="3" selection-end-column="54" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/core/Home.js">
+        <entry file="file://$PROJECT_DIR$/client/user/api-user.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="137">
-              <caret line="34" column="5" lean-forward="true" selection-start-line="34" selection-start-column="5" selection-end-line="34" selection-end-column="5" />
-              <folding>
-                <element signature="e#46#84#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="96">
+              <caret line="14" column="6" selection-start-line="14" selection-start-column="6" selection-end-line="14" selection-end-column="6" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/webpack.config.client.production.js">
+        <entry file="file://$PROJECT_DIR$/server/controllers/user.controller.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="11" column="30" selection-start-line="11" selection-start-column="30" selection-end-line="11" selection-end-column="30" />
+            <state relative-caret-position="133">
+              <caret line="14" column="17" lean-forward="true" selection-start-line="14" selection-start-column="17" selection-end-line="14" selection-end-column="17" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/webpack.config.server.js">
+        <entry file="file://$PROJECT_DIR$/client/user/Profile.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="465">
-              <caret line="31" column="23" selection-start-line="31" selection-start-column="23" selection-end-line="31" selection-end-column="23" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/template.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="12" column="37" selection-start-line="12" selection-start-column="37" selection-end-line="12" selection-end-column="37" />
+            <state relative-caret-position="167">
+              <caret line="40" column="5" lean-forward="true" selection-start-line="33" selection-start-column="4" selection-end-line="40" selection-end-column="5" />
             </state>
           </provider>
         </entry>
@@ -213,6 +165,8 @@
       <find>StaticRouter</find>
       <find>IconButton</find>
       <find>theme.spa</find>
+      <find>Home</find>
+      <find>material-ui</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -240,12 +194,8 @@
         <option value="$PROJECT_DIR$/demos/react/apiintegration.txt" />
         <option value="$PROJECT_DIR$/client/auth/api-auth.js" />
         <option value="$PROJECT_DIR$/config/config.js" />
-        <option value="$PROJECT_DIR$/client/user/Users.js" />
-        <option value="$PROJECT_DIR$/client/user/Signup.js" />
-        <option value="$PROJECT_DIR$/client/auth/Signin.js" />
         <option value="$PROJECT_DIR$/client/user/EditProfile.js" />
         <option value="$PROJECT_DIR$/client/user/DeleteUser.js" />
-        <option value="$PROJECT_DIR$/server/controllers/user.controller.js" />
         <option value="$PROJECT_DIR$/server/controllers/auth.controller.js" />
         <option value="$PROJECT_DIR$/server/models/user.model.js" />
         <option value="$PROJECT_DIR$/server/routes/auth.routes.js" />
@@ -258,11 +208,15 @@
         <option value="$PROJECT_DIR$/webpack.config.client.js" />
         <option value="$PROJECT_DIR$/webpack.config.client.production.js" />
         <option value="$PROJECT_DIR$/webpack.config.server.js" />
-        <option value="$PROJECT_DIR$/client/App.js" />
         <option value="$PROJECT_DIR$/client/core/Home.js" />
-        <option value="$PROJECT_DIR$/client/MainRouter.js" />
         <option value="$PROJECT_DIR$/server/express.js" />
+        <option value="$PROJECT_DIR$/client/App.js" />
+        <option value="$PROJECT_DIR$/client/MainRouter.js" />
         <option value="$PROJECT_DIR$/client/core/Menu.js" />
+        <option value="$PROJECT_DIR$/server/controllers/user.controller.js" />
+        <option value="$PROJECT_DIR$/client/user/Users.js" />
+        <option value="$PROJECT_DIR$/client/user/Signup.js" />
+        <option value="$PROJECT_DIR$/client/auth/Signin.js" />
       </list>
     </option>
   </component>
@@ -310,12 +264,30 @@
               <item name="gamifier" type="b2602c69:ProjectViewProjectNode" />
               <item name="gamifier" type="462c0819:PsiDirectoryNode" />
               <item name="client" type="462c0819:PsiDirectoryNode" />
+              <item name="auth" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="gamifier" type="b2602c69:ProjectViewProjectNode" />
+              <item name="gamifier" type="462c0819:PsiDirectoryNode" />
+              <item name="client" type="462c0819:PsiDirectoryNode" />
               <item name="core" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="gamifier" type="b2602c69:ProjectViewProjectNode" />
               <item name="gamifier" type="462c0819:PsiDirectoryNode" />
+              <item name="client" type="462c0819:PsiDirectoryNode" />
+              <item name="user" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="gamifier" type="b2602c69:ProjectViewProjectNode" />
+              <item name="gamifier" type="462c0819:PsiDirectoryNode" />
               <item name="server" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="gamifier" type="b2602c69:ProjectViewProjectNode" />
+              <item name="gamifier" type="462c0819:PsiDirectoryNode" />
+              <item name="server" type="462c0819:PsiDirectoryNode" />
+              <item name="controllers" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -378,22 +350,24 @@
       <workItem from="1603661859194" duration="2376000" />
       <workItem from="1603666476551" duration="7411000" />
       <workItem from="1603676925759" duration="30000" />
-      <workItem from="1603677179472" duration="3888000" />
+      <workItem from="1603677179472" duration="3969000" />
+      <workItem from="1603685579512" duration="4056000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="26335000" />
+    <option name="totallyTimeSpent" value="30472000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="733" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.23990306" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24394184" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32917318" />
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
@@ -403,7 +377,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="11" visible="true" weight="0.45709828" />
+      <window_info anchor="bottom" id="Terminal" order="11" visible="true" weight="0.28861153" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -468,13 +442,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="430">
           <caret line="209" column="34" selection-start-line="209" selection-start-column="34" selection-end-line="209" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/user/api-user.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="313">
-          <caret line="67" column="45" selection-start-line="67" selection-start-column="45" selection-end-line="67" selection-end-column="45" />
         </state>
       </provider>
     </entry>
@@ -547,20 +514,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/user/Signup.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="19" selection-start-line="5" selection-start-column="19" selection-end-line="5" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/auth/Signin.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="22" lean-forward="true" selection-start-line="14" selection-start-column="22" selection-end-line="14" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/user/EditProfile.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
@@ -572,13 +525,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="45">
           <caret line="3" column="38" selection-start-line="3" selection-start-column="38" selection-end-line="3" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/controllers/user.controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="213">
-          <caret line="33" column="59" selection-start-line="33" selection-start-column="59" selection-end-line="33" selection-end-column="59" />
         </state>
       </provider>
     </entry>
@@ -624,20 +570,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/user/Profile.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="141">
-          <caret line="43" column="55" lean-forward="true" selection-start-line="43" selection-start-column="55" selection-end-line="43" selection-end-column="55" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/user/Users.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="41" selection-start-line="2" selection-end-line="3" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/user/api-auth.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="330">
@@ -649,9 +581,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
           <caret line="17" column="27" selection-start-line="17" selection-start-column="27" selection-end-line="17" selection-end-column="27" />
-          <folding>
-            <element signature="e#0#40#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -665,10 +594,27 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/server/express.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1050">
+          <caret line="82" selection-start-line="82" selection-end-line="82" />
+          <folding>
+            <element signature="e#432#457#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="173">
+        <state relative-caret-position="825">
           <caret line="55" column="29" selection-end-line="68" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webpack.config.client.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="570">
+          <caret line="38" column="23" selection-start-line="38" selection-start-column="23" selection-end-line="38" selection-end-column="23" />
         </state>
       </provider>
     </entry>
@@ -686,13 +632,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/webpack.config.client.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="570">
-          <caret line="38" column="23" selection-start-line="38" selection-start-column="23" selection-end-line="38" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/template.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
@@ -702,19 +641,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/client/App.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="138">
-          <caret line="31" selection-start-line="31" selection-end-line="31" />
+        <state relative-caret-position="30">
+          <caret line="31" column="2" selection-start-line="31" selection-start-column="2" selection-end-line="31" selection-end-column="2" />
           <folding>
-            <element signature="e#0#67#0" expanded="true" />
-            <element signature="e#578#603#0" expanded="true" />
+            <element signature="e#35#60#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/client/core/Home.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="137">
-          <caret line="34" column="5" lean-forward="true" selection-start-line="34" selection-start-column="5" selection-end-line="34" selection-end-column="5" />
+        <state relative-caret-position="510">
+          <caret line="34" column="5" selection-start-line="34" selection-start-column="5" selection-end-line="34" selection-end-column="5" />
           <folding>
             <element signature="e#46#84#0" expanded="true" />
           </folding>
@@ -723,29 +661,69 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/client/MainRouter.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="98">
-          <caret line="21" column="21" lean-forward="true" selection-start-line="21" selection-start-column="21" selection-end-line="21" selection-end-column="21" />
+        <state relative-caret-position="270">
+          <caret line="32" column="5" lean-forward="true" selection-start-line="32" selection-start-column="5" selection-end-line="32" selection-end-column="5" />
           <folding>
-            <element signature="e#47#85#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/express.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="82" lean-forward="true" selection-start-line="82" selection-end-line="82" />
-          <folding>
-            <element signature="e#432#457#0" expanded="true" />
-            <element signature="e#619#669#0" expanded="true" />
+            <element signature="e#0#38#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/client/core/Menu.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-40">
-          <caret line="18" column="13" lean-forward="true" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
+        <state relative-caret-position="255">
+          <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
+          <folding>
+            <element signature="e#1#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/user/Profile.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="167">
+          <caret line="40" column="5" lean-forward="true" selection-start-line="33" selection-start-column="4" selection-end-line="40" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/controllers/user.controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="14" column="17" lean-forward="true" selection-start-line="14" selection-start-column="17" selection-end-line="14" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/user/api-user.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="96">
+          <caret line="14" column="6" selection-start-line="14" selection-start-column="6" selection-end-line="14" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/user/Users.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="77" column="17" lean-forward="true" selection-start-line="77" selection-start-column="17" selection-end-line="77" selection-end-column="17" />
+          <folding>
+            <element signature="e#0#38#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/user/Signup.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="299">
+          <caret line="20" column="22" lean-forward="true" selection-start-line="20" selection-start-column="22" selection-end-line="20" selection-end-column="22" />
+          <folding>
+            <element signature="e#0#38#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/auth/Signin.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="54" selection-start-line="3" selection-start-column="54" selection-end-line="3" selection-end-column="54" />
         </state>
       </provider>
     </entry>

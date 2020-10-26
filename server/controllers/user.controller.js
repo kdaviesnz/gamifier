@@ -11,7 +11,10 @@ const create = (req, res, next) => {
 }
 const list = (req, res) => {
     console.log("listing users")
-    res.json({})
+    res.json([{
+        "id":"B",
+        "name":"Bob"
+    }])
 }
 const userByID = (req, res, next, id) => {
     res.json({})
