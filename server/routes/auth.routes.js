@@ -1,3 +1,5 @@
+console.log("RENDERING server/routes/auth.routes.js")
+
 import express from 'express'
 import authCtrl from '../controllers/auth.controller'
 
@@ -10,3 +12,5 @@ router.route('/auth/signout')
 
 // export default router
 module.exports = router
+
+console.log("LOADED server/routes/auth.routes.js")

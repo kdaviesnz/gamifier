@@ -1,3 +1,5 @@
+console.log("RENDERING server/controllers/auth.controller.js")
+
 import User from '../models/user.model'
 // @todo
 //import jwt from 'jsonwebtoken'
@@ -72,3 +74,5 @@ export default {
     requireSignin,
     hasAuthorization
 }
+
+console.log("LOADED server/controllers/auth.controller.js")

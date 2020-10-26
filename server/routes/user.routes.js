@@ -1,3 +1,5 @@
+console.log("RENDERING server/routes/user.routes.js")
+
 import express from 'express'
 import userCtrl from '../controllers/user.controller'
 import authCtrl from '../controllers/auth.controller'
@@ -16,3 +18,5 @@ router.route('/api/users/:userId')
 router.param('userId', userCtrl.userByID)
 
 export default router
+
+console.log("LOADED server/routes/user.routes.js")

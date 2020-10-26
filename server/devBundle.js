@@ -1,3 +1,5 @@
+console.log("RENDERING server/devBundle.js")
+
 import webpack from 'webpack'
 import webpackMiddleware from 'webpack-dev-middleware'
 import webpackHotMiddleware from 'webpack-hot-middleware'
@@ -17,3 +19,5 @@ const compile = (app) => {
 export default {
   compile
 }
+
+console.log("LOADED server/devBundle.js")
