@@ -1,8 +1,10 @@
+console.log("RENDERING client/core/Home.js")
+
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import {withStyles} from '@material-ui/core/styles'
 import Card, {CardContent, CardMedia} from 'material-ui/Card'
-//import Typography from 'material-ui/Typography'
+import Typography from '@material-ui/core/Typography'
 // import seashellImg from './../assets/images/seashell.jpg'
 
 const styles = theme => ({
@@ -27,19 +29,7 @@ class Home extends Component {
         const {classes} = this.props
         return (
             <div>
-                <Card className={classes.card}>
-                    <Typography type="headline" component="h2" className=
-                        {classes.title}>
-                        Home Page
-                    </Typography>
-                    <CardMedia className={classes.media} image={seashellImg}
-                               title="Unicorn Shells"/>
-                    <CardContent>
-                        <Typography type="body1" component="p">
-                            Welcome to the Mern Skeleton home page
-                        </Typography>
-                    </CardContent>
-                </Card>
+                Welcome to the Mern Skeleton home page
             </div>
         )
     }
@@ -51,3 +41,5 @@ Home.propTypes = {
 }
 
 export default withStyles(styles)(Home)
+
+console.log("LOADED client/core/Home.js")

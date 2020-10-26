@@ -1,3 +1,4 @@
+
 import React from 'react'
 import AppBar from 'material-ui/AppBar'
 import Toolbar from 'material-ui/Toolbar'
@@ -15,15 +16,12 @@ const isActive = (history, path) => {
         return {color: '#ffffff'}
 }
 const Menu = withRouter(({history}) => (
-    <AppBar position="static">
-        <Toolbar>
+        <div>
             <Typography type="title" color="inherit">
                 MERN Skeleton
             </Typography>
             <Link to="/">
-                <IconButton aria-label="Home" style={isActive(history, "/")}>
-                    <HomeIcon/>
-                </IconButton>
+                Home
             </Link>
             <Link to="/users">
                 <Button style={isActive(history, "/users")}>Users</Button>
@@ -50,8 +48,8 @@ const Menu = withRouter(({history}) => (
           }}>Sign out</Button>
         </span>)
             }
-        </Toolbar>
-    </AppBar>
+        </div>
 ))
 
 export default Menu
+

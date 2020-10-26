@@ -23,11 +23,6 @@ class MainRouter extends Component {
             <Menu/>
             <Switch>
                 <Route exact path="/" component={Home}/>
-                <Route path="/users" component={Users}/>
-                <Route path="/signup" component={Signup}/>
-                <Route path="/signin" component={Signin}/>
-                <PrivateRoute path="/user/edit/:userId" component={EditProfile}/>
-                <Route path="/user/:userId" component={Profile}/>
             </Switch>
         </div>)
     }

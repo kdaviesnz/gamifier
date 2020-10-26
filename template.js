@@ -1,3 +1,5 @@
+console.log("RENDERING template.js")
+
 export default ({markup, css}) => {
     return `<!doctype html>
       <html lang="en">
@@ -19,3 +21,5 @@ export default ({markup, css}) => {
         </body>
       </html>`
 }
+
+console.log("LOADED template.js")

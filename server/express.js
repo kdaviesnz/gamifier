@@ -15,11 +15,12 @@ import authRoutes from './routes/auth.routes'
 import React from 'react'
 import ReactDOMServer from 'react-dom/server'
 import MainRouter from './../client/MainRouter'
-import StaticRouter from 'react-router-dom/StaticRouter'
+//import StaticRouter from 'react-router-dom/StaticRouter'
+const StaticRouter = require("react-router-dom").StaticRouter
 
 // @todo
-//import { SheetsRegistry } from 'react-jss/lib/jss'
-//import JssProvider from 'react-jss/lib/JssProvider'
+import { SheetsRegistry } from 'react-jss/lib/jss'
+import JssProvider from 'react-jss/lib/JssProvider'
 import { MuiThemeProvider, createMuiTheme, createGenerateClassName } from '@material-ui/core/styles'
 import { indigo, pink } from '@material-ui/core/colors'
 //end
@@ -50,7 +51,9 @@ app.use('/', userRoutes)
 app.use('/', authRoutes)
 
 app.get('*', (req, res) => {
+    console.log('Calling app.get')
     const sheetsRegistry = new SheetsRegistry()
+    console.log('Got sheetsRegistry')
     const theme = createMuiTheme({
         palette: {
             primary: {
@@ -70,24 +73,19 @@ app.get('*', (req, res) => {
             type: 'light'
         },
     })
-    const generateClassName = createGenerateClassName()
-    const context = {}
-    const markup = ReactDOMServer.renderToString(
-        <StaticRouter location={req.url} context={context}>
-            <JssProvider registry={sheetsRegistry} generateClassName={generateClassName}>
-                <MuiThemeProvider theme={theme} sheetsManager={new Map()}>
-                    <MainRouter/>
-                </MuiThemeProvider>
-            </JssProvider>
-        </StaticRouter>
-    )
+    console.log("Got theme")
+    //const generateClassName = createGenerateClassName()
+    // console.log("Got class name: " + generateClassName)
+    const context = {
+        "muiTheme":theme
+    }
+
+
     if (context.url) {
         return res.redirect(303, context.url)
     }
-    const css = sheetsRegistry.toString()
+
     res.status(200).send(Template({
-        markup: markup,
-        css: css
     }))
 })
 

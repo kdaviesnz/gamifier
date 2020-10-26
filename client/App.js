@@ -1,5 +1,8 @@
-import {MuiThemeProvider, createMuiTheme} from 'material-ui/styles'
-import {indigo, pink} from 'material-ui/colors'
+console.log("RENDERING App.js")
+
+import {MuiThemeProvider, createMuiTheme} from '@material-ui/core/styles'
+import {indigo, pink} from '@material-ui/core/colors'
+
 
 const theme = createMuiTheme({
     palette: {
@@ -36,3 +39,4 @@ const App = () => (
 
 export default hot(module)(App)
 
+console.log("LOADED App.js")

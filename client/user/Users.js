@@ -55,9 +55,7 @@ class Users extends Component {
                                 </ListItemAvatar>
                                 <ListItemText primary={item.name}/>
                                 <ListItemSecondaryAction>
-                                    <IconButton>
-                                        <ArrowForward/>
-                                    </IconButton>
+
                                 </ListItemSecondaryAction>
                             </ListItem>
                         </Link>

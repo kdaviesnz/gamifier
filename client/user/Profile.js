@@ -1,3 +1,5 @@
+console.log("RENDERING client/user/Profile.js")
+
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import {withStyles} from '@material-ui/core/styles'
@@ -39,6 +41,7 @@ class Profile extends Component {
     }
     init = (userId) => {
         const jwt = auth.isAuthenticated()
+        console.log("Calling Profile.js:init():read()")
         read({
             userId: userId
         }, {t: jwt.token}).then((data) => {
@@ -77,9 +80,7 @@ class Profile extends Component {
                         auth.isAuthenticated().user && auth.isAuthenticated().user._id == this.state.user._id &&
                         (<ListItemSecondaryAction>
                             <Link to={"/user/edit/" + this.state.user._id}>
-                                <IconButton aria-label="Edit" color="primary">
-                                    <Edit/>
-                                </IconButton>
+
                             </Link>
                             <DeleteUser userId={this.state.user._id}/>
                         </ListItemSecondaryAction>)
@@ -100,3 +101,5 @@ Profile.propTypes = {
 }
 
 export default withStyles(styles)(Profile)
+
+console.log("LOADED client/user/Profile.js")
