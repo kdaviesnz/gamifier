@@ -1,3 +1,5 @@
+
+// Routes are defined in server/routes/instructor.routes.js
 const create = (user) => {
     return fetch('/api/instructor/', {
         method: 'POST',

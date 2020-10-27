@@ -2,18 +2,20 @@ console.log("RENDERING server/controllers/user.controller.js")
 
 
 import User from '../models/user.model'
+import Instructor from '../models/instructor.model'
 import _ from 'lodash'
 //import errorHandler from './error.controller'
+const db = client.db(process.env.MONGODB)
 
 const create = (req, res, next) => {
-    // “const user = new User(req.body)”
-    res.json({})
+    const instructor = new Instructor(req.body, db)
+    const result = instructor.create()
+    res.json(result)
 }
 const list = (req, res) => {
-    console.log("listing users")
     res.json([{
-        "id":"B",
-        "name":"Bob"
+        'status':403,
+        'error':'Only admins can view instructors'
     }])
 }
 const userByID = (req, res, next, id) => {
