@@ -107,6 +107,8 @@ const App = (collections) => {
         } // app.get
     )
 
+    return app
+    
 } // const App =
 
 module.exports = App
