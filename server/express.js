@@ -11,7 +11,6 @@ import Template from './../template'
 import userRoutes from './routes/user.routes'
 import authRoutes from './routes/auth.routes'
 import instructorRoutes from './routes/instructor.routes'
-import studentRoutes from './routes/student.routes'
 import instructorAuthRoutes from './routes/instructor.auth.routes'
 import studentAuthRoutes from './routes/student.auth.routes'
 
@@ -55,7 +54,6 @@ app.use('/', userRoutes)
 app.use('/', authRoutes)
 app.use('/', instructorRoutes)
 app.use('/', instructorAuthRoutes)
-app.use('/', studentRoutes)
 app.use('/', studentAuthRoutes)
 
 app.get('*', (req, res) => {
