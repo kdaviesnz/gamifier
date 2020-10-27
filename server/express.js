@@ -52,11 +52,24 @@ app.use('/dist', express.static(path.join(CURRENT_WORKING_DIR, 'dist')))
 
 app.use('/', userRoutes)
 app.use('/', authRoutes)
-app.use('/', instructorRoutes)
+
 app.use('/', instructorAuthRoutes)
 app.use('/', studentAuthRoutes)
 
-app.get('*', (req, res) => {
+const MongoClient = require('mongodb').MongoClient
+const assert = require('assert');
+require("dotenv").config()
+// Database Connection URL
+const uri = "mongodb+srv://" + process.env.MONGODBUSER + ":" + process.env.MONGODBPASSWORD + "@cluster0.awqh6.mongodb.net/gamifier?retryWrites=true&w=majority";
+const mongoClient = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoClient.connect(err => {
+    assert.equal(err, null);
+    const collections = mongoClient.db('gamifier')
+    console.log("Connected successfully to mongodb server")   
+    const instructorRoutes = require('./routes/instructor.routes')(collections)
+    app.use('/', instructorRoutes)
+    
+    app.get('*', (req, res) => {
     console.log('Calling app.get')
     const sheetsRegistry = new SheetsRegistry()
     console.log('Got sheetsRegistry')
@@ -102,7 +115,16 @@ app.use((err, req, res, next) => {
         res.status(401).json({"error" : err.name + ": " + err.message})
     }
 })
+    
+    //export default app
+     module.exports = app
+    
+}) // mongoClient.connect
 
-//export default app
-module.exports = app
+
+
+
+
+
+
 
