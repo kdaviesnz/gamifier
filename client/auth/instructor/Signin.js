@@ -8,9 +8,9 @@ import Typography from '@material-ui/core/Typography'
 import Icon from '@material-ui/core/Icon'
 import PropTypes from 'prop-types'
 import {withStyles} from '@material-ui/core/styles'
-import auth from './../auth/auth-helper'
+import auth from './../../auth/auth-helper'
 import {Redirect} from 'react-router-dom'
-import {signin} from './api-auth.js'
+import {signin} from './../api-auth.js'
 
 const styles = theme => ({
     card: {
@@ -83,7 +83,7 @@ class Signin extends Component {
             <Card className={classes.card}>
                 <CardContent>
                     <Typography type="headline" component="h2" className={classes.title}>
-                        Sign In
+                        Instructor Sign In
                     </Typography>
                     <TextField id="email" type="email" label="Email" className={classes.textField} value={this.state.email} onChange={this.handleChange('email')} margin="normal"/><br/>
                     <TextField id="password" type="password" label="Password" className={classes.textField} value={this.state.password} onChange={this.handleChange('password')} margin="normal"/>
@@ -97,7 +97,13 @@ class Signin extends Component {
                 <CardActions>
                     <Button color="primary" variant="raised" onClick={this.clickSubmit} className={classes.submit}>Submit</Button>
                 </CardActions>
+
+                <Typography type="headline" component="h2" className={classes.title}>
+                    Don't have an instructor account? Click <a href="/instructorsignup">here</a> to sign up!
+                </Typography>
+
             </Card>
+
         )
     }
 }

@@ -1,0 +1,16 @@
+console.log("RENDERING server/routes/auth.routes.js")
+
+import express from 'express'
+import authCtrl from '../controllers/auth.controller'
+
+const router = express.Router()
+
+router.route('/auth/signin')
+    .post(authCtrl.signin)
+router.route('/auth/signout')
+    .get(authCtrl.signout)
+
+// export default router
+module.exports = router
+
+console.log("LOADED server/routes/auth.routes.js")
