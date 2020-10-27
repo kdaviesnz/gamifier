@@ -31,7 +31,9 @@ import { indigo, pink } from '@material-ui/core/colors'
 import devBundle from './devBundle'
 
 const CURRENT_WORKING_DIR = process.cwd()
-const app = express()
+
+const App = (collections) => {
+    const app = express()
 
 //comment out before building for production
 devBundle.compile(app)
@@ -44,9 +46,9 @@ app.use(compress())
 // secure apps by setting various HTTP headers
 //app.use(helmet())
 // enable CORS - Cross Origin Resource Sharing
-app.use(cors())
-
-app.use('/dist', express.static(path.join(CURRENT_WORKING_DIR, 'dist')))
+    app.use(cors())
+    
+    app.use('/dist', express.static(path.join(CURRENT_WORKING_DIR, 'dist')))
 
 // mount routes
 
@@ -54,18 +56,8 @@ app.use('/', userRoutes)
 app.use('/', authRoutes)
 
 app.use('/', instructorAuthRoutes)
-app.use('/', studentAuthRoutes)
-
-const MongoClient = require('mongodb').MongoClient
-const assert = require('assert');
-require("dotenv").config()
-// Database Connection URL
-const uri = "mongodb+srv://" + process.env.MONGODBUSER + ":" + process.env.MONGODBPASSWORD + "@cluster0.awqh6.mongodb.net/gamifier?retryWrites=true&w=majority";
-const mongoClient = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
-mongoClient.connect(err => {
-    assert.equal(err, null);
-    const collections = mongoClient.db('gamifier')
-    console.log("Connected successfully to mongodb server")   
+    app.use('/', studentAuthRoutes)
+    
     const instructorRoutes = require('./routes/instructor.routes')(collections)
     app.use('/', instructorRoutes)
     
@@ -73,6 +65,7 @@ mongoClient.connect(err => {
     console.log('Calling app.get')
     const sheetsRegistry = new SheetsRegistry()
     console.log('Got sheetsRegistry')
+    
     // @see https://material-ui.com/customization/theming/
     const theme = createMuiTheme({
         palette: {
@@ -93,7 +86,8 @@ mongoClient.connect(err => {
             type: 'light'
         }
     })
-    console.log("Got theme")
+    console.log("Got theme")    
+        
     //const generateClassName = createGenerateClassName()
     // console.log("Got class name: " + generateClassName)
     const context = {
@@ -106,20 +100,19 @@ mongoClient.connect(err => {
     }
 
     res.status(200).send(Template({
-    }))
-})
-
-// Catch unauthorised errors
+    }))   
+        
+    // Catch unauthorised errors
 app.use((err, req, res, next) => {
     if (err.name === 'UnauthorizedError') {
         res.status(401).json({"error" : err.name + ": " + err.message})
     }
-})
-    
-    //export default app
-     module.exports = app
-    
-}) // mongoClient.connect
+})    
+}
+            
+            module.exports = App
+
+
 
 
 
