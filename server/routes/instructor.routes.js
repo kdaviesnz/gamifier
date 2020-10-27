@@ -9,7 +9,8 @@ import express from 'express'
 const InstructorRouter = (collection) => {
     
     const router = express.Router()
-    
+    const instructor = new Instructor(collection)
+
     router.route('/api/instructors')
         .get((req, res)=> {
             res.json([{
@@ -19,19 +20,37 @@ const InstructorRouter = (collection) => {
         })
         .post(
             (req, res) => {
-                const instructor = new Instructor(collection)
+
                 instructor.create(req, res)
             }
         )
-    
-    /*
-    router.route('/api/instructors/:userId')
-        .get(instructorAuthCtrl.requireSignin, instructorCtrl.read)
-        .put(instructorAuthCtrl.requireSignin, instructorAuthCtrl.hasAuthorization, instructorCtrl.update)
-        .delete(instructorAuthCtrl.requireSignin, instructorAuthCtrl.hasAuthorization, instructorCtrl.remove)
 
-    router.param('userId', instructorAuthCtrl.userByID)
-    */
+    const Authenticator =  require("../models/authentication.model")();
+
+    router.route('/api/instructor/:userId')
+        .get((req,res)=>{
+            instructor.read(req, res)
+        })
+        .put(Authenticator.requireSignin, Authenticator.hasAuthorization, (req, res)=>{
+                instructor.update(req,res)
+            }
+        )
+        .delete(Authenticator.requireSignin, Authenticator.hasAuthorization, (req, res)=>{
+                instructor.remove(req,res)
+            }
+        )
+/*
+    router.route('/api/instructor/:userId')
+        .get(Authenticator.requireSignin, instructor.read)
+        .put(Authenticator.requireSignin, Authenticator.hasAuthorization, instructor.update)
+        .delete(Authenticator.requireSignin, Authenticator.hasAuthorization, instructor.remove)
+
+
+*/
+
+    router.param('userId', (req, res,next, id)=> {
+        instructor.userByID(req, res, next, id)
+    })
     
     return router
 }

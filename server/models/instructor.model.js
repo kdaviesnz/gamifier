@@ -4,45 +4,20 @@ import jwt from 'jsonwebtoken'
 import expressJwt from 'express-jwt'
 import config from './../../config/config'
 const crypto = require('crypto');
+//import { ObjectId } from "mongodb"
+import _ from 'lodash'
 
 class Instructor {
 
     constructor(collection) {
         this.collection = collection
         this.state = {}
+        this.authenticator = require('./authentication.model')()
     }
-
-    makeSalt() {
-        return Math.round((new Date().valueOf() * Math.random())) + ''
-    }
-
-    validate(plain_text_password, is_new) {
-        if (plain_text_password && plain_text_password < 6) {
-            return {'error':'Password must be at least 6 characters.'}
-        }
-        if (is_new && !plain_text_password) {
-            return {'error':'Password is required'}
-        }
-        return {'status':'ok'}
-    }
-
-    encryptPassword(plain_text_password, salt) {
-
-        if (!plain_text_password) return ''
-        try {
-            return crypto
-                .createHmac('sha1',salt)
-                .update(plain_text_password)
-                .digest('hex')
-        } catch (err) {
-            return err.toString()
-        }
-    }
-
 
     create(req, res) {
 
-        const validate = this.validate(req.body.password, true)
+        const validate = this.authenticator.validate(req.body.password, true)
 
         if (undefined !== validate.error) {
             res.status('403').json({
@@ -69,8 +44,8 @@ class Instructor {
                     } else {
 
                         // We're ok
-                        const salt = this.makeSalt()
-                        this.hashed_password = this.encryptPassword(req.body.password, salt)
+                        const salt = this.authenticator.makeSalt()
+                        this.hashed_password = this.authenticator.encryptPassword(req.body.password, salt)
                         this.state = {
                             'first_name': req.body.first_name,
                             'last_name': req.body.last_name,
@@ -88,7 +63,8 @@ class Instructor {
                             } else {
                                 res.json({
                                     'status': 201,
-                                    'message': 'Instructor created'
+                                    'message': 'Instructor created',
+                                    'Location': '/api/instructor/' + result.insertedId
                                 })
                             }
                         })
@@ -99,10 +75,6 @@ class Instructor {
             }
 
         }
-    }
-
-    authenticate (plain_text_password, salt) {
-        return this.encryptPassword(plain_text_password, salt) === this.hashed_password
     }
 
     signin(req, res) {
@@ -117,9 +89,8 @@ class Instructor {
                 })
             } else {
 
-                this.hashed_password = instructor.password
-                if (!this.authenticate(req.body.password, instructor.salt)) {
-                     res.status('403').json({
+                if (!this.authenticator.authenticate(req.body.password, instructor.salt, instructor.password)) {
+                    res.status('403').json({
                         error: "Invalid password",
                     })
                 } else {
@@ -146,6 +117,81 @@ class Instructor {
             }
         })
     }
+
+    userByID (req, res, next, id) {
+
+        console.log(id)
+
+        const ObjectId = require('mongodb').ObjectId;
+        const o_id = new ObjectId(id);
+
+        this.collection.findOne({'_id':o_id}, (err, instructor) => {
+            if (err) {
+                res.json({
+                    'error':err
+                })
+            } else if (instructor === null || ! instructor) {
+                res.status('401').json({
+                    error: "Instructor not found"
+                })
+            } else {
+                req.profile = instructor
+                next()
+            }
+        })
+
+    }
+
+    read (req, res)  {
+        req.profile.hashed_password = undefined
+        req.profile.salt = undefined
+        res.json(req.profile)
+    }
+
+    update (req, res, next)  {
+
+        const id= req.profile._id
+        let instructor = req.profile
+
+        instructor = _.extend(instructor, req.body)
+        instructor.updated = Date.now()
+
+        const ObjectId = require('mongodb').ObjectId;
+        const o_id = new ObjectId(id);
+
+        this.collection.updateOne({'_id':o_id}, {$set:instructor}, (err) => {
+            if (err) {
+                res.json({
+                    'error':err
+                })
+            }else {
+                res.json({
+                        status: 200,
+                        Location: '/api/instructor/' + id
+                    }
+                )
+            }
+        })
+
+    }
+
+    remove (req, res, next)  {
+        const id= req.profile._id
+        const ObjectId = require('mongodb').ObjectId;
+        const o_id = new ObjectId(id);
+        this.collection.deleteOne( {'_id':o_id}, (err) => {
+            if (err) {
+                res.json({
+                    'error':err
+                })
+            }else {
+                res.json({
+                    'status':204
+                })
+            }
+        })
+    }
+
 
 }
 
