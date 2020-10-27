@@ -18,7 +18,7 @@ const mongoClient = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopo
 
 mongoClient.connect(err => {
     assert.equal(err, null);
-    const collection = mongoClient.db('gamifier')
+    const collections = mongoClient.db('gamifier')
     console.log("Connected successfully to mongodb server")
     router.route('/api/instructors')
         .get((req, res)=> {
@@ -29,7 +29,7 @@ mongoClient.connect(err => {
         })
         .post(
             (req, res) => {
-                db.collection("instructors").insertOne(req.body, (err, result) => {
+                collections.collection("instructors").insertOne(req.body, (err, result) => {
                     if (err) {
                         res.json({
                             'error':err
@@ -43,6 +43,7 @@ mongoClient.connect(err => {
                 })
             }
         )
+
     /*
     router.route('/api/instructors/:userId')
         .get(instructorAuthCtrl.requireSignin, instructorCtrl.read)
