@@ -1,21 +1,21 @@
-console.log("RENDERING server/routes/user.routes.js")
+console.log("RENDERING server/routes/instructor.routes.js")
 
 import express from 'express'
 import userCtrl from '../controllers/user.controller'
-import authCtrl from '../controllers/auth.controller'
+import instructorAuthCtrl from '../controllers/instructor.controller'
 
 const router = express.Router()
 
 router.route('/api/users')
-    .get(userCtrl.list)
-    .post(userCtrl.create)
+    .get(instructorAuthCtrl.list)
+    .post(instructorAuthCtrl.create)
 
 router.route('/api/users/:userId')
-    .get(authCtrl.requireSignin, userCtrl.read)
-    .put(authCtrl.requireSignin, authCtrl.hasAuthorization, userCtrl.update)
-    .delete(authCtrl.requireSignin, authCtrl.hasAuthorization, userCtrl.remove)
+    .get(instructorAuthCtrl.requireSignin, userCtrl.read)
+    .put(instructorAuthCtrl.requireSignin, instructorAuthCtrl.hasAuthorization, instructorAuthCtrl.update)
+    .delete(instructorAuthCtrl.requireSignin, instructorAuthCtrl.hasAuthorization, instructorAuthCtrl.remove)
 
-router.param('userId', userCtrl.userByID)
+router.param('userId', instructorAuthCtrl.userByID)
 
 export default router
 

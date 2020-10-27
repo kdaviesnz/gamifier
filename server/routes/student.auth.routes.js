@@ -1,13 +1,13 @@
-console.log("RENDERING server/routes/instructor.auth.routes.js")
+console.log("RENDERING server/routes/student.auth.routes.js")
 
 import express from 'express'
 import authCtrl from '../controllers/auth.controller'
 
 const router = express.Router()
 
-router.route('/instructor/auth/signin')
+router.route('/student/auth/signin')
     .post(authCtrl.signin)
-router.route('/instructor/auth/signout')
+router.route('/student/auth/signout')
     .get(authCtrl.signout)
 
 // export default router

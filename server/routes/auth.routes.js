@@ -13,4 +13,3 @@ router.route('/auth/signout')
 // export default router
 module.exports = router
 
-console.log("LOADED server/routes/auth.routes.js")
