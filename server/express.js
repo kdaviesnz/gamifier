@@ -35,82 +35,81 @@ const CURRENT_WORKING_DIR = process.cwd()
 const App = (collections) => {
     const app = express()
 
-//comment out before building for production
-devBundle.compile(app)
+    //comment out before building for production
+    devBundle.compile(app)
 
-// parse body params and attache them to req.body
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({ extended: true }))
-app.use(cookieParser())
-app.use(compress())
-// secure apps by setting various HTTP headers
-//app.use(helmet())
-// enable CORS - Cross Origin Resource Sharing
+    // parse body params and attache them to req.body
+    app.use(bodyParser.json())
+    app.use(bodyParser.urlencoded({extended: true}))
+    app.use(cookieParser())
+    app.use(compress())
+    // secure apps by setting various HTTP headers
+    //app.use(helmet())
+    // enable CORS - Cross Origin Resource Sharing
     app.use(cors())
-    
+
     app.use('/dist', express.static(path.join(CURRENT_WORKING_DIR, 'dist')))
 
-// mount routes
-
-app.use('/', userRoutes)
-app.use('/', authRoutes)
-
-app.use('/', instructorAuthRoutes)
+    // mount routes
+    app.use('/', userRoutes)
+    app.use('/', authRoutes)
+    app.use('/', instructorAuthRoutes)
     app.use('/', studentAuthRoutes)
-    
+
     const instructorRoutes = require('./routes/instructor.routes')(collections)
     app.use('/', instructorRoutes)
-    
+
     app.get('*', (req, res) => {
-    console.log('Calling app.get')
-    const sheetsRegistry = new SheetsRegistry()
-    console.log('Got sheetsRegistry')
-    
-    // @see https://material-ui.com/customization/theming/
-    const theme = createMuiTheme({
-        palette: {
-            primary: {
-                light: '#757de8',
-                main: '#3f51b5',
-                dark: '#002984',
-                contrastText: '#fff',
-            },
-            secondary: {
-                light: '#ff79b0',
-                main: '#ff4081',
-                dark: '#c60055',
-                contrastText: '#000',
-            },
-            openTitle: indigo['400'],
-            protectedTitle: pink['400'],
-            type: 'light'
-        }
-    })
-    console.log("Got theme")    
-        
-    //const generateClassName = createGenerateClassName()
-    // console.log("Got class name: " + generateClassName)
-    const context = {
-        "muiTheme":theme
-    }
+            console.log('Calling app.get')
+            const sheetsRegistry = new SheetsRegistry()
+            console.log('Got sheetsRegistry')
 
+            // @see https://material-ui.com/customization/theming/
+            const theme = createMuiTheme({
+                palette: {
+                    primary: {
+                        light: '#757de8',
+                        main: '#3f51b5',
+                        dark: '#002984',
+                        contrastText: '#fff',
+                    },
+                    secondary: {
+                        light: '#ff79b0',
+                        main: '#ff4081',
+                        dark: '#c60055',
+                        contrastText: '#000',
+                    },
+                    openTitle: indigo['400'],
+                    protectedTitle: pink['400'],
+                    type: 'light'
+                }
+            })
+            console.log("Got theme")
 
-    if (context.url) {
-        return res.redirect(303, context.url)
-    }
+            //const generateClassName = createGenerateClassName()
+            // console.log("Got class name: " + generateClassName)
+            const context = {
+                "muiTheme": theme
+            }
 
-    res.status(200).send(Template({
-    }))   
-        
-    // Catch unauthorised errors
-app.use((err, req, res, next) => {
-    if (err.name === 'UnauthorizedError') {
-        res.status(401).json({"error" : err.name + ": " + err.message})
-    }
-})    
-}
-            
-            module.exports = App
+            if (context.url) {
+                return res.redirect(303, context.url)
+            }
+
+            res.status(200).send(Template({}))
+
+            // Catch unauthorised errors
+            app.use((err, req, res, next) => {
+                if (err.name === 'UnauthorizedError') {
+                    res.status(401).json({"error": err.name + ": " + err.message})
+                }
+            })
+        } // app.get
+    )
+
+} // const App =
+
+module.exports = App
 
 
 

@@ -1,10 +1,10 @@
-import Instructor from "../models/instructor.model";
+//import Instructor from "../models/instructor.model";
 
 console.log("RENDERING server/routes/instructor.routes.js")
 
 import express from 'express'
-import instructorCtrl from '../controllers/instructor.controller'
-import instructorAuthCtrl from '../controllers/instructor.auth.controller'
+//import instructorCtrl from '../controllers/instructor.controller'
+//import instructorAuthCtrl from '../controllers/instructor.auth.controller'
 
 const InstructorRouter = (collections) => {
     
@@ -44,26 +44,8 @@ const InstructorRouter = (collections) => {
     */
     
     return router
-})
+}
 
 module.exports = InstructorRouter
-
-/*
-const MongoClient = require('mongodb').MongoClient
-const assert = require('assert');
-require("dotenv").config()
-
-// Database Connection URL
-const uri = "mongodb+srv://" + process.env.MONGODBUSER + ":" + process.env.MONGODBPASSWORD + "@cluster0.awqh6.mongodb.net/gamifier?retryWrites=true&w=majority";
-const mongoClient = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
-
-mongoClient.connect(err => {
-    assert.equal(err, null);
-    const collections = mongoClient.db('gamifier')
-    console.log("Connected successfully to mongodb server")   
-})
-*/
-
-
 
 
