@@ -1,7 +1,7 @@
 console.log("RENDERING server/server.js")
 
 import config from './../config/config'
-import app from './express'
+// import app from './express'
 
 
 const MongoClient = require('mongodb').MongoClient
@@ -14,7 +14,7 @@ mongoClient.connect(err => {
     assert.equal(err, null);
     const collections = mongoClient.db('gamifier')
     console.log("Connected successfully to mongodb server")  
-    
+    const app = require('./express')(collections)
     app.listen(config.port, (err) => {
     if (err) {
         console.log(err)
