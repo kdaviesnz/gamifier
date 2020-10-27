@@ -1,4 +1,4 @@
-//import Instructor from "../models/instructor.model";
+import Instructor from "../models/instructor.model";
 
 console.log("RENDERING server/routes/instructor.routes.js")
 
@@ -6,7 +6,7 @@ import express from 'express'
 //import instructorCtrl from '../controllers/instructor.controller'
 //import instructorAuthCtrl from '../controllers/instructor.auth.controller'
 
-const InstructorRouter = (collections) => {
+const InstructorRouter = (collection) => {
     
     const router = express.Router()
     
@@ -19,18 +19,8 @@ const InstructorRouter = (collections) => {
         })
         .post(
             (req, res) => {
-                collections.collection("instructors").insertOne(req.body, (err, result) => {
-                    if (err) {
-                        res.json({
-                            'error':err
-                        })
-                    } else {
-                        res.json({
-                            'status':201,
-                            'message': 'Instructor created'
-                        })
-                    }
-                })
+                const instructor = new Instructor(collection)
+                instructor.create(req, res)
             }
         )
     

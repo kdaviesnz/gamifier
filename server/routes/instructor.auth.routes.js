@@ -1,17 +1,29 @@
 console.log("RENDERING server/routes/instructor.auth.routes.js")
 
+import Instructor from "../models/instructor.model";
 import express from 'express'
-import instructorAuthCtrl from '../controllers/instructor.auth.controller'
+//import instructorAuthCtrl from '../controllers/instructor.auth.controller'
 
-const router = express.Router()
+const InstructorAuthRouter = (collection) => {
 
-router.route('/instructor/auth/signin')
-    .post((req, res)=>{
+    const router = express.Router()
 
-    })
-router.route('/instructor/auth/signout')
-    .get(instructorAuthCtrl.signout)
+    router.route('/api/instructors/auth/signin')
+        .post((req, res)=>{
+            const instructor = new Instructor(collection)
+            instructor.signin(req, res)
+        })
 
-// export default router
-module.exports = router
+    /*
+    router.route('/instructor/auth/signout')
+        .get(instructorAuthCtrl.signout)
+        */
+
+    return router
+}
+
+
+
+
+module.exports = InstructorAuthRouter
 

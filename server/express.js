@@ -10,8 +10,6 @@ import cors from 'cors'
 import Template from './../template'
 import userRoutes from './routes/user.routes'
 import authRoutes from './routes/auth.routes'
-import instructorRoutes from './routes/instructor.routes'
-import instructorAuthRoutes from './routes/instructor.auth.routes'
 import studentAuthRoutes from './routes/student.auth.routes'
 
 // modules for server side rendering
@@ -53,11 +51,13 @@ const App = (collections) => {
     // mount routes
     app.use('/', userRoutes)
     app.use('/', authRoutes)
-    app.use('/', instructorAuthRoutes)
     app.use('/', studentAuthRoutes)
 
-    const instructorRoutes = require('./routes/instructor.routes')(collections)
+    const instructorAuthRoutes = require('./routes/instructor.auth.routes')(collections.collection("instructors"))
+    const instructorRoutes = require('./routes/instructor.routes')(collections.collection("instructors"))
+
     app.use('/', instructorRoutes)
+    app.use('/', instructorAuthRoutes)
 
     app.get('*', (req, res) => {
             console.log('Calling app.get')

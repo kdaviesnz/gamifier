@@ -15,10 +15,10 @@ mongoClient.connect(err => {
     const collections = mongoClient.db(process.env.MONGODB)
     console.log("Connected successfully to mongodb server")
     const app = require('./express')(collections)
-    app.listen(3000, (err) => {
+    app.listen(config.port, (err) => {
         if (err) {
             console.log(err)
         }
-        console.info('Server started on port %s.', 3000)
+        console.info('Server started on port %s.', config.port)
     })
 })
