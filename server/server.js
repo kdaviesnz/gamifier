@@ -1,6 +1,6 @@
 console.log("RENDERING server/server.js")
 
-import config from './../config/config'
+// import config from './../config/config'
 // import app from './express'
 
 
@@ -15,7 +15,7 @@ mongoClient.connect(err => {
     const collections = mongoClient.db(process.env.MONGODB)
     console.log("Connected successfully to mongodb server")  
     const app = require('./express')(collections)
-    app.listen(config.port, (err) => {
+    app.listen(process.env.PORT, (err) => {
     if (err) {
         console.log(err)
     }
