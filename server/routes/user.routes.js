@@ -19,4 +19,3 @@ router.param('userId', userCtrl.userByID)
 
 export default router
 
-console.log("LOADED server/routes/user.routes.js")

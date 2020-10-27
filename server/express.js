@@ -10,6 +10,7 @@ import cors from 'cors'
 import Template from './../template'
 import userRoutes from './routes/user.routes'
 import authRoutes from './routes/auth.routes'
+import instructorRoutes from './routes/instructor.routes'
 
 // modules for server side rendering
 import React from 'react'
@@ -48,11 +49,13 @@ app.use('/dist', express.static(path.join(CURRENT_WORKING_DIR, 'dist')))
 // mount routes
 app.use('/', userRoutes)
 app.use('/', authRoutes)
+app.use('/', instructorRoutes)
 
 app.get('*', (req, res) => {
     console.log('Calling app.get')
     const sheetsRegistry = new SheetsRegistry()
     console.log('Got sheetsRegistry')
+    // @see https://material-ui.com/customization/theming/
     const theme = createMuiTheme({
         palette: {
             primary: {
@@ -70,7 +73,7 @@ app.get('*', (req, res) => {
             openTitle: indigo['400'],
             protectedTitle: pink['400'],
             type: 'light'
-        },
+        }
     })
     console.log("Got theme")
     //const generateClassName = createGenerateClassName()

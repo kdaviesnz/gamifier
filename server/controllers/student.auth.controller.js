@@ -1,4 +1,4 @@
-console.log("RENDERING server/controllers/instructor.auth.controller.js")
+console.log("RENDERING server/controllers/student.auth.controller.js")
 
 import User from '../models/user.model'
 // @todo

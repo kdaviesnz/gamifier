@@ -17,41 +17,23 @@ const isActive = (history, path) => {
 }
 
 const Menu = withRouter(({history}) => (
+    // auth.isAuthenticated()
     <AppBar>
         <Toolbar>
-            <Typography type="title" color="inherit">
-                MERN Skeleton
-            </Typography>
             <Link to="/">
                 <IconButton aria-label="Home" style={isActive(history, "/")}>
                     <HomeIcon/>
                 </IconButton>
             </Link>
-            <Link to="/users">
-                <Button style={isActive(history, "/users")}>Users</Button>
+            <Link to="/instructorsignin">
+                <Button style={isActive(history, "/instructorsignin")}>Instructor sign in</Button>
             </Link>
-            {
-                !auth.isAuthenticated() && (<span>
-          <Link to="/signup">
-            <Button style={isActive(history, "/signup")}>Sign up
-            </Button>
-          </Link>
-          <Link to="/signin">
-            <Button style={isActive(history, "/signin")}>Sign In
-            </Button>
-          </Link>
-        </span>)
-            }
-            {
-                auth.isAuthenticated() && (<span>
-          <Link to={"/user/" + auth.isAuthenticated().user._id}>
-            <Button style={isActive(history, "/user/" + auth.isAuthenticated().user._id)}>My Profile</Button>
-          </Link>
-          <Button color="inherit" onClick={() => {
-              auth.signout(() => history.push('/'))
-          }}>Sign out</Button>
-        </span>)
-            }
+            <Link to="/users">
+                <Button style={isActive(history, "/users")}>Student sign in</Button>
+            </Link>
+            <Link to="/users">
+                <Button style={isActive(history, "/users")}>About</Button>
+            </Link>
         </Toolbar>
     </AppBar>
 ))
