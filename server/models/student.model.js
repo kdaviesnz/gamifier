@@ -4,7 +4,7 @@ import config from './../../config/config'
 const crypto = require('crypto');
 import _ from 'lodash'
 
-class Instructor {
+class Student {
 
     constructor(collection) {
         this.collection = collection
@@ -28,15 +28,15 @@ class Instructor {
                     error: 'Email is invalid'
                 })
             } else {
-                this.collection.findOne({'email': req.body.email}, (err, instructor) => {
+                this.collection.findOne({'email': req.body.email}, (err, student) => {
                     if (err) {
                         res.json({
                             'error': err
                         })
-                    } else if (instructor) {
+                    } else if (student) {
                         res.status('409').json({
                             error: 'Email already exists',
-                            email: instructor.email
+                            email: student.email
                         })
                     } else {
 
@@ -60,8 +60,8 @@ class Instructor {
                             } else {
                                 res.json({
                                     'status': 201,
-                                    'message': 'Instructor created',
-                                    'Location': '/api/instructor/' + result.insertedId
+                                    'message': 'student created',
+                                    'Location': '/api/student/' + result.insertedId
                                 })
                             }
                         })
@@ -75,25 +75,25 @@ class Instructor {
     }
 
     signin(req, res) {
-        this.collection.findOne({'email':req.body.email}, (err, instructor) => {
+        this.collection.findOne({'email':req.body.email}, (err, student) => {
             if (err) {
                 res.json({
                     'error':err
                 })
-            } else if (instructor === null || ! instructor) {
+            } else if (student === null || ! student) {
                 res.status('401').json({
-                    error: "Instructor not found"
+                    error: "student not found"
                 })
             } else {
 
-                if (!this.authenticator.authenticate(req.body.password, instructor.salt, instructor.password)) {
+                if (!this.authenticator.authenticate(req.body.password, student.salt, student.password)) {
                     res.status('403').json({
                         error: "Invalid password",
                     })
                 } else {
 
                     const token = jwt.sign({
-                        _id: instructor._id,
+                        _id: student._id,
                         algorithms: ['HS256'],
                     }, config.jwtSecret)
 
@@ -103,11 +103,11 @@ class Instructor {
 
                     return res.json({
                         token,
-                        instructor: {
-                            _id: instructor._id,
-                            first_name: instructor.first_name,
-                            last_name: instructor.last_name,
-                            email: instructor.email}
+                        student: {
+                            _id: student._id,
+                            first_name: student.first_name,
+                            last_name: student.last_name,
+                            email: student.email}
                     })
 
                 }
@@ -120,17 +120,17 @@ class Instructor {
         const ObjectId = require('mongodb').ObjectId;
         const o_id = new ObjectId(id);
 
-        this.collection.findOne({'_id':o_id}, (err, instructor) => {
+        this.collection.findOne({'_id':o_id}, (err, student) => {
             if (err) {
                 res.json({
                     'error':err
                 })
-            } else if (instructor === null || ! instructor) {
+            } else if (student === null || ! student) {
                 res.status('401').json({
-                    error: "Instructor not found"
+                    error: "student not found"
                 })
             } else {
-                req.profile = instructor
+                req.profile = student
                 next()
             }
         })
@@ -146,15 +146,15 @@ class Instructor {
     update (req, res, next)  {
 
         const id= req.profile._id
-        let instructor = req.profile
+        let student = req.profile
 
-        instructor = _.extend(instructor, req.body)
-        instructor.updated = Date.now()
+        student = _.extend(student, req.body)
+        student.updated = Date.now()
 
         const ObjectId = require('mongodb').ObjectId;
         const o_id = new ObjectId(id);
 
-        this.collection.updateOne({'_id':o_id}, {$set:instructor}, (err) => {
+        this.collection.updateOne({'_id':o_id}, {$set:student}, (err) => {
             if (err) {
                 res.json({
                     'error':err
@@ -162,7 +162,7 @@ class Instructor {
             }else {
                 res.json({
                         status: 200,
-                        Location: '/api/instructor/' + id
+                        Location: '/api/student/' + id
                     }
                 )
             }
@@ -196,4 +196,4 @@ class Instructor {
 
 }
 
-module.exports = Instructor
+module.exports = Student

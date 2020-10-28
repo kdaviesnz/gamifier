@@ -1,5 +1,3 @@
-console.log("RENDERING server/models/authentication.model.js")
-
 import jwt from 'jsonwebtoken'
 import expressJwt from 'express-jwt'
 import config from './../../config/config'

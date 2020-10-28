@@ -1,12 +1,7 @@
-console.log("RENDERING server/controllers/auth.controller.js")
-
 import User from '../models/user.model'
-// @todo
-//import jwt from 'jsonwebtoken'
+
 import expressJwt from 'express-jwt'
 import config from './../../config/config'
-
-
 
 const signin = (req, res) => {
     User.findOne({

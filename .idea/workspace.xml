@@ -2,12 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8e959ccb-e66f-4ecb-97f8-62604c07167e" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/server/models/student.model.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/server.generated.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/server.generated.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/controllers/auth.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/auth.controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/controllers/instructor.auth.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/instructor.auth.controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/controllers/instructor.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/instructor.controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/controllers/student.auth.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/student.auth.controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/controllers/student.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/student.controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/controllers/user.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/user.controller.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/models/authentication.model.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/models/authentication.model.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/models/instructor.model.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/models/instructor.model.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/routes/instructor.auth.routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/instructor.auth.routes.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/routes/instructor.routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/instructor.routes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/routes/student.auth.routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/student.auth.routes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/routes/student.routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/student.routes.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -32,9 +41,10 @@
   </component>
   <component name="PhpDebugGeneral" max_simultaneous_connections="2" />
   <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP" />
+  <component name="ProjectId" id="1jU9kUh3kXtYHSqpJZw526k3L3b" />
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../chemcalc2/test.js" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/server/routes" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="/usr/local/bin/node" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -42,13 +52,14 @@
     <property name="settings.editor.splitter.proportion" value="0.2" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/server/controllers" />
-      <recent name="$PROJECT_DIR$/server/routes" />
-      <recent name="$PROJECT_DIR$" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/demos/react" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/server/routes" />
+      <recent name="$PROJECT_DIR$/server/controllers" />
+      <recent name="$PROJECT_DIR$/server/models" />
+      <recent name="$PROJECT_DIR$" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -95,10 +106,22 @@
       <workItem from="1603773133897" duration="1921000" />
       <workItem from="1603781972316" duration="474000" />
       <workItem from="1603824636277" duration="5993000" />
+      <workItem from="1603847954986" duration="2281000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

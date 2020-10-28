@@ -1,37 +1,33 @@
-console.log("RENDERING server/controllers/user.controller.js")
+import Instructor from "../models/instructor.model";
 
+const InstructorController = (collection) => {
 
-import Instructor from '../models/instructor.model'
-import _ from 'lodash'
-//import errorHandler from './error.controller'
+    const instructor = new Instructor(collection)
 
-
-const create = (req, res, next) => {
-    const instructor = new Instructor(req.body, mongoClient)
-    const result = instructor.create()
-    res.json(result)
+    return {
+        "list": (req, res)=> {
+            res.json([{
+                'status':403,
+                'error':'Only admins can view instructors'
+            }])
+        },
+        "create": (req, res) => {
+            instructor.create(req, res)
+        },
+        "read": (req,res)=>{
+            instructor.read(req, res)
+        },
+        "update": (req, res)=>{
+            instructor.update(req,res)
+        },
+        "delete": (req, res)=>{
+            instructor.remove(req,res)
+        },
+        userByID: (req, res, next, id) => {
+            instructor.userByID(req, res, next, id)
+        }
+    }
 }
-const list = (req, res) => {
-    res.json([{
-        'status':403,
-        'error':'Only admins can view instructors'
-    }])
-}
-const userByID = (req, res, next, id) => {
-    res.json({})
-}
-const read = (req, res) => {
-    res.json({})
-}
-const update = (req, res, next) => {
-    res.json({})
-}
-const remove = (req, res, next) => {
-    res.json({})
-}
 
-//export default { create, userByID, read, list, remove, update }
-
-module.exports = { create, userByID, read, list, remove, update }
-
+module.exports = InstructorController
 

@@ -1,15 +1,18 @@
-console.log("RENDERING server/routes/student.auth.routes.js")
-
 import express from 'express'
-import authCtrl from '../controllers/auth.controller'
 
-const router = express.Router()
+const StudentAuthRouter = (collection) => {
 
-router.route('/student/auth/signin')
-    .post(authCtrl.signin)
-router.route('/student/auth/signout')
-    .get(authCtrl.signout)
+    const router = express.Router()
+    const studentAuthController = require('../controllers/student.auth.controller')(collection)
 
-// export default router
-module.exports = router
+    router.route('/api/students/auth/signin')
+        .post(studentAuthController.signin)
+
+    router.route('/student/auth/signout')
+        .get(studentAuthController.signout)
+
+    return router
+}
+
+module.exports = StudentAuthRouter
 

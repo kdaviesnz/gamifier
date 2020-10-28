@@ -1,9 +1,5 @@
-console.log("RENDERING server/controllers/user.controller.js")
-
-
 import User from '../models/user.model'
 import _ from 'lodash'
-//import errorHandler from './error.controller'
 
 const create = (req, res, next) => {
     // “const user = new User(req.body)”
