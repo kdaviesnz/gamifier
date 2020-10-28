@@ -40,12 +40,15 @@ const styles = theme => ({
 
 class Signin extends Component {
 
-
-    state = {
-        email: '',
-        password: '',
-        error: '',
-        redirectToReferrer: false
+    constructor(props) {
+        super()
+        this.state = {
+            email: '',
+            password: '',
+            error: '',
+            redirectToDashboard: false,
+            dashboard: '/instructor/dashboard'
+        }
     }
 
     clickSubmit = () => {
@@ -71,7 +74,7 @@ class Signin extends Component {
                 this.setState({error: data.error})
             } else {
                 auth.authenticate(data, () => {
-                    this.setState({redirectToReferrer: true})
+                    this.setState({redirectToDashboard: true, dashboard: "/instructor/dashboard/"+data.instructor._id})
                 })
             }
         }).catch((err) => console.log(err))
@@ -84,14 +87,10 @@ class Signin extends Component {
 
     render() {
         const {classes} = this.props
-        const {from} = this.props.location.state || {
-            from: {
-                pathname: '/'
-            }
-        }
-        const {redirectToReferrer} = this.state
-        if (redirectToReferrer) {
-            return (<Redirect to={from}/>)
+
+        const {redirectToDashboard} = this.state
+        if (redirectToDashboard) {
+            return (<Redirect to={this.state.dashboard}/>)
         }
 
         return (

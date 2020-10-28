@@ -18,7 +18,7 @@ const isActive = (history, path) => {
 
 const Menu = withRouter(({history}) => (
     // auth.isAuthenticated()
-    <AppBar>
+    <AppBar position="sticky">
         <Toolbar>
             <Link to="/">
                 <IconButton aria-label="Home" style={isActive(history, "/")}>

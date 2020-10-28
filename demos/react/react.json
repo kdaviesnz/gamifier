@@ -3,6 +3,7 @@
 	"course":{
 		"name": "React Basics"
 	},
+	"instructors": ["5f98eac6cab9c9c4fa4d807b"],
 	"lessons":[
 		{
 			"title": "Hello World",

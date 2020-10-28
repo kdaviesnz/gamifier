@@ -9,6 +9,7 @@ import Signin from './auth/Signin'
 import InstructorSignin from './auth/instructor/Signin'
 import StudentSignin from './auth/student/Signin'
 import EditProfile from './user/EditProfile'
+import InstructorDashboard from './user/instructor/Dashboard'
 import Profile from './user/Profile'
 import PrivateRoute from './auth/PrivateRoute'
 import Menu from './core/Menu'
@@ -35,6 +36,7 @@ class MainRouter extends Component {
                 <Route path="/instructorsignup" component={InstructorSignup}/>
                 <Route path="/studentsignup" component={StudentSignup}/>
                 <PrivateRoute path="/user/edit/:userId" component={EditProfile}/>
+                <PrivateRoute path="/instructor/dashboard/:userId" component={InstructorDashboard}/>
                 <Route path="/user/:userId" component={Profile}/>
             </Switch>
         </div>)
