@@ -56,19 +56,33 @@ class Signup extends Component {
     }
 
     clickSubmit = () => {
+
         const user = {
             name: this.state.name || undefined,
             email: this.state.email || undefined,
             password: this.state.password || undefined
         }
-        // Defined in client/user/instructor/api-user.js
-        create(user).then((data) => {
-            if (data.error) {
-                this.setState({error: data.error})
+
+        return fetch('/api/instructors', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(user)
+        }).then((response) => {
+            return response.json()
+        }).then((data)=>{
+            console.log(data)
+            if (data.status !== 201) {
+                alert(data.error)
             } else {
-                this.setState({error: '', open: true})
+                this.setState({open:true})
             }
+        }).catch((err) => {
+            console.log(err)
         })
+
     }
 
     render() {
@@ -89,7 +103,7 @@ class Signup extends Component {
                 }
                 </CardContent>
                 <CardActions>
-                    <Button color="primary" variant="raised" onClick={this.clickSubmit} className={classes.submit}>Submit</Button>
+                    <Button color="primary" variant="outlined" onClick={this.clickSubmit} className={classes.submit}>Submit</Button>
                 </CardActions>
             </Card>
             <Dialog open={this.state.open} disableBackdropClick={true}>
@@ -100,8 +114,8 @@ class Signup extends Component {
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>
-                    <Link to="/signin">
-                        <Button color="primary" autoFocus="autoFocus" variant="raised">
+                    <Link to="/instructorsignin">
+                        <Button color="primary" autoFocus="autoFocus" variant="outlined">
                             Sign In
                         </Button>
                     </Link>

@@ -4,9 +4,9 @@ const InstructorAuthRouter = (collection) => {
 
     const router = express.Router()
 
-    const instructorAuthController = require('../controllers/student.auth.controller')(collection)
+    const instructorAuthController = require('../controllers/instructor.auth.controller')(collection)
 
-    router.route('/api/instructors/auth/signin')
+    router.route('/api/instructor/auth/signin')
         .post(instructorAuthController.signin)
 
     router.route('/instructor/auth/signout')
@@ -15,8 +15,4 @@ const InstructorAuthRouter = (collection) => {
     return router
 }
 
-
-
-
 module.exports = InstructorAuthRouter
-

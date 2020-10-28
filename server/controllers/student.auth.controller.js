@@ -1,6 +1,4 @@
 import Student from "../models/student.model";
-import moduleId from "jss/src/utils/moduleId";
-
 
 const StudentAuthController = (collection)=> {
 

@@ -1,6 +1,4 @@
 import Instructor from "../models/instructor.model";
-import moduleId from "jss/src/utils/moduleId";
-
 
 const InstructorAuthController = (collection)=> {
 

@@ -47,20 +47,25 @@ class Signin extends Component {
     }
 
     clickSubmit = () => {
+
         const user = {
             email: this.state.email || undefined,
             password: this.state.password || undefined
         }
 
-        signin(user).then((data) => {
-            if (data.error) {
-                this.setState({error: data.error})
-            } else {
-                auth.authenticate(data, () => {
-                    this.setState({redirectToReferrer: true})
-                })
-            }
-        })
+        fetch('/api/instructor/auth/signin', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            credentials: 'include',
+            body: JSON.stringify(user)
+        }).then((response) => {
+                return response.json()
+
+            }).catch((err) => console.log(err))
+
     }
 
     handleChange = name => event => {
@@ -95,7 +100,7 @@ class Signin extends Component {
                 }
                 </CardContent>
                 <CardActions>
-                    <Button color="primary" variant="raised" onClick={this.clickSubmit} className={classes.submit}>Submit</Button>
+                    <Button color="primary" variant="outlined" onClick={this.clickSubmit} className={classes.submit}>Submit</Button>
                 </CardActions>
 
                 <Typography type="headline" component="h2" className={classes.title}>
