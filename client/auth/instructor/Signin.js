@@ -39,6 +39,8 @@ const styles = theme => ({
 })
 
 class Signin extends Component {
+
+
     state = {
         email: '',
         password: '',
@@ -62,9 +64,17 @@ class Signin extends Component {
             credentials: 'include',
             body: JSON.stringify(user)
         }).then((response) => {
-                return response.json()
-
-            }).catch((err) => console.log(err))
+            return response.json()
+        }).then((data)=>{
+            console.log(data)
+            if (data.error) {
+                this.setState({error: data.error})
+            } else {
+                auth.authenticate(data, () => {
+                    this.setState({redirectToReferrer: true})
+                })
+            }
+        }).catch((err) => console.log(err))
 
     }
 
