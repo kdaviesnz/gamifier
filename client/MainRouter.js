@@ -13,6 +13,8 @@ import InstructorDashboard from './user/instructor/Dashboard'
 import Profile from './user/Profile'
 import PrivateRoute from './auth/PrivateRoute'
 import Menu from './core/Menu'
+import InstructorMenu from './user/instructor/Menu'
+import auth from './auth/auth-helper'
 
 class MainRouter extends Component {
     // Removes the server-side injected CSS when React component mounts
@@ -25,7 +27,10 @@ class MainRouter extends Component {
 
     render() {
         return (<div>
-            <Menu/>
+            {
+                (auth.isAuthenticated() ? <InstructorMenu/> :
+                    <Menu/>)
+            }
             <Switch>
                 <Route exact path="/" component={Home}/>
                 <Route path="/users" component={Users}/>
