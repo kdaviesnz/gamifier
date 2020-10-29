@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import { makeStyles } from '@material-ui/core/styles';
 import {withStyles} from "@material-ui/core";
 import Card from "@material-ui/core/Card/Card";
 import {CardActions, CardContent} from "@material-ui/core/Card";
@@ -15,39 +16,26 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Accordion from '@material-ui/core/Accordion';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
-
+import List from '@material-ui/core/List'
+import ListSubheader from '@material-ui/core/ListSubheader'
 import Course from '../Course.js';
 
-const styles = theme => ({
-    card: {
-        maxWidth: 600,
-        margin: 'auto',
-        textAlign: 'center',
-        marginTop: theme.spacing.unit * 5,
-        paddingBottom: theme.spacing.unit * 2
+const useStyles = makeStyles((theme) => ({
+    root: {
+        width: '100%',
+        maxWidth: 360,
+        backgroundColor: theme.palette.background.paper,
     },
-    title: {
-        margin: theme.spacing.unit * 2,
-        color: theme.palette.protectedTitle
+    nested: {
+        paddingLeft: theme.spacing(4),
     },
-    error: {
-        verticalAlign: 'middle'
-    },
-    textField: {
-        marginLeft: theme.spacing.unit,
-        marginRight: theme.spacing.unit,
-        width: 300
-    },
-    submit: {
-        margin: 'auto',
-        marginBottom: theme.spacing.unit * 2
-    }
-})
+}));
 
 class Dashboard extends Component {
 
     constructor(props) {
         super()
+
         this.state= {
             'instructor': null,
             'mycourses': []
@@ -103,11 +91,21 @@ class Dashboard extends Component {
                     <Typography variant="h3" component="h4">
                         Courses
                     </Typography>
+                    <List
+                        component="nav"
+                        aria-labelledby="nested-list-subheader"
+                        subheader={
+                            <ListSubheader component="div" id="courses">
+                                Nested List Items
+                            </ListSubheader>
+                        }>
+
                     {
                         this.state.mycourses.map(
                             (course, i) => <Course courseName={course.course.name} lessons={course.lessons} keyID={i} />
                         )
                     }
+                    </List>
                 </Container>
             </React.Fragment>
         )
@@ -115,4 +113,4 @@ class Dashboard extends Component {
 
 }
 
-export default withStyles(styles)(Dashboard)
+export default Dashboard

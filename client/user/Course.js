@@ -6,15 +6,16 @@ import AccordionDetails from "@material-ui/core/AccordionDetails/AccordionDetail
 import Accordion from "@material-ui/core/Accordion/Accordion";
 import Lesson from "./Lesson"
 import Divider from "@material-ui/core/Divider"
+import ListItem from '@material-ui/core/ListItem'
 
 const Course = (props) => {
-  return <section>
+  return <ListItem>
           <Typography>{props.courseName}</Typography>
           {
             props.lessons.map((lesson, i)=><Lesson key={i} lesson={lesson} />)
           }
       <Divider />
-    </section>
+    </ListItem>
 }
 
 export default Course
