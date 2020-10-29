@@ -1,35 +1,10 @@
 import React, {Component} from 'react'
-import { makeStyles } from '@material-ui/core/styles';
-import {withStyles} from "@material-ui/core";
-import Card from "@material-ui/core/Card/Card";
 import {CardActions, CardContent} from "@material-ui/core/Card";
 import Typography from "@material-ui/core/Typography";
-import TextField from "@material-ui/core/TextField/TextField";
-import Icon from "@material-ui/core/Icon";
-import Button from "@material-ui/core/Button";
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Container from '@material-ui/core/Container';
 import auth from './../../auth/auth-helper'
-import {read} from "../api-user";
-console.log('RENDERING /client/users/instructor/Dashboard.js')
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import Accordion from '@material-ui/core/Accordion';
-import AccordionSummary from '@material-ui/core/AccordionSummary';
-import AccordionDetails from '@material-ui/core/AccordionDetails';
-import List from '@material-ui/core/List'
-import ListSubheader from '@material-ui/core/ListSubheader'
-import Course from '../Course.js';
-
-const useStyles = makeStyles((theme) => ({
-    root: {
-        width: '100%',
-        maxWidth: 360,
-        backgroundColor: theme.palette.background.paper,
-    },
-    nested: {
-        paddingLeft: theme.spacing(4),
-    },
-}));
+import Courses from "../Courses"
 
 class Dashboard extends Component {
 
@@ -60,9 +35,6 @@ class Dashboard extends Component {
     componentDidMount = () => {
         const jwt = auth.isAuthenticated()
 
-        console.log('instructor id:')
-        console.log(this.props.match.params.userId)
-
         const credentials ={t: jwt.token}
 
         fetch('/api/instructor/' + this.props.match.params.userId, {
@@ -84,6 +56,8 @@ class Dashboard extends Component {
 
     render () {
 
+        // http://localhost:3000/instructor/dashboard/5f98eac6cab9c9c4fa4d807b
+
         return (
             <React.Fragment>
                 <CssBaseline />
@@ -91,21 +65,7 @@ class Dashboard extends Component {
                     <Typography variant="h3" component="h4">
                         Courses
                     </Typography>
-                    <List
-                        component="nav"
-                        aria-labelledby="nested-list-subheader"
-                        subheader={
-                            <ListSubheader component="div" id="courses">
-                                Nested List Items
-                            </ListSubheader>
-                        }>
-
-                    {
-                        this.state.mycourses.map(
-                            (course, i) => <Course courseName={course.course.name} lessons={course.lessons} keyID={i} />
-                        )
-                    }
-                    </List>
+                    <Courses courses={this.state.mycourses} />
                 </Container>
             </React.Fragment>
         )

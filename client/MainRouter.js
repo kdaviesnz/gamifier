@@ -36,7 +36,7 @@ class MainRouter extends Component {
                 <Route path="/instructorsignup" component={InstructorSignup}/>
                 <Route path="/studentsignup" component={StudentSignup}/>
                 <PrivateRoute path="/user/edit/:userId" component={EditProfile}/>
-                <PrivateRoute path="/instructor/dashboard/:userId" component={InstructorDashboard}/>
+                <Route path="/instructor/dashboard/:userId" component={InstructorDashboard}/>
                 <Route path="/user/:userId" component={Profile}/>
             </Switch>
         </div>)
