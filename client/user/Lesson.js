@@ -4,19 +4,17 @@ import ExpandMoreIcon from "@material-ui/core/SvgIcon/SvgIcon";
 import Typography from "@material-ui/core/Typography/Typography";
 import AccordionDetails from "@material-ui/core/AccordionDetails/AccordionDetails";
 import Accordion from "@material-ui/core/Accordion/Accordion";
-import Lesson from "./Lesson"
 import Divider from "@material-ui/core/Divider"
 
-const Course = (props) => {
-  return <section>
-          <Typography>{props.courseName}</Typography>
-          {
-            props.lessons.map((lesson, i)=><Lesson key={i} lesson={lesson} />)
-          }
-      <Divider />
+const Lesson = (props) => {
+    return <section>
+        <Typography>{props.lesson.title}</Typography>
+        {props.lesson.content}
+        <Divider />
     </section>
+
 }
 
-export default Course
+export default Lesson
 
 

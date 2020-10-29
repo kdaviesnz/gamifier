@@ -50,13 +50,7 @@ class Dashboard extends Component {
         super()
         this.state= {
             'instructor': null,
-            'mycourses': [
-                {
-                    course: {
-                        name:'mycourese'
-                    }
-                }
-            ]
+            'mycourses': []
         }
     }
 
@@ -101,9 +95,7 @@ class Dashboard extends Component {
     }
 
     render () {
-        console.log('instructor/dashboard.js')
-        console.log('Courses:')
-        console.log(this.state.courses)
+
         return (
             <React.Fragment>
                 <CssBaseline />
@@ -113,21 +105,7 @@ class Dashboard extends Component {
                     </Typography>
                     {
                         this.state.mycourses.map(
-                            (course) => <Accordion>
-                                <AccordionSummary
-                                    expandIcon={<ExpandMoreIcon />}
-                                    aria-controls="panel1a-content"
-                                    id="panel1a-header"
-                                >
-                                    <Typography>{course.course.name}</Typography>
-                                </AccordionSummary>
-                                <AccordionDetails>
-                                    <Typography>
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
-                                        sit amet blandit leo lobortis eget.
-                                    </Typography>
-                                </AccordionDetails>
-                            </Accordion>
+                            (course, i) => <Course courseName={course.course.name} lessons={course.lessons} keyID={i} />
                         )
                     }
                 </Container>
