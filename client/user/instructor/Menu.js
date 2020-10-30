@@ -26,7 +26,7 @@ const Menu = withRouter(({history}) => (
                 </IconButton>
             </Link>
             <Link to="/courses">
-                <Button style={isActive(history, "/courses")}>courses</Button>
+                <Button style={isActive(history, "/courses")}>Courses</Button>
             </Link>
         </Toolbar>
     </AppBar>

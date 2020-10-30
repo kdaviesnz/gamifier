@@ -7,6 +7,7 @@ import TextField from '@material-ui/core/TextField'
 import Typography from '@material-ui/core/Typography'
 import Icon from '@material-ui/core/Icon'
 import PropTypes from 'prop-types'
+import {withStyles} from '@material-ui/core/styles'
 import {create} from './../instructor/api-user.js'
 import Dialog from '@material-ui/core/Dialog'
 import DialogActions from '@material-ui/core/DialogActions'
@@ -15,19 +16,39 @@ import DialogContentText from '@material-ui/core/DialogContentText'
 import DialogTitle from '@material-ui/core/DialogTitle'
 import {Link} from 'react-router-dom'
 
-
+const styles = theme => ({
+    card: {
+        maxWidth: 600,
+        margin: 'auto',
+        textAlign: 'center',
+        marginTop: theme.spacing.unit * 5,
+        paddingBottom: theme.spacing.unit * 2
+    },
+    error: {
+        verticalAlign: 'middle'
+    },
+    title: {
+        marginTop: theme.spacing.unit * 2,
+        color: theme.palette.openTitle
+    },
+    textField: {
+        marginLeft: theme.spacing.unit,
+        marginRight: theme.spacing.unit,
+        width: 300
+    },
+    submit: {
+        margin: 'auto',
+        marginBottom: theme.spacing.unit * 2
+    }
+})
 
 class Signup extends Component {
-
-    constructor(props) {
-        super()
-        state = {
-            name: '',
-            password: '',
-            email: '',
-            open: false,
-            error: ''
-        }
+    state = {
+        name: '',
+        password: '',
+        email: '',
+        open: false,
+        error: ''
     }
 
     handleChange = name => event => {
@@ -104,4 +125,8 @@ class Signup extends Component {
     }
 }
 
-export default Signup
+Signup.propTypes = {
+    classes: PropTypes.object.isRequired
+}
+
+export default withStyles(styles)(Signup)

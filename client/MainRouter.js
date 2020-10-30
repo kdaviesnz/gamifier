@@ -10,42 +10,57 @@ import InstructorSignin from './auth/instructor/Signin'
 import StudentSignin from './auth/student/Signin'
 import EditProfile from './user/EditProfile'
 import InstructorDashboard from './user/instructor/Dashboard'
+import LessonEditable from './user/instructor/Lesson'
 import Profile from './user/Profile'
 import PrivateRoute from './auth/PrivateRoute'
 import Menu from './core/Menu'
 import InstructorMenu from './user/instructor/Menu'
 import auth from './auth/auth-helper'
+import { makeStyles } from '@material-ui/core/styles';
 
-class MainRouter extends Component {
-    // Removes the server-side injected CSS when React component mounts
-    componentDidMount() {
-        const jssStyles = document.getElementById('jss-server-side')
-        if (jssStyles && jssStyles.parentNode) {
-            jssStyles.parentNode.removeChild(jssStyles)
+const useStyles = makeStyles((theme) => ({
+    root: {
+        width: '100%',
+        maxWidth: '100%',
+        backgroundColor: theme.palette.background.paper,
+    },
+    nested: {
+        paddingLeft: theme.spacing(4),
+    },
+    main: {
+    }
+}));
+
+
+const MainRouter = (props) => {
+
+    const classes = useStyles();
+
+    return (<div>
+        {
+            (auth.isAuthenticated() ? <InstructorMenu/> :
+                <Menu/>)
         }
-    }
+        <Switch>
+            <Route exact path="/" render={(props) => (
+                <Home {...props} classes={classes} />
+            )} />
+            <Route path="/users" component={Users}/>
+            <Route path="/signup" component={Signup}/>
+            <Route path="/signin" component={Signin}/>
+            <Route path="/instructorsignin" render={(props) => (
+                <InstructorSignin {...props} classes={classes} />
+            )}/>
+            <Route path="/studentsignin" component={StudentSignin}/>
+            <Route path="/instructorsignup" component={InstructorSignup}/>
+            <Route path="/studentsignup" component={StudentSignup}/>
+            <PrivateRoute path="/user/edit/:userId" component={EditProfile}/>
+            <PrivateRoute path="/instructor/dashboard/:userId" component={InstructorDashboard} classes={classes}/>
+            <PrivateRoute path="/instructor/lessons/:lessonId" component={LessonEditable} classes={classes} />
+            <Route path="/user/:userId" component={Profile}/>
+        </Switch>
+    </div>)
 
-    render() {
-        return (<div>
-            {
-                (auth.isAuthenticated() ? <InstructorMenu/> :
-                    <Menu/>)
-            }
-            <Switch>
-                <Route exact path="/" component={Home}/>
-                <Route path="/users" component={Users}/>
-                <Route path="/signup" component={Signup}/>
-                <Route path="/signin" component={Signin}/>
-                <Route path="/instructorsignin" component={InstructorSignin}/>
-                <Route path="/studentsignin" component={StudentSignin}/>
-                <Route path="/instructorsignup" component={InstructorSignup}/>
-                <Route path="/studentsignup" component={StudentSignup}/>
-                <PrivateRoute path="/user/edit/:userId" component={EditProfile}/>
-                <Route path="/instructor/dashboard/:userId" component={InstructorDashboard}/>
-                <Route path="/user/:userId" component={Profile}/>
-            </Switch>
-        </div>)
-    }
 }
 
 export default MainRouter

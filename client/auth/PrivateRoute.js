@@ -2,10 +2,10 @@ import React, { Component } from 'react'
 import { Route, Redirect } from 'react-router-dom'
 import auth from './auth-helper'
 
-const PrivateRoute = ({ component: Component, ...rest }) => (
+const PrivateRoute = ({ component: Component, classes: classes, ...rest }) => (
     <Route {...rest} render={props => (
         auth.isAuthenticated() ? (
-            <Component {...props}/>
+            <Component classes={classes} {...props}/>
         ) : (
             <Redirect to={{
                 pathname: '/signin',

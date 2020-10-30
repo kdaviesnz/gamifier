@@ -1,10 +1,9 @@
 import React, {Component} from 'react'
-import {CardActions, CardContent} from "@material-ui/core/Card";
-import Typography from "@material-ui/core/Typography";
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Container from '@material-ui/core/Container';
 import auth from './../../auth/auth-helper'
-import Courses from "../Courses"
+import CoursesEditable from "./Courses"
+import Box from "@material-ui/core/Box/Box";
 
 class Dashboard extends Component {
 
@@ -59,13 +58,13 @@ class Dashboard extends Component {
         // http://localhost:3000/instructor/dashboard/5f98eac6cab9c9c4fa4d807b
 
         return (
+
             <React.Fragment>
                 <CssBaseline />
-                <Container maxWidth="lg">
-                    <Typography variant="h3" component="h4">
-                        Courses
-                    </Typography>
-                    <Courses courses={this.state.mycourses} />
+                <Container fixed>
+                    <Box className={this.props.classes}>
+                        <CoursesEditable classes={this.props.classes} courses={this.state.mycourses} />
+                    </Box>
                 </Container>
             </React.Fragment>
         )

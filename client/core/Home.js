@@ -1,45 +1,25 @@
-console.log("RENDERING client/core/Home.js")
-
 import React, {Component} from 'react'
-import PropTypes from 'prop-types'
-import {withStyles} from '@material-ui/core/styles'
-import Card, {CardContent, CardMedia} from '@material-ui/core/Card'
-import Typography from '@material-ui/core/Typography'
-// import seashellImg from './../assets/images/seashell.jpg'
-
-const styles = theme => ({
-    card: {
-        maxWidth: 600,
-        margin: 'auto',
-        marginTop: theme.spacing.unit * 5
-    },
-    title: {
-        padding:`${theme.spacing.unit * 3}px ${theme.spacing.unit * 2.5}px 
-    ${theme.spacing.unit * 2}px`,
-        color: theme.palette.text.secondary
-    },
-    media: {
-        minHeight: 330
-    }
-})
+import CssBaseline from '@material-ui/core/CssBaseline';
+import Typography from '@material-ui/core/Typography';
+import Container from '@material-ui/core/Container';
+import Box from '@material-ui/core/Box';
 
 
-class Home extends Component {
-    render() {
-        const {classes} = this.props
-        return (
-            <div>
-                Welcome to the Mern Skeleton home page
-            </div>
-        )
-    }
+
+const Home = (props) => {
+
+    return (
+        <React.Fragment>
+            <CssBaseline />
+            <Container fixed>
+                <Box className={props.classes}>
+                    <Typography component="p" style={{ padding: '1em', backgroundColor: '#cfe8fc', height: '100vh' }}>
+                        hello world
+                    </Typography>
+                </Box>
+            </Container>
+        </React.Fragment>
+    );
 }
 
-
-Home.propTypes = {
-    classes: PropTypes.object.isRequired
-}
-
-export default withStyles(styles)(Home)
-
-console.log("LOADED client/core/Home.js")
+export default Home

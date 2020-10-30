@@ -1,17 +1,15 @@
 import React, {Component} from 'react'
+import Typography from '@material-ui/core/Typography'
+import Icon from '@material-ui/core/Icon'
+import {withStyles} from '@material-ui/core/styles'
 import auth from './../../auth/auth-helper'
 import {Redirect} from 'react-router-dom'
-import SigninForm from "./SigninForm";
-import CssBaseline from "@material-ui/core/CssBaseline/CssBaseline";
-import Container from "@material-ui/core/Container/Container";
-import Box from "@material-ui/core/Box/Box";
 
 
 class Signin extends Component {
 
     constructor(props) {
         super()
-        this.props = props
         this.state = {
             email: '',
             password: '',
@@ -22,6 +20,8 @@ class Signin extends Component {
     }
 
     clickSubmit = () => {
+
+        console.log('clickSubmit()')
 
         const user = {
             email: this.state.email || undefined,
@@ -64,16 +64,31 @@ class Signin extends Component {
         }
 
         return (
-            <React.Fragment>
-                <CssBaseline />
-                <Container fixed>
-                    <Box className={this.props.classes}>
-                        <SigninForm error={this.state.error} clickSubmit={this.clickSubmit} email={this.state.email} handleChange={this.handleChange} password={this.state.password}/>
-                    </Box>
-                </Container>
-            </React.Fragment>
-        )
+            <Card>
+                <CardContent>
+                    <Typography type="headline" component="h2">
+                        Instructor Sign In
+                    </Typography>
+                    <TextField id="email" type="email" label="Email"  value={this.state.email} onChange={this.handleChange('email')} margin="normal"/><br/>
+                    <TextField id="password" type="password" label="Password" value={this.state.password} onChange={this.handleChange('password')} margin="normal"/>
+                    <br/> {
+                    this.state.error && (<Typography component="p" color="error">
+                        <Icon color="error">error</Icon>
+                        {this.state.error}
+                    </Typography>)
+                }
+                </CardContent>
+                <CardActions>
+                    <Button color="primary" variant="outlined" onClick={this.clickSubmit}>Submit</Button>
+                </CardActions>
 
+                <Typography type="headline" component="h2">
+                    Don't have an instructor account? Click <a href="/instructorsignup">here</a> to sign up!
+                </Typography>
+
+            </Card>
+
+        )
     }
 }
 
