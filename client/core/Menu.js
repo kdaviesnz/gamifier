@@ -26,7 +26,7 @@ const Menu = withRouter(({history}) => (
                 </IconButton>
             </Link>
             <Link to="/instructorsignin">
-                <Button style={isActive(history, "/instructorsignin")}>Instructor sign in</Button>
+                <Button style={isActive(history, "/instructor/signin")}>Instructor sign in</Button>
             </Link>
             <Link to="/users">
                 <Button style={isActive(history, "/users")}>Student sign in</Button>

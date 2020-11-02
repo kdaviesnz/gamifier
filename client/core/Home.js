@@ -12,7 +12,7 @@ const Home = (props) => {
         <React.Fragment>
             <CssBaseline />
             <Container fixed>
-                <Box className={props.classes}>
+                <Box>
                     <Typography component="p" style={{ padding: '1em', backgroundColor: '#cfe8fc', height: '100vh' }}>
                         hello world
                     </Typography>

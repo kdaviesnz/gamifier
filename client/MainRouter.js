@@ -42,13 +42,19 @@ const MainRouter = (props) => {
                 <Menu/>)
         }
         <Switch>
-            <Route exact path="/" render={(props) => (
-                <Home {...props} classes={classes} />
-            )} />
+            {
+                (auth.isAuthenticated() ?
+                        <PrivateRoute path="/" component={InstructorDashboard} classes={classes}/> :
+                        <Route exact path="/" render={(props) => (
+                            <Home {...props} classes={classes} />
+                        )} />
+                    )
+            }
+
             <Route path="/users" component={Users}/>
             <Route path="/signup" component={Signup}/>
             <Route path="/signin" component={Signin}/>
-            <Route path="/instructorsignin" render={(props) => (
+            <Route path="/instructor/signin" render={(props) => (
                 <InstructorSignin {...props} classes={classes} />
             )}/>
             <Route path="/studentsignin" component={StudentSignin}/>
