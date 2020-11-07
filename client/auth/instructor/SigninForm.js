@@ -27,7 +27,7 @@ const SigninForm = (props) => {
         </CardActions>
 
         <Typography type="headline" component="h2">
-            Don't have an instructor account? Click <a href="/instructorsignup">here</a> to sign up!
+            Don't have an instructor account? Click <a href="/instructor/signup">here</a> to sign up!
         </Typography>
 
     </Card>

@@ -58,7 +58,7 @@ const MainRouter = (props) => {
                 <InstructorSignin {...props} classes={classes} />
             )}/>
             <Route path="/studentsignin" component={StudentSignin}/>
-            <Route path="/instructorsignup" component={InstructorSignup}/>
+            <Route path="/instructor/signup" component={InstructorSignup}/>
             <Route path="/studentsignup" component={StudentSignup}/>
             <PrivateRoute path="/user/edit/:userId" component={EditProfile}/>
             <PrivateRoute path="/instructor/dashboard/:userId" component={InstructorDashboard} classes={classes}/>
