@@ -34,23 +34,26 @@ class Dashboard extends Component {
     componentDidMount = () => {
         const jwt = auth.isAuthenticated()
 
-        const credentials ={t: jwt.token}
+        if (jwt === false) {
+            console.log('Not logged in as an instructor')
+        } else {
 
-        fetch('/api/instructor/' + this.props.match.params.userId, {
-            method: 'GET',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + credentials.t
-            }
-        }).then((response) => {
-            return response.json()
-        }).then((data)=>{
-            console.log(data)
-            this.setState({instructor:data})
-            this.loadCourses(this.props.match.params.userId)
-        }).catch((err) => console.log(err))
-
+            console.log(jwt)
+            fetch('/api/instructor/' + jwt.instructor._id, {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + jwt.token
+                }
+            }).then((response) => {
+                return response.json()
+            }).then((data) => {
+                console.log(data)
+                this.setState({instructor: data})
+                this.loadCourses(jwt.instructor._id)
+            }).catch((err) => console.log(err))
+        }
     }
 
     render () {
@@ -62,7 +65,7 @@ class Dashboard extends Component {
             <React.Fragment>
                 <CssBaseline />
                 <Container fixed>
-                    <Box className={this.props.classes}>
+                    <Box>
                         <CoursesEditable classes={this.props.classes} courses={this.state.mycourses} />
                     </Box>
                 </Container>

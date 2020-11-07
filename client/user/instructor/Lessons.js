@@ -15,12 +15,12 @@ const Lessons = (props) => {
     }
                  className={props.classes.root}>
         {
-            props.lessons.map((lesson, i)=><ListItem><Link to={{
+            props.lessons.map((lesson, i)=><ListItem key={i}><Link to={{
                 pathname: "/instructor/lessons/:" + lesson.id,
                 state: {
                     lesson: {lesson}
                 }
-                }} key={i}  classes={props.classes}>{lesson.title}</Link></ListItem>
+                }} classes={props.classes}>{lesson.title}</Link></ListItem>
                 )
         }
         <Divider />

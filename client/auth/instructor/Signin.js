@@ -67,7 +67,7 @@ class Signin extends Component {
             <React.Fragment>
                 <CssBaseline />
                 <Container fixed>
-                    <Box className={this.props.classes}>
+                    <Box>
                         <SigninForm error={this.state.error} clickSubmit={this.clickSubmit} email={this.state.email} handleChange={this.handleChange} password={this.state.password}/>
                     </Box>
                 </Container>

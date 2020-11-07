@@ -16,7 +16,7 @@ const Course = (props) => {
             {open ? <ExpandLess /> : <ExpandMore />}
         </ListItem>
         <Collapse in={props.open} timeout="auto" unmountOnExit>
-            <LessonsEditable lessons={props.lessons} classes={props.classes}/>
+            <LessonsEditable lessons={props.lessons} classes={props.classes} key={props.courseName}/>
         </Collapse>
     </div>
 
