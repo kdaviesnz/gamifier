@@ -20,9 +20,9 @@ const SignupForm = (props) => {
             <Typography type="headline" component="h2">
                 Instructor Sign Up
             </Typography>
-            <TextField id="name" label="Name" value={props.user_name} onChange={this.handleChange('name')} margin="normal"/><br/>
-            <TextField id="email" type="email" label="Email" value={props.email} onChange={this.handleChange('email')} margin="normal"/><br/>
-            <TextField id="password" type="password" label="Password" value={props.password} onChange={this.handleChange('password')} margin="normal"/>
+            <TextField id="name" label="Name" value={props.user_name} onChange={props.handleChange('name')} margin="normal"/><br/>
+            <TextField id="email" type="email" label="Email" value={props.email} onChange={props.handleChange('email')} margin="normal"/><br/>
+            <TextField id="password" type="password" label="Password" value={props.password} onChange={props.handleChange('password')} margin="normal"/>
             <br/> {
                 props.error && (<Typography component="p" color="error">
                     <Icon color="error">error</Icon>
