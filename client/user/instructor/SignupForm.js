@@ -5,13 +5,13 @@ import CardActions from '@material-ui/core/CardActions'
 import CardContent from '@material-ui/core/CardContent'
 import Button from '@material-ui/core/Button'
 import TextField from '@material-ui/core/TextField'
-import Icon from "@material-ui/core/Icon";
 import DialogTitle from "@material-ui/core/DialogTitle/DialogTitle";
 import DialogContent from "@material-ui/core/DialogContent/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogActions from "@material-ui/core/DialogActions/DialogActions";
 import {Link} from "react-router-dom";
 import Dialog from "@material-ui/core/Dialog/Dialog";
+import Icon from '@material-ui/core/Icon'
 
 const SignupForm = (props) => {
 
