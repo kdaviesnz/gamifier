@@ -8,7 +8,7 @@ const Lessons = (props) => {
 
     return <List component="div" disablePadding subheader={
         <ListSubheader component="div" id="lessons">
-            Select a lesson
+            Select a lesson (user)
         </ListSubheader>
     }
                  className={classes.root}>
