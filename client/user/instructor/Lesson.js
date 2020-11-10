@@ -19,7 +19,7 @@ class Lesson extends Component {
             "lesson_content": props.location.state.lesson.lesson.content,
             "lesson_video_uri": "https://www.youtube.com/watch?v=ysz5S6PUM-U",
             "open": false,
-            "course_id": props.locaton.state.course_id
+            "course_id": props.location.state.course_id
         }
     }
 
