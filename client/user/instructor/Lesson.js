@@ -18,7 +18,8 @@ class Lesson extends Component {
             "lesson_objectives":"",
             "lesson_content": props.location.state.lesson.lesson.content,
             "lesson_video_uri": "https://www.youtube.com/watch?v=ysz5S6PUM-U",
-            "open": false
+            "open": false,
+            "course_id": props.locaton.state.course_id
         }
     }
 
@@ -30,12 +31,43 @@ class Lesson extends Component {
         this.setState({lesson_content: content})
     }
 
+    clickSubmit = () => {
+
+        const lesson = {
+            lesson_title: this.state.lesson_title || undefined,
+            lesson_objectives: this.state.lesson_objectives || undefined,
+            lesson_content: this.state.lesson_content || undefined,
+            lesson_video_uri: this.state.lesson_video_uri || undefined
+        }
+
+        return fetch('/api/lesson', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(user)
+        }).then((response) => {
+            return response.json()
+        }).then((data)=>{
+            console.log(data)
+            if (data.status !== 201) {
+                alert(data.error)
+            } else {
+                this.setState({open:true})
+            }
+        }).catch((err) => {
+            console.log(err)
+        })
+
+    }
+
     render() {
         return <React.Fragment>
             <CssBaseline/>
             <Container fixed>
                 <Box>
-                    <LessonForm open_dialog={this.state.open} lesson_video_uri={this.state.lesson_video_uri} lesson_content={this.state.lesson_content} lesson_title={this.state.lesson_title} lesson_objectives={this.state.lesson_objectives} handleChange={this.handleChange} handleContentChange={this.handleContentChange} />
+                    <LessonForm course_id={this.state.course_id} open_dialog={this.state.open} lesson_video_uri={this.state.lesson_video_uri} lesson_content={this.state.lesson_content} lesson_title={this.state.lesson_title} lesson_objectives={this.state.lesson_objectives} handleChange={this.handleChange} handleContentChange={this.handleContentChange} />
                 </Box>
             </Container>
         </React.Fragment>

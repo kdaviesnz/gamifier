@@ -18,7 +18,8 @@ const Lessons = (props) => {
             props.lessons.map((lesson, i)=><ListItem key={i}><Link to={{
                 pathname: "/instructor/lessons/:" + lesson.id,
                 state: {
-                    lesson: {lesson}
+                    lesson: {lesson},
+                    course_id: props.course_id
                 }
                 }} classes={props.classes}>{lesson.title}</Link></ListItem>
                 )

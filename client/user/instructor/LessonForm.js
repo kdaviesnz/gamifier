@@ -20,6 +20,7 @@ const LessonForm = (props) => {
 
     return <div><Card>
         <CardContent>
+            <TextField id="course_id" label="course id" value={props.course_id} /><br/>
             <Typography type="headline" component="h2">
                 Add / Edit Lesson
             </Typography>

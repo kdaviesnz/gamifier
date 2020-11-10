@@ -24,7 +24,7 @@ const Courses = (props) => {
             props.courses.map(
                 (course, i) => {
                     return (
-                        <CourseEditable handleClick={handleClick} setOpen={setOpen} open={open} courseName={course.course.name} lessons={course.lessons} key={i} classes={props.classes}/>
+                        <CourseEditable handleClick={handleClick} setOpen={setOpen} open={open} course_id={course._id} courseName={course.course.name} lessons={course.lessons} key={i} classes={props.classes}/>
                     )
                 }
             )

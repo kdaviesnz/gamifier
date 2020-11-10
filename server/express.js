@@ -57,12 +57,14 @@ const App = (collections) => {
     const instructorRoutes = require('./routes/instructor.routes')(collections.collection("instructors"))
     const studentRoutes = require('./routes/student.routes')(collections.collection("students"))
     const courseRoutes = require('./routes/course.routes')(collections.collection("courses"))
+    const lessonRoutes = require('./routes/lesson.routes')(collections.collection("courses"))
 
     app.use('/', instructorRoutes)
     app.use('/', studentRoutes)
     app.use('/', instructorAuthRoutes)
     app.use('/', studentAuthRoutes)
     app.use('/', courseRoutes)
+    app.use('/', lessonRoutes)
 
     app.get('*', (req, res) => {
             console.log('Calling app.get')
