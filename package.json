@@ -48,11 +48,13 @@
     "material-ui": "^0.20.2",
     "material-ui-editor": "^1.0.6",
     "mongodb": "^3.6.2",
+    "npm": "^6.14.8",
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
     "react-hot-loader": "^4.13.0",
     "react-html-parser": "^2.0.2",
     "react-jss": "^8.6.1",
+    "react-player": "^2.6.2",
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
     "update": "^0.7.4"

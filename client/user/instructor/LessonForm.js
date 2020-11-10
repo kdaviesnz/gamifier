@@ -14,6 +14,7 @@ import Dialog from "@material-ui/core/Dialog/Dialog";
 import Icon from '@material-ui/core/Icon'
 // @see https://www.npmjs.com/package/material-ui-editor
 import Editor from 'material-ui-editor'
+import ReactPlayer from 'react-player'
 
 const LessonForm = (props) => {
 
@@ -22,10 +23,18 @@ const LessonForm = (props) => {
             <Typography type="headline" component="h2">
                 Add / Edit Lesson
             </Typography>
-            <TextField id="name" label="Name" value={props.lesson_title} onChange={props.handleChange('lesson_title')} margin="normal"/><br/>
-            <TextField id="name" label="Name" value={props.lesson_objectives} onChange={props.handleChange('lesson_objectives')} margin="normal"/><br/>
-            <Editor content={props.lesson_content}
+            <box>
+                <TextField id="lesson_title" label="Lesson title" value={props.lesson_title} onChange={props.handleChange('lesson_title')} /><br/>
+               <TextField id="lesson_objectives" label="Lesson objectives" value={props.lesson_objectives} onChange={props.handleChange('lesson_objectives')} />
+            </box>
+            <box>
+                <ReactPlayer url={props.lesson_video_uri} />
+                <TextField id="lesson_video_uri" label="Video uri" value={props.lesson_video_uri} onChange={props.handleChange('lesson_video_uri')} />
+            </box>
+            <box>
+                <Editor content={props.lesson_content}
                     onChange={props.handleContentChange}/>
+            </box>
         </CardContent>
         <CardActions>
             <Button color="primary" variant="outlined" onClick={props.clickSubmit}>Submit</Button>
