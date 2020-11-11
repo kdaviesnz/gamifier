@@ -7,7 +7,12 @@ const LessonRouter = (collection) => {
 
     const Authenticator =  require("../models/authentication.model")();
 
-    router.route('/api/course/:lessonId')
+    router.route('/api/lesson')
+        .post(
+            lessonController.create
+        )
+
+    router.route('/api/lesson/:lessonId')
         .put(Authenticator.requireSignin, Authenticator.hasAuthorization, lessonController.update)
         .delete(Authenticator.requireSignin, Authenticator.hasAuthorization, lessonController.delete)
 

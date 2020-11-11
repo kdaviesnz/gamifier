@@ -21,6 +21,7 @@ const LessonForm = (props) => {
     return <div><Card>
         <CardContent>
             <TextField id="course_id" label="course id" value={props.course_id} /><br/>
+            <TextField id="lesson_id" label="lesson id" value={props.lesson_id} /><br/>
             <Typography type="headline" component="h2">
                 Add / Edit Lesson
             </Typography>
@@ -38,25 +39,28 @@ const LessonForm = (props) => {
             </box>
         </CardContent>
         <CardActions>
-            <Button color="primary" variant="outlined" onClick={props.clickSubmit}>Submit</Button>
+            {
+                props.lesson_id===null?
+                    <Button color="primary" variant="outlined" onClick={props.createLesson}>Create Lesson</Button>
+                    :
+                    <Button color="primary" variant="outlined" onClick={props.updateLesson}>Update Lesson</Button>
+            }
         </CardActions>
 
 
     </Card>
 
-        <Dialog open={props.open_dialog} disableBackdropClick={true}>
-            <DialogTitle>New Account</DialogTitle>
+        <Dialog open={props.open_dialog} disableBackdropClick={false}>
+            <DialogTitle>{props.lesson_id===null?"New lesson": props.lesson_title}</DialogTitle>
             <DialogContent>
                 <DialogContentText>
-                    Lesson saved
+                    {props.lesson_id===null?"Lesson created":"Lesson updated"}
                 </DialogContentText>
             </DialogContent>
             <DialogActions>
-                <Link to="/instructor/signin">
-                    <Button color="primary" autoFocus="autoFocus" variant="outlined">
-                        Sign In
+                    <Button onClick={props.closeDialog} color="primary" autoFocus="autoFocus" variant="outlined">
+                        OK
                     </Button>
-                </Link>
             </DialogActions>
         </Dialog>
 
