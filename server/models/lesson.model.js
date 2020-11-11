@@ -68,6 +68,54 @@ class Lesson {
 
     update (req, res, next)  {
 
+        const ObjectId = require('mongodb').ObjectId;
+        const course_object_id = new ObjectId(req.body.course_id);
+
+        this.collection.findOne({'_id':course_object_id}, (err, course) => {
+            if (err) {
+                res.json({
+                    'error':err
+                })
+            } else if (course === null || ! course) {
+                res.status('401').json({
+                    error: "Course not found"
+                })
+            } else {
+
+
+                course.lessons = course.lessons.map((lesson)=>{
+                    if (lesson.id === req.body.lesson_id) {
+                        return {
+                            'lesson_title': req.body.lesson_title,
+                            'lesson_objectives': req.body.lesson_objectives,
+                            'lesson_content': req.body.lesson_content,
+                            'lesson_video_uri': req.body.lesson_video_uri,
+                            'created': lesson.created === null? Date.now : lesson.created,
+                            'updated': Date.now(),
+                            'id':req.body.lesson_id
+                        }
+                    }
+                    return lesson
+                })
+
+                this.collection.updateOne({'_id':course_object_id}, {$set:{'lessons':course.lessons}}, (err) => {
+                    if (err) {
+                        res.json({
+                            'error': err
+                        })
+                    } else {
+                        res.json({
+                            'status': 200,
+                            'message': 'Course updated with updated lesson',
+                            'Location': '/api/course/' + course._id,
+                            'lesson_id': req.body.lesson_id,
+                            'content': req.body.lesson_content
+                        })
+                    }
+                })
+
+            }
+        })
 
 
     }

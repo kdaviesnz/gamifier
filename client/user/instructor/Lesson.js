@@ -47,8 +47,8 @@ class Lesson extends Component {
             lesson_id: this.state.lesson_id || undefined
         }
 
-        return fetch('/api/lesson', {
-            method: 'POST',
+        return fetch('/api/lesson/:' + this.state.lesson_id, {
+            method: 'PUT',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
@@ -58,7 +58,7 @@ class Lesson extends Component {
             return response.json()
         }).then((data)=>{
             console.log(data)
-            if (data.status !== 201) {
+            if (data.status !== 200) {
                 alert(data.error)
             } else {
                 this.setState({open:true})

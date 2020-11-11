@@ -12,9 +12,10 @@ const LessonRouter = (collection) => {
             lessonController.create
         )
 
+    // @todo authorization
     router.route('/api/lesson/:lessonId')
-        .put(Authenticator.requireSignin, Authenticator.hasAuthorization, lessonController.update)
-        .delete(Authenticator.requireSignin, Authenticator.hasAuthorization, lessonController.delete)
+        .put(lessonController.update)
+        .delete(lessonController.delete)
 
     return router
 }
