@@ -5,6 +5,9 @@ const LessonController = (collection) => {
     const lesson = new Lesson(collection)
 
     return {
+        "read": (req, res) => {
+            lesson.read(req, res)
+        },
         "create": (req, res) => {
             lesson.create(req, res)
         },

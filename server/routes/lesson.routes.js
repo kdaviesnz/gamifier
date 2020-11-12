@@ -13,6 +13,9 @@ const LessonRouter = (collection) => {
         )
 
     // @todo authorization
+    router.route('/api/lesson/:courseId/:lessonId')
+        .get(lessonController.read)
+
     router.route('/api/lesson/:lessonId')
         .put(lessonController.update)
         .delete(lessonController.delete)

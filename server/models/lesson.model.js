@@ -13,6 +13,43 @@ class Lesson {
         this.authenticator = require('./authentication.model')()
     }
 
+    read(req, res ) {
+
+
+
+        const ObjectId = require('mongodb').ObjectId;
+        const course_object_id = new ObjectId(req.params.courseId.slice(1)); //ignore ":"
+
+
+        this.collection.findOne({'_id':course_object_id}, (err, course) => {
+            if (err) {
+                res.json({
+                    'error': err
+                })
+            } else if (course === null || !course) {
+                res.status('401').json({
+                    error: "Course not found",
+                    params:req.params
+                })
+            } else {
+
+                const lesson = _.find(course.lessons, (lesson)=> {
+                    return lesson.id === req.params.lessonId.slice(1) // ignore ":"
+                })
+
+                if (lesson === undefined) {
+                    res.status('401').json({
+                        error: "Lesson not found"
+                    })
+                } else {
+                    res.status('200').json(lesson)
+                }
+
+            }
+        })
+
+    }
+
     create(req, res) {
 
         const ObjectId = require('mongodb').ObjectId;
@@ -86,9 +123,9 @@ class Lesson {
                 course.lessons = course.lessons.map((lesson)=>{
                     if (lesson.id === req.body.lesson_id) {
                         return {
-                            'lesson_title': req.body.lesson_title,
+                            'title': req.body.lesson_title,
                             'lesson_objectives': req.body.lesson_objectives,
-                            'lesson_content': req.body.lesson_content,
+                            'content': req.body.lesson_content,
                             'lesson_video_uri': req.body.lesson_video_uri,
                             'created': lesson.created === null? Date.now : lesson.created,
                             'updated': Date.now(),

@@ -22,6 +22,8 @@ class Lesson extends Component {
             "open": false,
             "course_id": props.location.state.course_id
         }
+        // @todo should be called onlhy if we have a page refresh
+        this.fetchLesson()
     }
 
     handleChange = name => event => {
@@ -34,6 +36,32 @@ class Lesson extends Component {
 
     closeDialog = event => {
         this.setState({open: false})
+    }
+
+    fetchLesson = () => {
+
+        const lesson = {
+            course_id: this.state.course_id || undefined,
+            lesson_id: this.state.lesson_id || undefined
+        }
+
+        console.log('Fetching lesson')
+
+        return fetch('/api/lesson/:' + lesson.course_id + '/:' + lesson.lesson_id, {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+        }).then((response) => {
+            return response.json()
+        }).then((data)=>{
+            this.setState({"lesson_title":data.title, "lesson_content":data.content, "lesson_video_uri":data.lesson_video_uri})
+
+        }).catch((err) => {
+            console.log(err)
+        })
+
     }
 
     updateLesson = () => {
@@ -57,11 +85,13 @@ class Lesson extends Component {
         }).then((response) => {
             return response.json()
         }).then((data)=>{
+            console.log('Lesson updated')
             console.log(data)
             if (data.status !== 200) {
                 alert(data.error)
             } else {
                 this.setState({open:true})
+                this.fetchLesson()
             }
         }).catch((err) => {
             console.log(err)
@@ -94,7 +124,8 @@ class Lesson extends Component {
             if (data.status !== 201) {
                 alert(data.error)
             } else {
-                this.setState({open:true})
+                this.setState({open:true, "lesson_id":data.lesson_id})
+                this.fetchLesson()
             }
         }).catch((err) => {
             console.log(err)
