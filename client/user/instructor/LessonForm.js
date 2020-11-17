@@ -45,6 +45,7 @@ const LessonForm = (props) => {
                     :
                     <Button color="primary" variant="outlined" onClick={props.updateLesson}>Update Lesson</Button>
             }
+            <Button color="primary" variant="outlined" onClick={props.deleteLesson}>Delete Lesson</Button>
         </CardActions>
 
 

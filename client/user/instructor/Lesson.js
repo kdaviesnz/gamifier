@@ -99,6 +99,32 @@ class Lesson extends Component {
 
     }
 
+    deleteLesson = () => {
+
+        if (confirm('Delete this lesson?')) {
+            return fetch('/api/lesson/:' + this.state.lesson_id, {
+                method: 'DELETE',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                }
+            }).then((response) => {
+                return response.json()
+            }).then((data) => {
+                console.log('Lesson deleted')
+                console.log(data)
+                if (data.status !== 200) {
+                    alert(data.error)
+                } else {
+                    this.setState({open: true})
+                }
+            }).catch((err) => {
+                console.log(err)
+            })
+        }
+
+    }
+
     clickSubmit = () => {
 
         const lesson = {
@@ -138,7 +164,7 @@ class Lesson extends Component {
             <CssBaseline/>
             <Container fixed>
                 <Box>
-                    <LessonForm lesson_id={this.state.lesson_id} course_id={this.state.course_id} open_dialog={this.state.open} lesson_video_uri={this.state.lesson_video_uri} lesson_content={this.state.lesson_content} lesson_title={this.state.lesson_title} lesson_objectives={this.state.lesson_objectives} handleChange={this.handleChange} handleContentChange={this.handleContentChange} createLesson={this.clickSubmit} updateLesson={this.updateLesson} closeDialog={this.closeDialog} />
+                    <LessonForm lesson_id={this.state.lesson_id} course_id={this.state.course_id} open_dialog={this.state.open} lesson_video_uri={this.state.lesson_video_uri} lesson_content={this.state.lesson_content} lesson_title={this.state.lesson_title} lesson_objectives={this.state.lesson_objectives} handleChange={this.handleChange} handleContentChange={this.handleContentChange} createLesson={this.clickSubmit} updateLesson={this.updateLesson} deleteLesson={this.deleteLesson} closeDialog={this.closeDialog} />
                 </Box>
             </Container>
         </React.Fragment>
